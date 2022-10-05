@@ -4,15 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/pale_grey"
     tools:context=".SplashScreen">
 
-    <TextView
-        android:id="@+id/textView"
+    <ImageView
+        android:id="@+id/imageLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="225dp"
-        android:text="Splash Screen"
+        android:layout_marginStart="58dp"
+        android:layout_marginTop="178dp"
+        android:layout_marginEnd="57dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_logo"
+        android:contentDescription="@string/logo_of_app" />
 </androidx.constraintlayout.widget.ConstraintLayout>
