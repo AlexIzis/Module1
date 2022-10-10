@@ -10,6 +10,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        title = "Профиль"
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val navigation: BottomNavigationView = findViewById(R.id.btnNav)
