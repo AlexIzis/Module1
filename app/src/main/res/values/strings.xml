@@ -10,4 +10,18 @@
     <string name="bottom_profile">Профиль</string>
     <string name="profile_image">profile image</string>
     <string name="user_name">Константинов Денис</string>
+    <string name="profile_activity_name">Профиль</string>
+    <string name="label_date_birth">Дата рождения</string>
+    <string name="date">01 февраля 1980</string>
+    <string name="label_sphere">Сфера деятельности</string>
+    <string name="sphere">Хирургия, травмотология</string>
+    <string name="push">Получать push-уведомления</string>
+    <string name="label_friends">Ваши друзья</string>
+    <string name="avatar1">avatar1</string>
+    <string name="avatar2">avatar2</string>
+    <string name="avatar3">avatar3</string>
+    <string name="name_avatar1">Дмитрий Валерьевич</string>
+    <string name="name_avatar2">Евгений Александров</string>
+    <string name="name_avatar3">Виктор Кузнецов</string>
+    <string name="button_logout">Выйти из аккаунта</string>
 </resources>

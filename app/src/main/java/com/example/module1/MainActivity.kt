@@ -10,10 +10,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        title = "Профиль"
-
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         val navigation: BottomNavigationView = findViewById(R.id.btnNav)
         navigation.selectedItemId = R.id.profile
         navigation.setOnItemSelectedListener { item ->
@@ -43,10 +39,5 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        finish()
-        return true
     }
 }
