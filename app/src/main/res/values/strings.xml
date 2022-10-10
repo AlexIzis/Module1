@@ -3,4 +3,9 @@
     <string name="logo_of_app">Name of app</string>
     <string name="logo_of_company">logo of company</string>
     <string name="loading_text">Загрузка...</string>
+    <string name="bottom_news">Новости</string>
+    <string name="bottom_search">Поиск</string>
+    <string name="bottom_help">Помочь</string>
+    <string name="bottom_history">История</string>
+    <string name="bottom_profile">Профиль</string>
 </resources>
