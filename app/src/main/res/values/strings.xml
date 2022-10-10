@@ -8,4 +8,6 @@
     <string name="bottom_help">Помочь</string>
     <string name="bottom_history">История</string>
     <string name="bottom_profile">Профиль</string>
+    <string name="profile_image">profile image</string>
+    <string name="user_name">Константинов Денис</string>
 </resources>

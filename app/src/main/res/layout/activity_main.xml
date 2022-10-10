@@ -6,14 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:contentDescription="@string/profile_image"
+            android:src="@drawable/image_man" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="238dp"
+            android:layout_height="32dp"
+            android:text="@string/user_name"
+            android:textSize="24sp" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/btnNav"
         android:layout_width="match_parent"
         android:layout_height="54dp"
+        android:backgroundTint="@color/black_40"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:labelVisibilityMode="labeled"
-        android:backgroundTint="@color/black_40"
-        app:menu="@menu/bottom_menu"/>
+        app:menu="@menu/bottom_menu" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
