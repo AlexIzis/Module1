@@ -22,8 +22,7 @@
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                app:layout_scrollFlags="enterAlwaysCollapsed">
 
                 <TextView
                     android:layout_width="wrap_content"
