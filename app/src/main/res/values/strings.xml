@@ -24,4 +24,5 @@
     <string name="name_avatar2">Евгений Александров</string>
     <string name="name_avatar3">Виктор Кузнецов</string>
     <string name="button_logout">Выйти из аккаунта</string>
+    <string name="pencil">pencil</string>
 </resources>
