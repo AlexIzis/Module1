@@ -11,9 +11,7 @@
         android:id="@+id/imageLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="58dp"
         android:layout_marginTop="178dp"
-        android:layout_marginEnd="57dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,8 +22,6 @@
         android:id="@+id/imageCompany"
         android:layout_width="116dp"
         android:layout_height="16dp"
-        android:layout_marginStart="122dp"
-        android:layout_marginEnd="122dp"
         android:layout_marginBottom="40dp"
         android:contentDescription="@string/logo_of_company"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,12 +35,9 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="161dp"
         android:layout_marginTop="83dp"
-        android:layout_marginEnd="161dp"
         android:indeterminate="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageLogo" />
 
@@ -52,13 +45,12 @@
         android:id="@+id/textLoading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="146dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="146dp"
         android:text="@string/loading_text"
-        android:textColor="#B3000000"
-        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textLoadingSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

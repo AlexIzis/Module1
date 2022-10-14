@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -28,30 +28,30 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/textView"
+                        android:id="@+id/textProfileActivityName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginStart="136dp"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/officinasansextraboldscc"
                         android:text="@string/profile_activity_name"
                         android:textColor="@color/white"
-                        android:textSize="21sp"
+                        android:textSize="@dimen/textProfileActivityNameSize"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="TextContrastCheck" />
 
                     <ImageView
+                        android:id="@+id/imageView4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="22dp"
                         android:contentDescription="@string/pencil"
                         android:src="@drawable/ic_pencil"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView"
+                        app:layout_constraintBottom_toBottomOf="@+id/textProfileActivityName"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.77"
+                        app:layout_constraintTop_toTopOf="@+id/textProfileActivityName"
                         tools:ignore="ImageContrastCheck" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -75,23 +75,21 @@
                 android:id="@+id/profile_image"
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
-                android:layout_marginTop="16dp"
                 android:contentDescription="@string/profile_image"
                 android:src="@drawable/image_man"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/profile_name"
                 android:layout_width="wrap_content"
-                android:layout_height="32dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/user_name"
                 android:textColor="@color/black"
-                android:textSize="24sp"
+                android:textSize="@dimen/profileNameSize"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
@@ -102,7 +100,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/label_date_birth"
-                android:textSize="12sp"
+                android:textSize="@dimen/labelProfileDateBirth"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profile_name" />
 
@@ -113,7 +111,7 @@
                 android:layout_marginStart="20dp"
                 android:text="@string/date"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="@dimen/profileDateBirth"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/label_profile_date_birth" />
 
@@ -124,7 +122,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/label_sphere"
-                android:textSize="12sp"
+                android:textSize="@dimen/labelProfileDateBirth"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profile_date_birth" />
 
@@ -135,7 +133,7 @@
                 android:layout_marginStart="20dp"
                 android:text="@string/sphere"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="@dimen/profileDateBirth"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/label_sphere_profile" />
 
@@ -147,7 +145,7 @@
                 android:layout_marginTop="28dp"
                 android:text="@string/push"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="@dimen/profileDateBirth"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sphere_profile" />
 
@@ -155,14 +153,12 @@
                 android:id="@+id/switch1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="130dp"
                 android:layout_marginEnd="16dp"
                 android:checked="true"
-                android:minWidth="40dp"
-                android:minHeight="24dp"
                 android:theme="@style/SwitchCompatTheme"
+                app:layout_constraintBottom_toBottomOf="@+id/question"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_name"
+                app:layout_constraintTop_toTopOf="@+id/question"
                 tools:ignore="UseSwitchCompatOrMaterialXml,TouchTargetSizeCheck" />
 
             <View
@@ -182,7 +178,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/label_friends"
-                android:textSize="12sp"
+                android:textSize="@dimen/labelProfileDateBirth"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view" />
 
@@ -227,7 +223,7 @@
                 android:layout_marginTop="31dp"
                 android:text="@string/name_avatar1"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="@dimen/profileDateBirth"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toBottomOf="@+id/label_profile_friends" />
 
@@ -239,7 +235,7 @@
                 android:layout_marginTop="39dp"
                 android:text="@string/name_avatar2"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="@dimen/profileDateBirth"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
                 app:layout_constraintTop_toBottomOf="@+id/text_avatar1" />
 
@@ -251,7 +247,7 @@
                 android:layout_marginTop="35dp"
                 android:text="@string/name_avatar3"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="@dimen/profileDateBirth"
                 app:layout_constraintStart_toEndOf="@+id/imageView3"
                 app:layout_constraintTop_toBottomOf="@+id/text_avatar2" />
 
@@ -268,9 +264,7 @@
                 android:id="@+id/button_logout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="97dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="97dp"
                 android:layout_marginBottom="60dp"
                 android:text="@string/button_logout"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -286,7 +280,7 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/btnNav"
         android:layout_width="match_parent"
-        android:layout_height="54dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:backgroundTint="@color/black_40"
         app:labelVisibilityMode="labeled"
