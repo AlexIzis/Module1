@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="wrap_content" // тут тоже match_parent
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -32,7 +32,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginStart="136dp"
+                        android:layout_marginStart="136dp" /* Нужно избегать использовтаь жесткие размеры, если можно адаптивно расположить элемент распологаем. 
+                              Разрмеры задаются когда по другому никак.
+                                                      app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+
+                              */
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/officinasansextraboldscc"
                         android:text="@string/profile_activity_name"
@@ -45,13 +52,21 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="22dp"
+                        android:layout_marginEnd="22dp"  // размеры часе всего кратны 4/8 и отстутпы 16 dp https://material.io/archive/guidelines/layout/metrics-keylines.html#metrics-keylines-keylines-spacing
+                               
                         android:contentDescription="@string/pencil"
                         android:src="@drawable/ic_pencil"
                         app:layout_constraintBottom_toBottomOf="@+id/textView"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.77"
+                        app:layout_constraintVertical_bias="0.77" /*
+                               
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                               не нужно цифры задавать 
+                               
+                               */
                         tools:ignore="ImageContrastCheck" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -75,23 +90,23 @@
                 android:id="@+id/profile_image"
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="16dp"  // вот это не нужно по макету
                 android:contentDescription="@string/profile_image"
                 android:src="@drawable/image_man"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.0"  // можно убрать и ничего не измениться
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/profile_name"
                 android:layout_width="wrap_content"
-                android:layout_height="32dp"
+                android:layout_height="32dp"  // wrap_content тоже работать будет
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/user_name"
                 android:textColor="@color/black"
-                android:textSize="24sp"
+                android:textSize="24sp"  // размеры в ресурсы выносить нужно
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
@@ -102,7 +117,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/label_date_birth"
-                android:textSize="12sp"
+                android:textSize="12sp"  // и тут в ресурс
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profile_name" />
 
@@ -155,14 +170,14 @@
                 android:id="@+id/switch1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="130dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="130dp" 
+                android:layout_marginEnd="16dp" 
                 android:checked="true"
-                android:minWidth="40dp"
-                android:minHeight="24dp"
+                android:minWidth="40dp"  // убрать
+                android:minHeight="24dp"  // убрать
                 android:theme="@style/SwitchCompatTheme"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_name"
+                app:layout_constraintTop_toBottomOf="@+id/profile_name"  // switch по вертикал должен центрироваться относительно TextView: question, а не profile_name
                 tools:ignore="UseSwitchCompatOrMaterialXml,TouchTargetSizeCheck" />
 
             <View
@@ -268,9 +283,9 @@
                 android:id="@+id/button_logout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="97dp"
+                android:layout_marginStart="97dp  // убрать
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="97dp"
+                android:layout_marginEnd="97dp" // убрать
                 android:layout_marginBottom="60dp"
                 android:text="@string/button_logout"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -286,7 +301,7 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/btnNav"
         android:layout_width="match_parent"
-        android:layout_height="54dp"
+        android:layout_height="54dp" //         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:backgroundTint="@color/black_40"
         app:labelVisibilityMode="labeled"
