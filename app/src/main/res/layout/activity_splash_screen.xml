@@ -11,9 +11,9 @@
         android:id="@+id/imageLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="58dp"
-        android:layout_marginTop="178dp"
-        android:layout_marginEnd="57dp"
+        android:layout_marginStart="58dp"  //TODO можно убрать layout_marginStart и layout_marginEnd. 58/57  - это косяк зеплина, кнопка по середине должна распологаться
+         android:layout_marginTop="178dp"
+        android:layout_marginEnd="57dp" //TODO можно убрать
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,7 +24,7 @@
         android:id="@+id/imageCompany"
         android:layout_width="116dp"
         android:layout_height="16dp"
-        android:layout_marginStart="122dp"
+        android:layout_marginStart="122dp"  // TODO layout_marginStart и layout_marginEnd можно убрать
         android:layout_marginEnd="122dp"
         android:layout_marginBottom="40dp"
         android:contentDescription="@string/logo_of_company"
@@ -39,12 +39,12 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="161dp"
+        android:layout_marginStart="161dp"  // TODO layout_marginStart layout_marginEnd аналогично убрать
         android:layout_marginTop="83dp"
         android:layout_marginEnd="161dp"
         android:indeterminate="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.498"  // layout_constraintHorizontal_bias можно убрать
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageLogo" />
 
@@ -52,12 +52,12 @@
         android:id="@+id/textLoading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="146dp"
+        android:layout_marginStart="146dp"  // аналогично убрать можно layout_marginStart и layout_marginEnd
         android:layout_marginTop="20dp"
         android:layout_marginEnd="146dp"
         android:text="@string/loading_text"
-        android:textColor="#B3000000"
-        android:textSize="14sp"
+        android:textColor="#B3000000""  // TODO цвета нужно в ресурсы выносить. Как правило в проекте ограниченный перечень цветов.
+        android:textSize="14sp"  // TODO размеры нужно в ресурсы выносить. Как правило в проекте ограниченный перечень размеров.
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBar" />
