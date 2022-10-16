@@ -25,4 +25,9 @@
     <string name="name_avatar3">Виктор Кузнецов</string>
     <string name="button_logout">Выйти из аккаунта</string>
     <string name="pencil">pencil</string>
+    <string-array name="values">
+        <item>"Выбрать фото"</item>
+        <item>"Сделать снимок"</item>
+        <item>"Удалить"</item>
+    </string-array>
 </resources>
