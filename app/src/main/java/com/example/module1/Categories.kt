@@ -2,24 +2,23 @@ package com.example.module1
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageView
+import android.os.Parcelable
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity() {
+class Categories : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_categories)
 
-        val pencilButton: ImageView = findViewById(R.id.imageView4)
-        pencilButton.setOnClickListener {
-            val intent = Intent(this, EditProfile::class.java)
-            startActivity(intent)
-        }
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragmentContainerView, CategoriesFragment())
+        fragmentTransaction.commit()
 
-        val navigation: BottomNavigationView = findViewById(R.id.btnNav)
-        navigation.selectedItemId = R.id.profile
+        val navigation: BottomNavigationView = findViewById(R.id.btnNavHelp)
+        navigation.selectedItemId = R.id.heart
         navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.news -> {
@@ -27,9 +26,6 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.heart -> {
-                    val intent = Intent(this, Categories::class.java)
-                    startActivity(intent)
-                    finish()
                     true
                 }
                 R.id.search -> {
@@ -41,6 +37,9 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.profile -> {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
                     true
                 }
                 else -> {
