@@ -1,5 +1,6 @@
 package com.example.module1
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +32,7 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
         return itemList.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setInfo(tmpArr: ArrayList<CategoriesItem>) {
         itemList.clear()
         itemList.addAll(tmpArr)

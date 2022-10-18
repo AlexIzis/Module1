@@ -1,5 +1,6 @@
 package com.example.module1
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +29,7 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
         return strList.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setInfo(tmpArr: ArrayList<String>) {
         strList.clear()
         strList.addAll(tmpArr)

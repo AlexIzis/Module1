@@ -24,12 +24,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/officinasansextraboldscc"
-                android:text="Редактировать"
+                android:text="@string/edit"
                 android:textColor="@color/white"
                 android:textSize="@dimen/textProfileActivityNameSize"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TextContrastCheck" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.Toolbar>
 
@@ -45,9 +46,10 @@
 
         <ImageView
             android:id="@+id/imageEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/image_man" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/image_man"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:layout_width="match_parent"
@@ -56,9 +58,9 @@
             android:background="#B5000000"
             android:gravity="center|top"
             android:lines="2"
-            android:text="Сменить \n Фото"
+            android:text="@string/change_photo"
             android:textColor="@color/white"
-            android:textSize="12sp"/>
+            android:textSize="@dimen/labelProfileDateBirth"/>
 
     </androidx.cardview.widget.CardView>
 
@@ -68,8 +70,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
-        android:text="Ваша фамилия"
-        android:textSize="12sp"
+        android:text="@string/label_family"
+        android:textSize="@dimen/labelProfileDateBirth"
         app:layout_constraintStart_toEndOf="@+id/cardView"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
@@ -79,10 +81,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
-        android:hint="Введите фамилию"
+        android:hint="@string/enter_family"
+        android:inputType="text"
         android:minHeight="48dp"
         app:layout_constraintStart_toEndOf="@+id/cardView"
-        app:layout_constraintTop_toBottomOf="@+id/yourFamilyLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/yourFamilyLabel"
+        tools:ignore="Autofill,TextContrastCheck" />
 
     <TextView
         android:id="@+id/yourNameLabel"
@@ -90,8 +94,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
-        android:text="Ваше имя"
-        android:textSize="12sp"
+        android:text="@string/your_name"
+        android:textSize="@dimen/labelProfileDateBirth"
         app:layout_constraintStart_toEndOf="@+id/cardView"
         app:layout_constraintTop_toBottomOf="@+id/inputFamily" />
 
@@ -101,10 +105,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
+        android:hint="@string/your_name"
+        android:inputType="text"
+        android:minHeight="48dp"
         app:layout_constraintStart_toEndOf="@+id/cardView"
         app:layout_constraintTop_toBottomOf="@+id/yourNameLabel"
-        android:minHeight="48dp"
-        android:hint="Ваше имя"/>
+        tools:ignore="Autofill,TextContrastCheck,DuplicateSpeakableTextCheck" />
 
     <View
         android:id="@+id/view3"
@@ -125,7 +131,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view3"
         android:text="@string/label_date_birth"
-        android:textSize="12sp"/>
+        android:textSize="@dimen/labelProfileDateBirth"/>
 
     <EditText
         android:id="@+id/inputDate"
@@ -134,11 +140,13 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
-        android:hint="Дата рождения"
+        android:hint="@string/label_date_birth"
+        android:inputType="date"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_profile_date_birth" />
+        app:layout_constraintTop_toBottomOf="@+id/label_profile_date_birth"
+        tools:ignore="Autofill,TextContrastCheck,DuplicateSpeakableTextCheck" />
 
     <TextView
         android:id="@+id/label_sphere_edit"
@@ -146,8 +154,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:textSize="12sp"
-        android:text="Заполните вашу сферу деятельности, чтобы быть наиболее полезным"
+        android:textSize="@dimen/labelProfileDateBirth"
+        android:text="@string/large_text_sphere"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputDate" />
 
@@ -158,11 +166,13 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
-        android:hint="Сфера деятельности"
+        android:hint="@string/your_sphere"
+        android:inputType="text"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_sphere_edit" />
+        app:layout_constraintTop_toBottomOf="@+id/label_sphere_edit"
+        tools:ignore="Autofill,TextContrastCheck" />
 
     <TextView
         android:id="@+id/label_password_edit"
@@ -170,8 +180,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:textSize="12sp"
-        android:text="Пароль"
+        android:textSize="@dimen/labelProfileDateBirth"
+        android:text="@string/password"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputSphere" />
 
@@ -182,11 +192,13 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
+        android:hint="@string/password"
+        android:inputType="numberPassword"
         android:minHeight="48dp"
-        android:hint="Пароль"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_password_edit" />
+        app:layout_constraintTop_toBottomOf="@+id/label_password_edit"
+        tools:ignore="Autofill,DuplicateSpeakableTextCheck" />
 
     <TextView
         android:id="@+id/label_email_edit"
@@ -194,8 +206,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:textSize="12sp"
-        android:text="E-mail для уведомления"
+        android:textSize="@dimen/labelProfileDateBirth"
+        android:text="@string/label_e_mail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
 
@@ -207,9 +219,11 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:minHeight="48dp"
-        android:hint="E-mail"
+        android:hint="@string/e_mail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_email_edit" />
+        app:layout_constraintTop_toBottomOf="@+id/label_email_edit"
+        tools:ignore="Autofill"
+        android:inputType="textEmailAddress" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

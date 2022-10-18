@@ -38,7 +38,7 @@ class SearchFragment2 : Fragment() {
         return inflater.inflate(R.layout.fragment_search2, container, false)
     }
 
-    fun getRandomString(length: Int): String {
+    private fun getRandomString(length: Int): String {
         val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
         return (1..length)
             .map { allowedChars.random() }

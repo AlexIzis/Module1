@@ -29,12 +29,11 @@ class EditProfile : AppCompatActivity() {
         fun doPhoto() {
             val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             getResult.launch(cameraIntent)
-            // startActivityForResult(cameraIntent, 1)
         }
 
         fun deletePhoto() {
             val image: ImageView = findViewById(R.id.imageEdit)
-            image.setImageResource(R.drawable.avatar_1)
+            image.setImageResource(R.drawable.ic_photo_camera)
         }
 
         fun showDialog() {
@@ -59,12 +58,8 @@ class EditProfile : AppCompatActivity() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 1 && resultCode == RESULT_OK) {
-            val newImage = data?.extras?.get("data") as Bitmap
-            val image: ImageView = findViewById(R.id.imageEdit)
-            image.setImageBitmap(newImage)
-        }
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }

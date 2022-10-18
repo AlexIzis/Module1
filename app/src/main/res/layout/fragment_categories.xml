@@ -14,9 +14,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Выберите категорию помощи"
+            android:text="@string/help_category"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="@dimen/profileDateBirth"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

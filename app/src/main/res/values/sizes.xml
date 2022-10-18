@@ -5,4 +5,5 @@
     <dimen name="profileNameSize">24sp</dimen>
     <dimen name="labelProfileDateBirth">12sp</dimen>
     <dimen name="profileDateBirth">16sp</dimen>
+    <dimen name="textCategoryHelp">15sp</dimen>
 </resources>

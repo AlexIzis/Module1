@@ -15,7 +15,7 @@ class Search : AppCompatActivity() {
         setContentView(R.layout.activity_search)
 
         val fragList = listOf(
-            SerchFragment1.newInstance("firstFr", "SearchAct"),
+            SearchFragment1.newInstance("firstFr", "SearchAct"),
             SearchFragment2.newInstance("SecondFr", "SearchAct")
         )
 

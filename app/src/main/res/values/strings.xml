@@ -1,8 +1,8 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Хочу помочь</string>
     <string name="logo_of_app">Name of app</string>
     <string name="logo_of_company">logo of company</string>
-    <string name="loading_text">Загрузка...</string>
+    <string name="loading_text">Загрузка…</string>
     <string name="bottom_news">Новости</string>
     <string name="bottom_search">Поиск</string>
     <string name="bottom_help">Помочь</string>
@@ -17,7 +17,7 @@
     <string name="sphere">Хирургия, травмотология</string>
     <string name="push">Получать push-уведомления</string>
     <string name="label_friends">Ваши друзья</string>
-    <string name="avatar1">avatar1</string>
+    <string name="avatar1" tools:ignore="Typos">avatar1</string>
     <string name="avatar2">avatar2</string>
     <string name="avatar3">avatar3</string>
     <string name="name_avatar1">Дмитрий Валерьевич</string>
@@ -25,12 +25,25 @@
     <string name="name_avatar3">Виктор Кузнецов</string>
     <string name="button_logout">Выйти из аккаунта</string>
     <string name="pencil">pencil</string>
+    <string name="help">Помочь</string>
+    <string name="edit">Редактировать</string>
+    <string name="change_photo">Сменить \n Фото</string>
+    <string name="label_family">Ваша фамилия</string>
+    <string name="enter_family">Введите фамилию</string>
+    <string name="your_name">Ваше имя</string>
+    <string name="large_text_sphere">Заполните вашу сферу деятельности, чтобы быть наиболее полезным</string>
+    <string name="your_sphere">Сфера деятельности</string>
+    <string name="password">Пароль</string>
+    <string name="label_e_mail">E-mail для уведомления</string>
+    <string name="e_mail">E-mail</string>
+    <string name="by_events">По мероприятиям</string>
+    <string name="on_NKO">По НКО</string>
+    <string name="help_category">Выберите категорию помощи</string>
+    <string name="lange_text_search">Напишите в строке поиска название \n мероприятия или ключевые слова.</string>
+    <string name="large_text_success_search">Ключевые слова: мастер-класс, помощь \nРезультаты поиска: 109 мероприятий</string>
     <string-array name="values">
         <item>"Выбрать фото"</item>
         <item>"Сделать снимок"</item>
         <item>"Удалить"</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment1</string>
-    <string name="hello_blank_fragment2">Hello blank fragment2</string>
 </resources>
