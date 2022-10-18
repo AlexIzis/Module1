@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import java.util.ArrayList
 
-// TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -17,7 +19,6 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class SearchFragment2 : Fragment() {
-    // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
@@ -34,8 +35,26 @@ class SearchFragment2 : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search2, container, false)
+    }
+
+    fun getRandomString(length: Int): String {
+        val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
+        return (1..length)
+            .map { allowedChars.random() }
+            .joinToString("")
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val recyclerView: RecyclerView = getView()?.findViewById(R.id.recyclerViewSearch) ?: return
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        val adapter = SearchAdapter()
+        recyclerView.adapter = adapter
+        val strList = ArrayList<String>()
+        for (i in 1..5) {
+            strList.add(getRandomString((5..10).random()))
+        }
+        adapter.setInfo(strList)
     }
 
     companion object {
@@ -47,7 +66,6 @@ class SearchFragment2 : Fragment() {
          * @param param2 Parameter 2.
          * @return A new instance of fragment SearchFragment2.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             SearchFragment2().apply {

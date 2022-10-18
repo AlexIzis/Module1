@@ -26,6 +26,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
+                app:voiceIcon="@drawable/ic_mic"
                 app:queryHint="Введите название организации"
                 android:background="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +45,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:tabTextColor="@color/white"
                 app:tabGravity="fill"
-                app:tabIndicatorColor="@color/black"
+                app:tabIndicatorColor="#f2b630"
                 app:layout_constraintTop_toBottomOf="@+id/searchView">
 
                 <com.google.android.material.tabs.TabItem
