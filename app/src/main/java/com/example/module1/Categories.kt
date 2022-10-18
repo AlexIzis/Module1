@@ -2,7 +2,6 @@ package com.example.module1
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Parcelable
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -29,7 +28,9 @@ class Categories : AppCompatActivity() {
                     true
                 }
                 R.id.search -> {
-                    Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, Search::class.java)
+                    startActivity(intent)
+                    finish()
                     true
                 }
                 R.id.history -> {

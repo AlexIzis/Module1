@@ -2,24 +2,38 @@ package com.example.module1
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
-class MainActivity : AppCompatActivity() {
+class Search : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_search)
 
-        val pencilButton: ImageView = findViewById(R.id.imageView4)
-        pencilButton.setOnClickListener {
-            val intent = Intent(this, EditProfile::class.java)
-            startActivity(intent)
-        }
+        val fragList = listOf(
+            SerchFragment1.newInstance("firstFr", "SearchAct"),
+            SearchFragment2.newInstance("SecondFr", "SearchAct")
+        )
 
-        val navigation: BottomNavigationView = findViewById(R.id.btnNav)
-        navigation.selectedItemId = R.id.profile
+        val fragListTitle = listOf(
+            "По мероприятиям",
+            "По НКО"
+        )
+
+        val adapter = VpAdapter(this, fragList)
+        val viewPager: ViewPager2 = findViewById(R.id.viewPager)
+        val tb: TabLayout = findViewById(R.id.tabLayout)
+        viewPager.adapter = adapter
+        TabLayoutMediator(tb, viewPager) { item, pos ->
+            item.text = fragListTitle[pos]
+        }.attach()
+
+        val navigation: BottomNavigationView = findViewById(R.id.btnNavHelp)
+        navigation.selectedItemId = R.id.search
         navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.news -> {
@@ -33,9 +47,6 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.search -> {
-                    val intent = Intent(this, Search::class.java)
-                    startActivity(intent)
-                    finish()
                     true
                 }
                 R.id.history -> {
@@ -43,6 +54,9 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.profile -> {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
                     true
                 }
                 else -> {
