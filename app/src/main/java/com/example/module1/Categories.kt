@@ -1,12 +1,20 @@
 package com.example.module1
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class Categories : AppCompatActivity() {
+
+    private fun loadFragment(fr: Fragment) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragmentContainerView, fr)
+        fragmentTransaction.commit()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_categories)
@@ -14,7 +22,6 @@ class Categories : AppCompatActivity() {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragmentContainerView, CategoriesFragment())
-        fragmentTransaction.commit()
 
         val navigation: BottomNavigationView = findViewById(R.id.btnNavHelp)
         navigation.selectedItemId = R.id.heart
@@ -25,12 +32,11 @@ class Categories : AppCompatActivity() {
                     true
                 }
                 R.id.heart -> {
+                    loadFragment(CategoriesFragment())
                     true
                 }
                 R.id.search -> {
-                    val intent = Intent(this, Search::class.java)
-                    startActivity(intent)
-                    finish()
+                    loadFragment(MainSearchFragment())
                     true
                 }
                 R.id.history -> {
@@ -38,9 +44,7 @@ class Categories : AppCompatActivity() {
                     true
                 }
                 R.id.profile -> {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                    loadFragment(ProfileFragment())
                     true
                 }
                 else -> {
