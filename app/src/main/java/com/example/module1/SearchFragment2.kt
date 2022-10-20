@@ -21,6 +21,8 @@ private const val ARG_PARAM2 = "param2"
 class SearchFragment2 : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
+    private val strList = ArrayList<String>()
+    private val adapter = SearchAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,16 +47,19 @@ class SearchFragment2 : Fragment() {
             .joinToString("")
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val recyclerView: RecyclerView = getView()?.findViewById(R.id.recyclerViewSearch) ?: return
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        val adapter = SearchAdapter()
-        recyclerView.adapter = adapter
-        val strList = ArrayList<String>()
+    fun updateDate() {
+        strList.clear()
         for (i in 1..5) {
             strList.add(getRandomString((5..10).random()))
         }
         adapter.setInfo(strList)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val recyclerView: RecyclerView = getView()?.findViewById(R.id.recyclerViewSearch) ?: return
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = adapter
+        updateDate()
     }
 
     companion object {

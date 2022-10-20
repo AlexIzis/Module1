@@ -14,9 +14,12 @@ class Search : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
+        val fr = SearchFragment2.newInstance("SecondFr", "SearchAct")
+
         val fragList = listOf(
             SearchFragment1.newInstance("firstFr", "SearchAct"),
-            SearchFragment2.newInstance("SecondFr", "SearchAct")
+            fr
+            // SearchFragment2.newInstance("SecondFr", "SearchAct")
         )
 
         val fragListTitle = listOf(
@@ -31,6 +34,15 @@ class Search : AppCompatActivity() {
         TabLayoutMediator(tb, viewPager) { item, pos ->
             item.text = fragListTitle[pos]
         }.attach()
+
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                // super.onPageSelected(position)
+                if (position == 0) {
+                    fr.updateDate()
+                }
+            }
+        })
 
         val navigation: BottomNavigationView = findViewById(R.id.btnNavHelp)
         navigation.selectedItemId = R.id.search

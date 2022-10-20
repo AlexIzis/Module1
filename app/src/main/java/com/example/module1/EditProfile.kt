@@ -57,9 +57,4 @@ class EditProfile : AppCompatActivity() {
             showDialog()
         }
     }
-
-    override fun onSupportNavigateUp(): Boolean {
-        finish()
-        return true
-    }
 }
