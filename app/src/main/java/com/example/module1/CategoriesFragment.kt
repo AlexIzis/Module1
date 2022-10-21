@@ -26,7 +26,7 @@ class CategoriesFragment : Fragment() {
         val adapter = CategoriesAdapter()
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.adapter = adapter
-        recyclerView.addItemDecoration(ItemMarginItemDecoration())
+        recyclerView.addItemDecoration(ItemMarginDecoration())
         adapter.setCategories(
             listOf(
                 CategoryUiModel(R.drawable.little, getString(R.string.children)),
