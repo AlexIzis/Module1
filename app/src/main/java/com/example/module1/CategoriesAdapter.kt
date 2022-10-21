@@ -10,11 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 
 class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
 
-    private val itemList = mutableListOf<CategoriesItem>()
+    private val categories = mutableListOf<CategoryUiModel>()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val img: ImageView = itemView.findViewById(R.id.image_category)
-        val text: TextView = itemView.findViewById(R.id.text_category)
+        val imgView: ImageView = itemView.findViewById(R.id.image_category)
+        val textView: TextView = itemView.findViewById(R.id.text_category)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -23,19 +23,19 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val tmpItem = itemList[position]
-        holder.img.setImageResource(tmpItem.img)
-        holder.text.text = tmpItem.text
+        val tmpItem = categories[position]
+        holder.imgView.setImageResource(tmpItem.img)
+        holder.textView.text = tmpItem.text
     }
 
     override fun getItemCount(): Int {
-        return itemList.size
+        return categories.size
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setInfo(tmpArr: ArrayList<CategoriesItem>) {
-        itemList.clear()
-        itemList.addAll(tmpArr)
+    fun setCategories(tmpArr: List<CategoryUiModel>) {
+        categories.clear()
+        categories.addAll(tmpArr)
         notifyDataSetChanged()
     }
 }

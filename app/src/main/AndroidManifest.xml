@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Module1">
         <activity
-            android:name=".Categories"
+            android:name=".CategoriesActivity"
             android:exported="false" />
         <activity
             android:name=".SplashScreen"

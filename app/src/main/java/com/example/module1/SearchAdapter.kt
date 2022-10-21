@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 
 class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
-    private val strList = mutableListOf<String>()
+    private val searchResults = mutableListOf<String>()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val str: TextView = itemView.findViewById(R.id.textViewSearchItem)
+        val result: TextView = itemView.findViewById(R.id.textViewSearchItem)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -21,18 +21,18 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val tmpItem = strList[position]
-        holder.str.text = tmpItem
+        val tmpItem = searchResults[position]
+        holder.result.text = tmpItem
     }
 
     override fun getItemCount(): Int {
-        return strList.size
+        return searchResults.size
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setInfo(tmpArr: ArrayList<String>) {
-        strList.clear()
-        strList.addAll(tmpArr)
+    fun setResults(tmpArr: List<String>) {
+        searchResults.clear()
+        searchResults.addAll(tmpArr)
         notifyDataSetChanged()
     }
 }

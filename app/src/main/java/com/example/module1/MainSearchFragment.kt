@@ -9,32 +9,16 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MainSearchFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MainSearchFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         return inflater.inflate(R.layout.fragment_main_search, container, false)
     }
 
@@ -53,9 +37,9 @@ class MainSearchFragment : Fragment() {
 
         val adapter = VpAdapter(this, fragList)
         val viewPager: ViewPager2 = getView()?.findViewById(R.id.viewPager) ?: return
-        val tb: TabLayout = getView()?.findViewById(R.id.tabLayout) ?: return
+        val tabLayout: TabLayout = getView()?.findViewById(R.id.tabLayout) ?: return
         viewPager.adapter = adapter
-        TabLayoutMediator(tb, viewPager) { item, pos ->
+        TabLayoutMediator(tabLayout, viewPager) { item, pos ->
             item.text = fragListTitle[pos]
         }.attach()
 

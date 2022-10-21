@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class Categories : AppCompatActivity() {
+class CategoriesActivity : AppCompatActivity() {
 
     private fun loadFragment(fr: Fragment) {
         val fragmentManager = supportFragmentManager

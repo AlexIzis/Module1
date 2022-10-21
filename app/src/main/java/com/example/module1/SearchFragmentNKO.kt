@@ -9,35 +9,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.util.ArrayList
 
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SearchFragment2.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SearchFragment2 : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
     private val strList = ArrayList<String>()
     private val adapter = SearchAdapter()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_search2, container, false)
+        return inflater.inflate(R.layout.fragment_search_nko, container, false)
     }
 
     private fun getRandomString(length: Int): String {
@@ -52,14 +36,13 @@ class SearchFragment2 : Fragment() {
         for (i in 1..5) {
             strList.add(getRandomString((5..10).random()))
         }
-        adapter.setInfo(strList)
+        adapter.setResults(strList)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val recyclerView: RecyclerView = getView()?.findViewById(R.id.recyclerViewSearch) ?: return
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
-        updateDate()
     }
 
     companion object {
