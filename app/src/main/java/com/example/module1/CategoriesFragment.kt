@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.flexbox.*
 
 class CategoriesFragment : Fragment() {
 
@@ -19,9 +19,15 @@ class CategoriesFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewHelp) ?: return
+        val recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewHelp)
         val adapter = CategoriesAdapter()
-        recyclerView.layoutManager = GridLayoutManager(context, 2)
+        val layoutManager = FlexboxLayoutManager(context).apply {
+            justifyContent = JustifyContent.SPACE_BETWEEN
+            alignItems = AlignItems.CENTER
+            flexDirection = FlexDirection.ROW
+            flexWrap = FlexWrap.WRAP
+        }
+        recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(ItemMarginDecoration())
         adapter.setCategories(

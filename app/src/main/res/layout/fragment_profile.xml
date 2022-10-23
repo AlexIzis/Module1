@@ -23,6 +23,7 @@
                 <androidx.appcompat.widget.Toolbar
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
+                    app:contentInsetStart="0dp"
                     app:layout_scrollFlags="scroll|snap">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
