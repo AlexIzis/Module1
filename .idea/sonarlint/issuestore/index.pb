@@ -4,8 +4,6 @@
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-P
- app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 @
@@ -28,5 +26,3 @@ b
 2app/src/main/java/com/example/module1/VpAdapter.kt,c\d\cd78b982cbe0ab31d526886e97562dee36a01af4
 k
 ;app/src/main/java/com/example/module1/CategoriesFragment.kt,e\5\e58e25fba569d429c3a7d5e2597d1065b326a6b1
-l
-<app/src/main/java/com/example/module1/EditProfileFragment.kt,5\f\5fed35036ba0186ad3a206727638461098ff5466
