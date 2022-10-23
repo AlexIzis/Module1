@@ -20,10 +20,10 @@ class MainSearchFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val fragmentNKO = SearchFragmentNKO.newInstance("SecondFr", "SearchAct")
+        val fragmentNKO = SearchFragmentNKO()
 
         val fragList = listOf(
-            SearchFragmentEvents.newInstance("firstFr", "SearchAct"),
+            SearchFragmentEvents(),
             fragmentNKO
         )
 
