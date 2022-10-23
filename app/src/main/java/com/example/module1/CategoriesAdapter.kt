@@ -33,9 +33,9 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setCategories(tmpArr: List<CategoryUiModel>) {
+    fun setCategories(items: List<CategoryUiModel>) {
         categories.clear()
-        categories.addAll(tmpArr)
+        categories.addAll(items)
         notifyDataSetChanged()
     }
 }

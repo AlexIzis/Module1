@@ -17,9 +17,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 class EditProfileFragment : Fragment() {
     private lateinit var getResult: ActivityResultLauncher<Intent>
     private lateinit var image: ImageView
@@ -42,23 +39,31 @@ class EditProfileFragment : Fragment() {
     }
 
     private fun showDialog() {
-        val builder = context?.let { AlertDialog.Builder(it) }
-        builder?.setItems(
-            R.array.values,
-            DialogInterface.OnClickListener { _, i ->
-                when (i) {
-                    0 -> { Toast.makeText(context, getString(R.string.nothing), Toast.LENGTH_SHORT).show() }
-                    1 -> { doPhoto() }
-                    2 -> { deletePhoto() }
+        AlertDialog.Builder(requireContext())
+            .apply {
+                setItems(
+                    R.array.values
+                ) {_, i ->
+                    when (i) {
+                        0 -> {
+                            Toast.makeText(context, getString(R.string.nothing), Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                        1 -> {
+                            doPhoto()
+                        }
+                        2 -> {
+                            deletePhoto()
+                        }
+                    }
                 }
             }
-        )
-        val dialog = builder?.create()
-        dialog?.show()
+            .create()
+            .show()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        image = getView()?.findViewById(R.id.imageEdit) ?: return
+        image = view.findViewById(R.id.imageEdit)
 
         getResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == Activity.RESULT_OK) {
@@ -67,28 +72,9 @@ class EditProfileFragment : Fragment() {
             }
         }
 
-        val changeImage: CardView = getView()?.findViewById(R.id.cardView) ?: return
+        val changeImage: CardView = view.findViewById(R.id.cardView)
         changeImage.setOnClickListener {
             showDialog()
         }
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment EditProfileFragment.
-         */
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            EditProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }

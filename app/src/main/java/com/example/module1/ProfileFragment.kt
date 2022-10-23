@@ -7,15 +7,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ProfileFragment : Fragment() {
 
     override fun onCreateView(
@@ -27,31 +18,12 @@ class ProfileFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val pencilButton: ImageView = getView()?.findViewById(R.id.imageView4) ?: return
+        val pencilButton: ImageView = view.findViewById(R.id.imageView4) ?: return
         pencilButton.setOnClickListener {
             val fragmentManager = parentFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.fragmentContainerView, EditProfileFragment())
             fragmentTransaction.commit()
         }
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProfileFragment.
-         */
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }

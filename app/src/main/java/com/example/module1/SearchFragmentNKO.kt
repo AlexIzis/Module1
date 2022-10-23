@@ -12,8 +12,8 @@ import java.util.ArrayList
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class SearchFragment2 : Fragment() {
-    private val strList = ArrayList<String>()
+class SearchFragmentNKO : Fragment() {
+    private val nkoItems = ArrayList<String>()
     private val adapter = SearchAdapter()
 
     override fun onCreateView(
@@ -32,17 +32,18 @@ class SearchFragment2 : Fragment() {
     }
 
     fun updateDate() {
-        strList.clear()
+        nkoItems.clear()
         for (i in 1..5) {
-            strList.add(getRandomString((5..10).random()))
+            nkoItems.add(getRandomString((5..10).random()))
         }
-        adapter.setResults(strList)
+        adapter.setResults(nkoItems)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val recyclerView: RecyclerView = getView()?.findViewById(R.id.recyclerViewSearch) ?: return
+        val recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewSearch)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
+        updateDate()
     }
 
     companion object {
@@ -52,11 +53,11 @@ class SearchFragment2 : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment SearchFragment2.
+         * @return A new instance of fragment SearchFragmentNKO.
          */
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            SearchFragment2().apply {
+            SearchFragmentNKO().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

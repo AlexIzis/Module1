@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class SearchFragment1 : Fragment() {
+class SearchFragmentEvents : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,11 +26,11 @@ class SearchFragment1 : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment SearchFragment1.
+         * @return A new instance of fragment SearchFragmentEvents.
          */
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            SearchFragment1().apply {
+            SearchFragmentEvents().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

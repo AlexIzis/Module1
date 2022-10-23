@@ -9,9 +9,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 class MainSearchFragment : Fragment() {
 
     override fun onCreateView(
@@ -23,11 +20,11 @@ class MainSearchFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val fr = SearchFragment2.newInstance("SecondFr", "SearchAct")
+        val fragmentNKO = SearchFragmentNKO.newInstance("SecondFr", "SearchAct")
 
         val fragList = listOf(
-            SearchFragment1.newInstance("firstFr", "SearchAct"),
-            fr
+            SearchFragmentEvents.newInstance("firstFr", "SearchAct"),
+            fragmentNKO
         )
 
         val fragListTitle = listOf(
@@ -36,8 +33,8 @@ class MainSearchFragment : Fragment() {
         )
 
         val adapter = VpAdapter(this, fragList)
-        val viewPager: ViewPager2 = getView()?.findViewById(R.id.viewPager) ?: return
-        val tabLayout: TabLayout = getView()?.findViewById(R.id.tabLayout) ?: return
+        val viewPager: ViewPager2 = view.findViewById(R.id.viewPager)
+        val tabLayout: TabLayout = view.findViewById(R.id.tabLayout)
         viewPager.adapter = adapter
         TabLayoutMediator(tabLayout, viewPager) { item, pos ->
             item.text = fragListTitle[pos]
@@ -46,28 +43,9 @@ class MainSearchFragment : Fragment() {
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 if (position == 0) {
-                    fr.updateDate()
+                    fragmentNKO.updateDate()
                 }
             }
         })
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MainSearchFragment.
-         */
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MainSearchFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }
