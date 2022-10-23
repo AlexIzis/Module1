@@ -101,12 +101,21 @@ class EditProfileFragment : Fragment() {
         calendarInput.setEndIconOnClickListener {
             val calendar = Calendar.getInstance()
             val month = mapOf(
-                0 to "январь", 1 to "февраль", 2 to "март", 3 to "апрель", 4 to "май",
-                5 to "июнь", 6 to "июль", 7 to "август", 8 to "сентябрь", 9 to "октябрь",
-                10 to "ноябрь", 11 to "декабрь"
+                0 to getString(R.string.January),
+                1 to getString(R.string.February),
+                2 to getString(R.string.March),
+                3 to getString(R.string.April),
+                4 to getString(R.string.May),
+                5 to getString(R.string.June),
+                6 to getString(R.string.July),
+                7 to getString(R.string.August),
+                8 to getString(R.string.September),
+                9 to getString(R.string.October),
+                10 to getString(R.string.November),
+                11 to getString(R.string.December)
             )
-            val dateSetListener = DatePickerDialog.OnDateSetListener { _, i, i2, i3 ->
-                val date = "$i3 ${month[i2]} $i"
+            val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, months, day ->
+                val date = "$day ${month[months]} $year"
                 calendarText.setText(date)
             }
             DatePickerDialog(

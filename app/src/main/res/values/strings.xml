@@ -54,4 +54,16 @@
     <string name="nothing">Ничего не происходит</string>
     <string name="enter_name_organization">Введите название организации</string>
     <string name="test_password">1234567</string>
+    <string name="January">январь</string>
+    <string name="February">февраль</string>
+    <string name="March">март</string>
+    <string name="April">апрель</string>
+    <string name="May">май</string>
+    <string name="June">июнь</string>
+    <string name="July">июль</string>
+    <string name="August">август</string>
+    <string name="September">сентябрь</string>
+    <string name="October">октябрь</string>
+    <string name="November">ноябрь</string>
+    <string name="December">декабрь</string>
 </resources>
