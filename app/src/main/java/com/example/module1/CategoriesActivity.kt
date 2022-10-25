@@ -28,7 +28,7 @@ class CategoriesActivity : AppCompatActivity() {
         navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.news -> {
-                    Toast.makeText(this, "News", Toast.LENGTH_SHORT).show()
+                    loadFragment(NewsFragment())
                     true
                 }
                 R.id.heart -> {
