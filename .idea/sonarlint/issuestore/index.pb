@@ -32,5 +32,3 @@ k
 ;app/src/main/java/com/example/module1/MainSearchFragment.kt,e\a\ea58601b624b98427af87719a2397910fdaf8a7d
 m
 =app/src/main/java/com/example/module1/SearchFragmentEvents.kt,3\a\3aa09bc33b03b91b2afaa3678451ff6ccd9fafa4
-P
- app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
