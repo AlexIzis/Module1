@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -23,6 +24,8 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import java.util.*
+
+const val REQUEST_CODE = 1
 
 class EditProfileFragment : Fragment() {
     private lateinit var getResult: ActivityResultLauncher<Intent>
@@ -80,7 +83,7 @@ class EditProfileFragment : Fragment() {
             ActivityCompat.requestPermissions(
                 requireActivity(),
                 arrayOf(Manifest.permission.CAMERA),
-                1
+                REQUEST_CODE
             )
         }
 
@@ -96,9 +99,8 @@ class EditProfileFragment : Fragment() {
             showDialog()
         }
 
-        val calendarInput: TextInputLayout = view.findViewById(R.id.inputDate)
-        val calendarText: TextInputEditText = view.findViewById(R.id.inputDateText)
-        calendarInput.setEndIconOnClickListener {
+        val dateBirthInput: TextView = view.findViewById(R.id.inputDate)
+        dateBirthInput.setOnClickListener {
             val calendar = Calendar.getInstance()
             val month = mapOf(
                 0 to getString(R.string.January),
@@ -116,7 +118,7 @@ class EditProfileFragment : Fragment() {
             )
             val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, months, day ->
                 val date = "$day ${month[months]} $year"
-                calendarText.setText(date)
+                dateBirthInput.text = date
             }
             DatePickerDialog(
                 requireContext(), dateSetListener, calendar.get(Calendar.YEAR),

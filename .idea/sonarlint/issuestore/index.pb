@@ -26,3 +26,11 @@ b
 2app/src/main/java/com/example/module1/VpAdapter.kt,c\d\cd78b982cbe0ab31d526886e97562dee36a01af4
 k
 ;app/src/main/java/com/example/module1/CategoriesFragment.kt,e\5\e58e25fba569d429c3a7d5e2597d1065b326a6b1
+j
+:app/src/main/java/com/example/module1/SearchFragmentNKO.kt,6\5\654bbf98c7466a255e3cd4d85227d1d66e49c0a0
+k
+;app/src/main/java/com/example/module1/MainSearchFragment.kt,e\a\ea58601b624b98427af87719a2397910fdaf8a7d
+m
+=app/src/main/java/com/example/module1/SearchFragmentEvents.kt,3\a\3aa09bc33b03b91b2afaa3678451ff6ccd9fafa4
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
