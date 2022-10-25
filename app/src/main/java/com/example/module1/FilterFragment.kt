@@ -12,10 +12,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [NewsFragment.newInstance] factory method to
+ * Use the [FilterFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class NewsFragment : Fragment() {
+class FilterFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
@@ -31,15 +31,15 @@ class NewsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_news, container, false)
+        return inflater.inflate(R.layout.fragment_filter, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val imageFilter: ImageView = view.findViewById(R.id.icon_filter)
-        imageFilter.setOnClickListener {
+        val backArrow: ImageView = view.findViewById(R.id.back_arrow_to_news)
+        backArrow.setOnClickListener {
             val fragmentManager = parentFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.fragmentContainerView, FilterFragment())
+            fragmentTransaction.replace(R.id.fragmentContainerView, NewsFragment())
             fragmentTransaction.commit()
         }
     }
@@ -51,11 +51,11 @@ class NewsFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment NewsFragment.
+         * @return A new instance of fragment FilterFragment.
          */
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            NewsFragment().apply {
+            FilterFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

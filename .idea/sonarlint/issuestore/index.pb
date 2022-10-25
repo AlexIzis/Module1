@@ -10,8 +10,6 @@ h
 8app/src/main/java/com/example/module1/CategoryUiModel.kt,e\8\e820850973d2b81ecb6cf7cf77cab1744b8c8e7f
 m
 =app/src/main/java/com/example/module1/ItemMarginDecoration.kt,0\6\0658fbaaa54a2b385cd741e9e1a2ee798c854525
-h
-8app/src/main/java/com/example/module1/ProfileFragment.kt,7\0\702feabc6f03275ed4894f81e7659c2190667d2a
 f
 6app/src/main/java/com/example/module1/SearchAdapter.kt,4\0\40b1746aead35f113e3ce3eb8fef0119e5f7a60e
 e
