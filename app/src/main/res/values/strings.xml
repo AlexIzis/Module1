@@ -66,6 +66,8 @@
     <string name="October">октябрь</string>
     <string name="November">ноябрь</string>
     <string name="December">декабрь</string>
+    <string name="underline_write"><u>Напишите нам</u></string>
+    <string name="underline_site"><u>Перейти на сайт организаии</u></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
