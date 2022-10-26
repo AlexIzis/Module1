@@ -12,4 +12,7 @@
     <color name="black_40">#66000000</color>
     <color name="leaf">#66a636</color>
     <color name="black_20">#33000000</color>
+    <color name="orange">#f2b630</color>
+    <color name="light_grey">#eaede8</color>
+    <color name="black_54">#8a000000</color>
 </resources>
