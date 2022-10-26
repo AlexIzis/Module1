@@ -44,16 +44,14 @@ class NewsFragment : Fragment() {
     }
 
     private fun onItemClick() = { news: NewsUIModel->
-        /*val fragmentManager = parentFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fragmentContainerView, EventFragment())
-        fragmentTransaction.commit()*/
         val bundle = Bundle()
+        bundle.putInt("img", news.img)
         bundle.putString("label", news.label)
+        bundle.putString("desc", news.description)
+        bundle.putString("time", news.time)
         val fragment = EventFragment()
         fragment.arguments = bundle
         loadFragment(fragment)
-        //Unit
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -82,10 +80,6 @@ class NewsFragment : Fragment() {
 
         val imageFilter: ImageView = view.findViewById(R.id.icon_filter)
         imageFilter.setOnClickListener {
-            /*val fragmentManager = parentFragmentManager
-            val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.fragmentContainerView, FilterFragment())
-            fragmentTransaction.commit()*/
             loadFragment(FilterFragment())
         }
     }

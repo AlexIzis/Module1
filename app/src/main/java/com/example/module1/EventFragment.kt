@@ -18,16 +18,18 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class EventFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
-    lateinit var label: String
+    private lateinit var label: String
+    private lateinit var desc: String
+    private lateinit var time: String
+    private var img: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            /*param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)*/
             label = it.getString("label").toString()
+            desc = it.getString("desc").toString()
+            time = it.getString("time").toString()
+            img = it.getInt("img")
         }
     }
 
@@ -43,6 +45,12 @@ class EventFragment : Fragment() {
         textLabel.movementMethod = ScrollingMovementMethod()
         textLabel.setHorizontallyScrolling(true)
         textLabel.text = label
+
+        val textHeader: TextView = view.findViewById(R.id.headingEvent)
+        textHeader.text = label
+
+        val textTime: TextView = view.findViewById(R.id.timeEvent)
+        textTime.text = time
 
         val backArrow: ImageView = view.findViewById(R.id.back_arrow_from_event)
         backArrow.setOnClickListener {
