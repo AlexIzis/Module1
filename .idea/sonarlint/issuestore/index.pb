@@ -22,8 +22,6 @@ P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 h
 8app/src/main/java/com/example/module1/ProfileFragment.kt,7\0\702feabc6f03275ed4894f81e7659c2190667d2a
-j
-:app/src/main/java/com/example/module1/CategoriesAdapter.kt,2\8\289ddc72900d523dc215e84c9643df17a023a316
 k
 ;app/src/main/java/com/example/module1/MainSearchFragment.kt,e\a\ea58601b624b98427af87719a2397910fdaf8a7d
 l

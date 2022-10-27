@@ -43,7 +43,7 @@ class NewsFragment : Fragment() {
         fragmentTransaction.commit()
     }
 
-    private fun onItemClick() = { news: NewsUIModel->
+    private fun onItemClick() = { news: NewsUIModel ->
         val bundle = Bundle()
         bundle.putInt("img", news.img)
         bundle.putString("label", news.label)
@@ -64,16 +64,32 @@ class NewsFragment : Fragment() {
         adapter.setNews(
             listOf(
                 NewsUIModel(
-                    R.drawable.avatar_1,
+                    0,
                     "Спонсоры отремонтируют школу-интернат",
+                    R.drawable.avatar_1,
                     "Дубовская школа-интернат для детей с ограниченными возможностями здоровья стала первой в области",
-                    "Осталось 13 дней (21.09 – 20.10)"
+                    "Осталось 13 дней (21.09 – 20.10)",
+                    "Благотворительный Фонд «Счастливый Мир»",
+                    "Санкт-Петербург, Кирочная улица, д. 50А, каб. 208",
+                    listOf("+7 (937) 037 37-73", "+7 (937) 016 16-16"),
+                    "Напишите нам",
+                    listOf(R.drawable.avatar_2, R.drawable.avatar_3),
+                    "Перейти на сайт организаии",
+                    listOf("children", "adults")
                 ),
                 NewsUIModel(
-                    R.drawable.avatar_1,
+                    1,
                     "Конкурс по вокальному пению в детском доме №6",
+                    R.drawable.avatar_2,
                     "Дубовская школа-интернат для детей с ограниченными возможностями здоровья стала первой в области",
-                    "Октябрь 20, 2016"
+                    "Октябрь 20, 2016",
+                    "Благотворительный Фонд «Счастливый Мир»",
+                    "Санкт-Петербург, Кирочная улица, д. 50А, каб. 208",
+                    listOf("+7 (937) 037 37-73", "+7 (937) 016 16-16"),
+                    "Напишите нам",
+                    listOf(R.drawable.avatar_1, R.drawable.avatar_3),
+                    "Перейти на сайт организаии",
+                    listOf("children", "adults", "elderly")
                 )
             )
         )
