@@ -45,10 +45,18 @@ class NewsFragment : Fragment() {
 
     private fun onItemClick() = { news: NewsUIModel ->
         val bundle = Bundle()
+        bundle.putInt("id", news.id)
         bundle.putInt("img", news.img)
         bundle.putString("label", news.label)
         bundle.putString("desc", news.description)
         bundle.putString("time", news.time)
+        bundle.putString("org", news.organization)
+        bundle.putString("address", news.address)
+        bundle.putStringArray("numList", news.numberList.toTypedArray())
+        bundle.putString("email", news.email)
+        bundle.putIntArray("imgOpt", news.imgOpt.toIntArray())
+        bundle.putString("site", news.site)
+        bundle.putStringArray("categories", news.categories.toTypedArray())
         val fragment = EventFragment()
         fragment.arguments = bundle
         loadFragment(fragment)

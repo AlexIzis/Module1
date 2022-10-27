@@ -99,12 +99,11 @@
             app:layout_constraintTop_toTopOf="@+id/imageView7" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/organisationEvent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="12dp"
-            android:text="Благотворительный Фонд «Счастливый Мир»"
             android:textColor="#99000000"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -118,21 +117,20 @@
             android:layout_marginTop="16dp"
             android:src="@drawable/ic_nav"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+            app:layout_constraintTop_toBottomOf="@+id/organisationEvent" />
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/addressEvent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="80dp"
-            android:text="Санкт-Петербург, Кирочная улица, д. 50А, каб. 208"
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView8"
-            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+            app:layout_constraintTop_toBottomOf="@+id/organisationEvent" />
 
         <ImageView
             android:id="@+id/imageView10"
@@ -142,14 +140,13 @@
             android:layout_marginTop="10dp"
             android:src="@drawable/ic_phone"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+            app:layout_constraintTop_toBottomOf="@+id/addressEvent" />
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/numbersEvent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
-            android:text="+7 (937) 037 37-73 \n+7 (937) 016 16-16"
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/imageView10"
@@ -163,7 +160,7 @@
             android:layout_marginTop="16dp"
             android:src="@drawable/ic_mail"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+            app:layout_constraintTop_toBottomOf="@+id/numbersEvent" />
 
         <TextView
             android:id="@+id/textView14"
@@ -177,10 +174,10 @@
             app:layout_constraintTop_toTopOf="@+id/imageView11" />
 
         <TextView
+            android:id="@+id/emailEvent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            android:text="@string/underline_write"
             android:textColor="@color/leaf"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView14"
@@ -196,6 +193,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView11" />
 
+        <ImageView
+            android:id="@+id/imageView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:src="@drawable/avatar_2"
+            app:layout_constraintBottom_toBottomOf="@+id/imgEvent"
+            app:layout_constraintStart_toEndOf="@+id/imgEvent"
+            app:layout_constraintTop_toTopOf="@+id/imgEvent" />
+
+        <ImageView
+            android:id="@+id/imageView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/avatar_3"
+            app:layout_constraintEnd_toEndOf="@+id/imageView15"
+            app:layout_constraintStart_toStartOf="@+id/imageView15"
+            app:layout_constraintTop_toBottomOf="@+id/imageView15" />
+
         <TextView
             android:id="@+id/descEvent"
             android:layout_width="0dp"
@@ -204,16 +221,16 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgEvent" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView16" />
 
         <TextView
-            android:id="@+id/textView15"
+            android:id="@+id/siteEvent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:text="@string/underline_site"
             android:textColor="@color/leaf"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -228,7 +245,7 @@
             app:layout_constraintBottom_toTopOf="@+id/bottomNavigationViewEvent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView15">
+            app:layout_constraintTop_toBottomOf="@+id/siteEvent">
 
             <ImageView
                 android:id="@+id/imageView12"

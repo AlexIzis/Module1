@@ -1,5 +1,6 @@
 package com.example.module1
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
@@ -7,9 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 private const val ARG_PARAM1 = "param1"
@@ -25,14 +25,31 @@ class EventFragment : Fragment() {
     private lateinit var desc: String
     private lateinit var time: String
     private var img: Int = 0
+    private var identifier: Int = 0
+    private lateinit var organization: String
+    private lateinit var address: String
+    private lateinit var numList: Array<String>
+    private lateinit var email: String
+    private lateinit var imgOpt: Array<Int>
+    private lateinit var site: String
+    private lateinit var categories: Array<String>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
+            identifier = it.getInt("id")
             label = it.getString("label").toString()
             desc = it.getString("desc").toString()
             time = it.getString("time").toString()
             img = it.getInt("img")
+            organization = it.getString("org").toString()
+            address = it.getString("address").toString()
+            numList = it.getStringArray("numList") as Array<String>
+            email = it.getString("email").toString()
+            //imgOpt = it.getIntArray("imgOpt") as Array<Int>
+            site = it.getString("site").toString()
+            categories = it.getStringArray("categories") as Array<String>
         }
     }
 
@@ -43,6 +60,7 @@ class EventFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_event, container, false)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val textLabel: TextView = view.findViewById(R.id.EventLabelText)
         textLabel.movementMethod = ScrollingMovementMethod()
@@ -60,6 +78,23 @@ class EventFragment : Fragment() {
 
         val descEvent: TextView = view.findViewById(R.id.descEvent)
         descEvent.text = desc
+
+        val orgEvent: TextView = view.findViewById(R.id.organisationEvent)
+        orgEvent.text = organization
+
+        val addEvent: TextView = view.findViewById(R.id.addressEvent)
+        addEvent.text = address
+
+        val numEvent: TextView = view.findViewById(R.id.numbersEvent)
+        numEvent.text = "${numList[0]}\n${numList[1]}"
+
+        val emailView: TextView = view.findViewById(R.id.emailEvent)
+        val underlineTextEmail = "<u>$email</u>"
+        emailView.text = HtmlCompat.fromHtml(underlineTextEmail, HtmlCompat.FROM_HTML_MODE_LEGACY)
+
+        val siteView: TextView = view.findViewById(R.id.siteEvent)
+        val underlineTextSite = "<u>$site</u>"
+        siteView.text = HtmlCompat.fromHtml(underlineTextSite, HtmlCompat.FROM_HTML_MODE_LEGACY)
 
         val backArrow: ImageView = view.findViewById(R.id.back_arrow_from_event)
         backArrow.setOnClickListener {

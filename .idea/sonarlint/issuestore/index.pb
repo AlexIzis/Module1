@@ -6,8 +6,6 @@
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 f
 6app/src/main/java/com/example/module1/SearchAdapter.kt,4\0\40b1746aead35f113e3ce3eb8fef0119e5f7a60e
-e
-5app/src/main/java/com/example/module1/SplashScreen.kt,6\8\68167142b97f09b239d2b857102547880fae68b4
 b
 2app/src/main/java/com/example/module1/VpAdapter.kt,c\d\cd78b982cbe0ab31d526886e97562dee36a01af4
 j
