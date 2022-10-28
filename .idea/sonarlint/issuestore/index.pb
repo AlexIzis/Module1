@@ -14,8 +14,6 @@ m
 =app/src/main/java/com/example/module1/SearchFragmentEvents.kt,3\a\3aa09bc33b03b91b2afaa3678451ff6ccd9fafa4
 ?
 settings.gradle,0\5\05efc8b1657769a27696d478ded1e95f38737233
-@
-app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 h
@@ -28,3 +26,9 @@ d
 4app/src/main/java/com/example/module1/NewsAdapter.kt,e\a\ea51b4734e281c679b60a3849732281a9e3cbe21
 g
 7app/src/main/java/com/example/module1/FilterFragment.kt,8\a\8a41e2ce47caa99be250f8bbd94dda7c83f253ab
+m
+=app/src/main/java/com/example/module1/ItemMarginDecoration.kt,0\6\0658fbaaa54a2b385cd741e9e1a2ee798c854525
+k
+;app/src/main/java/com/example/module1/CategoriesActivity.kt,7\e\7eabf6c7ec097e3df6bac3e47b0d1ef219bbbaf4
+e
+5app/src/main/java/com/example/module1/SplashScreen.kt,6\8\68167142b97f09b239d2b857102547880fae68b4

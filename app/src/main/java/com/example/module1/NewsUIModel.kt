@@ -1,6 +1,6 @@
 package com.example.module1
 
-class NewsUIModel(
+data class NewsUIModel(
     val id: Int,
     val label: String,
     val img: Int,

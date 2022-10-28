@@ -1,6 +1,7 @@
 package com.example.module1
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
 
     private val categories = mutableListOf<CategoryUiModel>()
+    private lateinit var context: Context
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imgView: ImageView = itemView.findViewById(R.id.image_category)
@@ -20,12 +22,16 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.categories_item, parent, false)
+        context = parent.context
         return ViewHolder(itemView)
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val tmpItem = categories[position]
-        holder.imgView.setImageResource(tmpItem.img)
+        val id: Int = context.resources.getIdentifier(tmpItem.img, "drawable", context.packageName)
+        val img = context.resources.getDrawable(id, context.applicationContext.theme)
+        holder.imgView.background = img
         holder.textView.text = tmpItem.text
     }
 

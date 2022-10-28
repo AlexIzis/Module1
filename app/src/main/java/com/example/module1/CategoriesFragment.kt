@@ -30,14 +30,8 @@ class CategoriesFragment : Fragment() {
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(ItemMarginDecoration())
-        adapter.setCategories(
-            listOf(
-                CategoryUiModel(R.drawable.little, getString(R.string.children), getString(R.string.children)),
-                CategoryUiModel(R.drawable.dad, getString(R.string.adult), getString(R.string.adult)),
-                CategoryUiModel(R.drawable.granny, getString(R.string.old), getString(R.string.old)),
-                CategoryUiModel(R.drawable.cat, getString(R.string.animals), getString(R.string.old)),
-                CategoryUiModel(R.drawable.event, getString(R.string.events), getString(R.string.events))
-            )
-        )
+        val listFromJson =
+            JsonParser("categories.json", CategoryUiModel::class.java, requireContext()).parseJson()
+        adapter.setCategories(listFromJson)
     }
 }
