@@ -46,7 +46,7 @@ class NewsFragment : Fragment() {
     private fun onItemClick() = { news: NewsUIModel ->
         val bundle = Bundle()
         bundle.putInt("id", news.id)
-        bundle.putInt("img", news.img)
+        bundle.putString("img", news.img)
         bundle.putString("label", news.label)
         bundle.putString("desc", news.description)
         bundle.putString("time", news.time)
@@ -54,53 +54,22 @@ class NewsFragment : Fragment() {
         bundle.putString("address", news.address)
         bundle.putStringArray("numList", news.numberList.toTypedArray())
         bundle.putString("email", news.email)
-        bundle.putIntArray("imgOpt", news.imgOpt.toIntArray())
+        bundle.putStringArray("imgOpt", news.imgOpt.toTypedArray())
         bundle.putString("site", news.site)
-        bundle.putStringArray("categories", news.categories.toTypedArray())
         val fragment = EventFragment()
         fragment.arguments = bundle
         loadFragment(fragment)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewNews)
         val adapter = NewsAdapter(onItemClick())
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(ItemMarginDecoration())
-        adapter.setNews(
-            listOf(
-                NewsUIModel(
-                    0,
-                    "Спонсоры отремонтируют школу-интернат",
-                    R.drawable.avatar_1,
-                    "Дубовская школа-интернат для детей с ограниченными возможностями здоровья стала первой в области",
-                    "Осталось 13 дней (21.09 – 20.10)",
-                    "Благотворительный Фонд «Счастливый Мир»",
-                    "Санкт-Петербург, Кирочная улица, д. 50А, каб. 208",
-                    listOf("+7 (937) 037 37-73", "+7 (937) 016 16-16"),
-                    "Напишите нам",
-                    listOf(R.drawable.avatar_2, R.drawable.avatar_3),
-                    "Перейти на сайт организаии",
-                    listOf("children", "adults")
-                ),
-                NewsUIModel(
-                    1,
-                    "Конкурс по вокальному пению в детском доме №6",
-                    R.drawable.avatar_2,
-                    "Дубовская школа-интернат для детей с ограниченными возможностями здоровья стала первой в области",
-                    "Октябрь 20, 2016",
-                    "Благотворительный Фонд «Счастливый Мир»",
-                    "Санкт-Петербург, Кирочная улица, д. 50А, каб. 208",
-                    listOf("+7 (937) 037 37-73", "+7 (937) 016 16-16"),
-                    "Напишите нам",
-                    listOf(R.drawable.avatar_1, R.drawable.avatar_3),
-                    "Перейти на сайт организаии",
-                    listOf("children", "adults", "elderly")
-                )
-            )
-        )
+        val listFromJson =
+            JsonParser("news.json", NewsUIModel::class.java, requireContext()).parseJson()
+        adapter.setNews(listFromJson)
 
         val imageFilter: ImageView = view.findViewById(R.id.icon_filter)
         imageFilter.setOnClickListener {

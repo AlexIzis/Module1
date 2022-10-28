@@ -1,6 +1,7 @@
 package com.example.module1
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 class NewsAdapter(private val onItemClick:  ((NewsUIModel) -> Unit)?) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
     private val news = mutableListOf<NewsUIModel>()
+    private lateinit var context: Context
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imgView: ImageView = itemView.findViewById(R.id.image_container)
@@ -27,12 +29,20 @@ class NewsAdapter(private val onItemClick:  ((NewsUIModel) -> Unit)?) : Recycler
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.news_item, parent, false)
+        context = parent.context
         return ViewHolder(itemView)
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val news = news[position]
-        holder.imgView.setImageResource(news.img)
+        holder.imgView.setImageResource(
+            context.resources.getIdentifier(
+                news.img,
+                "img",
+                context.packageName
+            )
+        )
         holder.labelText.text = news.label
         holder.descText.text = news.description
         holder.time.text = news.time

@@ -24,15 +24,14 @@ class EventFragment : Fragment() {
     private lateinit var label: String
     private lateinit var desc: String
     private lateinit var time: String
-    private var img: Int = 0
+    private lateinit var img: String
     private var identifier: Int = 0
     private lateinit var organization: String
     private lateinit var address: String
     private lateinit var numList: Array<String>
     private lateinit var email: String
-    private lateinit var imgOpt: Array<Int>
+    private lateinit var imgOpt: Array<String>
     private lateinit var site: String
-    private lateinit var categories: Array<String>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,14 +41,13 @@ class EventFragment : Fragment() {
             label = it.getString("label").toString()
             desc = it.getString("desc").toString()
             time = it.getString("time").toString()
-            img = it.getInt("img")
+            img = it.getString("img").toString()
             organization = it.getString("org").toString()
             address = it.getString("address").toString()
             numList = it.getStringArray("numList") as Array<String>
             email = it.getString("email").toString()
-            //imgOpt = it.getIntArray("imgOpt") as Array<Int>
+            imgOpt = it.getStringArray("imgOpt") as Array<String>
             site = it.getString("site").toString()
-            categories = it.getStringArray("categories") as Array<String>
         }
     }
 
@@ -60,7 +58,11 @@ class EventFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_event, container, false)
     }
 
-    @SuppressLint("SetTextI18n")
+    private fun findID(name: String) : Int {
+        return requireContext().resources.getIdentifier(name, "img", requireContext().packageName)
+    }
+
+    @SuppressLint("SetTextI18n", "UseCompatLoadingForDrawables")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val textLabel: TextView = view.findViewById(R.id.EventLabelText)
         textLabel.movementMethod = ScrollingMovementMethod()
@@ -74,7 +76,13 @@ class EventFragment : Fragment() {
         textTime.text = time
 
         val imgEvent: ImageView = view.findViewById(R.id.imgEvent)
-        imgEvent.setImageResource(img)
+        imgEvent.setImageResource(findID(img))
+
+        val imgOptEventUp: ImageView = view.findViewById(R.id.imgOpt_1)
+        imgOptEventUp.setImageResource(findID(imgOpt[0]))
+
+        val imgOptEventDown: ImageView = view.findViewById(R.id.imgOpt_2)
+        imgOptEventDown.setImageResource(findID(imgOpt[1]))
 
         val descEvent: TextView = view.findViewById(R.id.descEvent)
         descEvent.text = desc
@@ -87,6 +95,7 @@ class EventFragment : Fragment() {
 
         val numEvent: TextView = view.findViewById(R.id.numbersEvent)
         numEvent.text = "${numList[0]}\n${numList[1]}"
+        //numEvent.text = numList
 
         val emailView: TextView = view.findViewById(R.id.emailEvent)
         val underlineTextEmail = "<u>$email</u>"

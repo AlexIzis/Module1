@@ -22,8 +22,6 @@ k
 ;app/src/main/java/com/example/module1/MainSearchFragment.kt,e\a\ea58601b624b98427af87719a2397910fdaf8a7d
 l
 <app/src/main/java/com/example/module1/EditProfileFragment.kt,5\f\5fed35036ba0186ad3a206727638461098ff5466
-d
-4app/src/main/java/com/example/module1/NewsAdapter.kt,e\a\ea51b4734e281c679b60a3849732281a9e3cbe21
 g
 7app/src/main/java/com/example/module1/FilterFragment.kt,8\a\8a41e2ce47caa99be250f8bbd94dda7c83f253ab
 m
@@ -32,3 +30,13 @@ k
 ;app/src/main/java/com/example/module1/CategoriesActivity.kt,7\e\7eabf6c7ec097e3df6bac3e47b0d1ef219bbbaf4
 e
 5app/src/main/java/com/example/module1/SplashScreen.kt,6\8\68167142b97f09b239d2b857102547880fae68b4
+@
+app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+h
+8app/src/main/java/com/example/module1/CategoryUiModel.kt,e\8\e820850973d2b81ecb6cf7cf77cab1744b8c8e7f
+k
+;app/src/main/java/com/example/module1/CategoriesFragment.kt,e\5\e58e25fba569d429c3a7d5e2597d1065b326a6b1
+c
+3app/src/main/java/com/example/module1/JsonParser.kt,b\1\b1d54747964bc0388264e4b757570132a2182323
+j
+:app/src/main/java/com/example/module1/CategoriesAdapter.kt,2\8\289ddc72900d523dc215e84c9643df17a023a316

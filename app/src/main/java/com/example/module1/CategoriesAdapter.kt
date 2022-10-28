@@ -29,9 +29,13 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val tmpItem = categories[position]
-        val id: Int = context.resources.getIdentifier(tmpItem.img, "drawable", context.packageName)
-        val img = context.resources.getDrawable(id, context.applicationContext.theme)
-        holder.imgView.background = img
+        holder.imgView.setImageResource(
+            context.resources.getIdentifier(
+                tmpItem.img,
+                "img",
+                context.packageName
+            )
+        )
         holder.textView.text = tmpItem.text
     }
 
