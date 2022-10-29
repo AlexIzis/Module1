@@ -70,4 +70,6 @@
     <string name="underline_site"><u>Перейти на сайт организаии</u></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="any_questions">У вас есть вопросы?</string>
+    <string name="_102">+102</string>
 </resources>

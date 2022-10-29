@@ -13,21 +13,11 @@ import androidx.fragment.app.Fragment
 import java.text.SimpleDateFormat
 import java.util.*
 
-
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [EventFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class EventFragment : Fragment() {
     private lateinit var label: String
     private lateinit var desc: String
-    private lateinit var time: String
+    private var time: Long = 0
     private lateinit var img: String
-    private var identifier: Int = 0
     private lateinit var organization: String
     private lateinit var address: String
     private lateinit var numList: Array<String>
@@ -39,10 +29,9 @@ class EventFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            identifier = it.getInt("id")
             label = it.getString("label").toString()
             desc = it.getString("desc").toString()
-            time = it.getString("time").toString()
+            time = it.getLong("time")
             img = it.getString("img").toString()
             organization = it.getString("org").toString()
             address = it.getString("address").toString()
@@ -60,7 +49,7 @@ class EventFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_event, container, false)
     }
 
-    private fun findID(name: String) : Int {
+    private fun findID(name: String): Int {
         return requireContext().resources.getIdentifier(name, "img", requireContext().packageName)
     }
 
@@ -76,7 +65,7 @@ class EventFragment : Fragment() {
 
         val textTime: TextView = view.findViewById(R.id.timeEvent)
         val format = SimpleDateFormat("HH:mm dd.MM.yyyy")
-        textTime.text = format.format(Date(time.toLong()))
+        textTime.text = format.format(Date(time))
 
         val imgEvent: ImageView = view.findViewById(R.id.imgEvent)
         imgEvent.setImageResource(findID(img))
@@ -114,24 +103,5 @@ class EventFragment : Fragment() {
             fragmentTransaction.replace(R.id.fragmentContainerView, NewsFragment())
             fragmentTransaction.commit()
         }
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment EventFragment.
-         */
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            EventFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }

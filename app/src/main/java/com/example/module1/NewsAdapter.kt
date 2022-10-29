@@ -16,7 +16,6 @@ import java.util.*
 class NewsAdapter(private val onItemClick: ((NewsUIModel) -> Unit)?) :
     RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
-    //private val news = mutableListOf<NewsUIModel>()
     private lateinit var context: Context
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -71,11 +70,4 @@ class NewsAdapter(private val onItemClick: ((NewsUIModel) -> Unit)?) :
     }
 
     val differ = AsyncListDiffer(this, differCallback)
-
-    /*@SuppressLint("NotifyDataSetChanged")
-    fun setNews(items: List<NewsUIModel>){
-        news.clear()
-        news.addAll(items)
-        notifyDataSetChanged()
-    }*/
 }
