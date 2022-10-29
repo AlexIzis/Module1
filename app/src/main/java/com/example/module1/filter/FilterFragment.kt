@@ -42,7 +42,7 @@ class FilterFragment : Fragment() {
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewFilter)
         val adapter = FilterCategoriesAdapter(onItemClick())
         val listFromJson =
-            JsonParser("categories.json", CategoryUiModel::class.java, requireContext()).parseJson()
+            JsonParser(getString(R.string.path_to_categories), CategoryUiModel::class.java, requireContext()).parseJson()
         adapter.setCategories(listFromJson)
 
         recyclerView.adapter = adapter

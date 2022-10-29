@@ -70,7 +70,7 @@ class NewsFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(ItemMarginDecoration())
         newsList =
-            JsonParser("news.json", NewsUIModel::class.java, requireContext()).parseJson()
+            JsonParser(getString(R.string.path_to_news), NewsUIModel::class.java, requireContext()).parseJson()
         adapter.differ.submitList(filterByCategories())
 
         val imageFilter: ImageView = view.findViewById(R.id.icon_filter)

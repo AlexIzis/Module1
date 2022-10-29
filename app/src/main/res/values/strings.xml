@@ -73,4 +73,6 @@
     <string name="pro_help">Проф помощью</string>
     <string name="volunteer">Волонтерством</string>
     <string name="news">Новости</string>
+    <string name="path_to_categories">categories.json</string>
+    <string name="path_to_news">news.json</string>
 </resources>

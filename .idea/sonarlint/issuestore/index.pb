@@ -22,8 +22,6 @@ d
 4app/src/main/java/com/example/module1/NewsAdapter.kt,e\a\ea51b4734e281c679b60a3849732281a9e3cbe21
 k
 ;app/src/main/java/com/example/module1/MainSearchFragment.kt,e\a\ea58601b624b98427af87719a2397910fdaf8a7d
-c
-3app/src/main/java/com/example/module1/JsonParser.kt,b\1\b1d54747964bc0388264e4b757570132a2182323
 g
 7app/src/main/java/com/example/module1/FilterFragment.kt,8\a\8a41e2ce47caa99be250f8bbd94dda7c83f253ab
 t
@@ -36,8 +34,6 @@ p
 @app/src/main/java/com/example/module1/profile/ProfileFragment.kt,1\f\1f796cd5d959574fc4347403aff77c730d7e71a3
 s
 Capp/src/main/java/com/example/module1/categories/CategoryUiModel.kt,6\0\606da234925028f5d0bbb33fbf3c9764c4ae0418
-v
-Fapp/src/main/java/com/example/module1/categories/CategoriesFragment.kt,7\c\7cfd52e40ab03d62971f68bbdd8cf6cf8078ac12
 t
 Dapp/src/main/java/com/example/module1/activity/CategoriesActivity.kt,d\1\d16fa4555fdd4a2cf822dc1dbd286307775b67f1
 n

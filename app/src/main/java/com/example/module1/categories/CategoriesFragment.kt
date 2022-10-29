@@ -34,7 +34,7 @@ class CategoriesFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(ItemMarginDecoration())
         val listFromJson =
-            JsonParser("categories.json", CategoryUiModel::class.java, requireContext()).parseJson()
+            JsonParser(getString(R.string.path_to_categories), CategoryUiModel::class.java, requireContext()).parseJson()
         adapter.setCategories(listFromJson)
     }
 }
