@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EventFragment">
+    tools:context=".event.EventFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -73,7 +73,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="106dp"
             android:textColor="#627f8f"
-            android:textSize="21sp"
+            android:textSize="@dimen/textProfileActivityNameSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbarEvent" />
@@ -95,8 +95,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:textColor="#94998a"
-            android:textSize="12sp"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/labelProfileDateBirth"
             app:layout_constraintBottom_toBottomOf="@+id/imageView7"
             app:layout_constraintStart_toEndOf="@+id/imageView7"
             app:layout_constraintTop_toTopOf="@+id/imageView7" />
@@ -107,8 +107,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="12dp"
-            android:textColor="#99000000"
-            android:textSize="12sp"
+            android:textColor="@color/black_60"
+            android:textSize="@dimen/labelProfileDateBirth"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView7" />
 
@@ -131,7 +131,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="80dp"
             android:textColor="@color/black"
-            android:textSize="14sp"
+            android:textSize="@dimen/textLoadingSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView8"
             app:layout_constraintTop_toBottomOf="@+id/organisationEvent" />
@@ -153,7 +153,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:textColor="@color/black"
-            android:textSize="14sp"
+            android:textSize="@dimen/textLoadingSize"
             app:layout_constraintStart_toEndOf="@+id/imageView10"
             app:layout_constraintTop_toTopOf="@+id/imageView10" />
 
@@ -175,7 +175,7 @@
             android:layout_marginStart="14dp"
             android:text="@string/any_questions"
             android:textColor="@color/black"
-            android:textSize="14sp"
+            android:textSize="@dimen/textLoadingSize"
             app:layout_constraintStart_toEndOf="@+id/imageView11"
             app:layout_constraintTop_toTopOf="@+id/imageView11" />
 
@@ -185,7 +185,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
             android:textColor="@color/leaf"
-            android:textSize="14sp"
+            android:textSize="@dimen/textLoadingSize"
             app:layout_constraintBottom_toBottomOf="@+id/textView14"
             app:layout_constraintStart_toEndOf="@+id/textView14"
             app:layout_constraintTop_toTopOf="@+id/textView14" />
@@ -228,7 +228,6 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgOpt_2" />
 
@@ -239,17 +238,15 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:textColor="@color/leaf"
-            android:textSize="14sp"
+            android:textSize="@dimen/textLoadingSize"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/descEvent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintVertical_weight="0"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:background="@color/light_grey_two"
-            app:layout_constraintBottom_toTopOf="@+id/bottomNavigationViewEvent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/siteEvent">
@@ -288,28 +285,16 @@
                 tools:ignore="ContentDescription" />
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="@string/_102"
                 android:textColor="#616161"
-                android:textSize="14sp"
+                android:textSize="@dimen/textLoadingSize"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView14"
                 app:layout_constraintStart_toEndOf="@+id/imageView14"
                 app:layout_constraintTop_toTopOf="@+id/imageView14" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigationViewEvent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            app:itemIconTint="@color/leaf"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:labelVisibilityMode="labeled"
-            app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/menu_event" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

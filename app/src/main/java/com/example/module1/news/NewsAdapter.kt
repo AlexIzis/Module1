@@ -1,4 +1,4 @@
-package com.example.module1
+package com.example.module1.news
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.module1.R
 import java.text.SimpleDateFormat
 import java.util.*
 

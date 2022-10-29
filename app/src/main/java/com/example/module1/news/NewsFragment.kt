@@ -1,4 +1,4 @@
-package com.example.module1
+package com.example.module1.news
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +8,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.module1.ItemMarginDecoration
+import com.example.module1.JsonParser
+import com.example.module1.R
+import com.example.module1.event.EventFragment
+import com.example.module1.filter.FilterFragment
 
 class NewsFragment : Fragment() {
     private lateinit var newsList: List<NewsUIModel>

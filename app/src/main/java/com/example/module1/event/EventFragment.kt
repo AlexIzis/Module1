@@ -1,4 +1,4 @@
-package com.example.module1
+package com.example.module1.event
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -10,6 +10,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
+import com.example.module1.news.NewsFragment
+import com.example.module1.R
 import java.text.SimpleDateFormat
 import java.util.*
 

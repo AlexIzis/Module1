@@ -1,9 +1,14 @@
-package com.example.module1
+package com.example.module1.activity
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.module1.*
+import com.example.module1.categories.CategoriesFragment
+import com.example.module1.news.NewsFragment
+import com.example.module1.profile.ProfileFragment
+import com.example.module1.search.MainSearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class CategoriesActivity : AppCompatActivity() {

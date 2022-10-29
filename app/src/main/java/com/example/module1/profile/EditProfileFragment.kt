@@ -1,4 +1,4 @@
-package com.example.module1
+package com.example.module1.profile
 
 import android.Manifest
 import android.app.Activity
@@ -20,6 +20,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.module1.R
 import java.util.*
 
 const val REQUEST_CODE = 1

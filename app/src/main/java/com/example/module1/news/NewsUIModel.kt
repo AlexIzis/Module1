@@ -1,4 +1,4 @@
-package com.example.module1
+package com.example.module1.news
 
 data class NewsUIModel(
     val id: Int,

@@ -12,10 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Module1">
         <activity
-            android:name=".CategoriesActivity"
+            android:name=".activity.CategoriesActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".activity.SplashScreen"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>

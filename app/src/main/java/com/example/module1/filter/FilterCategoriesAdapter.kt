@@ -1,4 +1,4 @@
-package com.example.module1
+package com.example.module1.filter
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.module1.R
+import com.example.module1.categories.CategoryUiModel
 
 class FilterCategoriesAdapter(private val onItemClick: ((CategoryUiModel) -> Unit)?) :
     RecyclerView.Adapter<FilterCategoriesAdapter.ViewHolder>() {
@@ -30,7 +32,7 @@ class FilterCategoriesAdapter(private val onItemClick: ((CategoryUiModel) -> Uni
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): FilterCategoriesAdapter.ViewHolder {
+    ): ViewHolder {
         val itemView =
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.categories_item_filter, parent, false)

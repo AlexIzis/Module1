@@ -1,4 +1,4 @@
-package com.example.module1
+package com.example.module1.filter
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +8,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.module1.ItemMarginDecoration
+import com.example.module1.JsonParser
+import com.example.module1.news.NewsFragment
+import com.example.module1.R
+import com.example.module1.categories.CategoryUiModel
 
 class FilterFragment : Fragment() {
 
@@ -47,10 +52,7 @@ class FilterFragment : Fragment() {
 
         val backArrow: ImageView = view.findViewById(R.id.back_arrow_to_news)
         backArrow.setOnClickListener {
-            val fragmentManager = parentFragmentManager
-            val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.fragmentContainerView, NewsFragment())
-            fragmentTransaction.commit()
+            loadFragment(NewsFragment())
         }
     }
 }
