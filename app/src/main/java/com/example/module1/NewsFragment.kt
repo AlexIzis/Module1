@@ -56,7 +56,7 @@ class NewsFragment : Fragment() {
         bundle.putString("img", news.img)
         bundle.putString("label", news.label)
         bundle.putString("desc", news.description)
-        bundle.putString("time", news.time)
+        bundle.putString("time", news.time.toString())
         bundle.putString("org", news.organization)
         bundle.putString("address", news.address)
         bundle.putStringArray("numList", news.numberList.toTypedArray())

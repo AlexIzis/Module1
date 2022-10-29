@@ -5,7 +5,7 @@ data class NewsUIModel(
     val label: String,
     val img: String,
     val description: String,
-    val time: String,
+    val time: Long,
     val organization: String,
     val address: String,
     val numberList: List<String>,

@@ -28,5 +28,3 @@ h
 8app/src/main/java/com/example/module1/CategoryUiModel.kt,e\8\e820850973d2b81ecb6cf7cf77cab1744b8c8e7f
 c
 3app/src/main/java/com/example/module1/JsonParser.kt,b\1\b1d54747964bc0388264e4b757570132a2182323
-d
-4app/src/main/java/com/example/module1/NewsUIModel.kt,e\8\e852a1bab1898ae4fe6e030982703beb0f2f122d

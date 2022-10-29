@@ -10,6 +10,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 private const val ARG_PARAM1 = "param1"
@@ -62,7 +64,7 @@ class EventFragment : Fragment() {
         return requireContext().resources.getIdentifier(name, "img", requireContext().packageName)
     }
 
-    @SuppressLint("SetTextI18n", "UseCompatLoadingForDrawables")
+    @SuppressLint("SetTextI18n", "UseCompatLoadingForDrawables", "SimpleDateFormat")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val textLabel: TextView = view.findViewById(R.id.EventLabelText)
         textLabel.movementMethod = ScrollingMovementMethod()
@@ -73,7 +75,8 @@ class EventFragment : Fragment() {
         textHeader.text = label
 
         val textTime: TextView = view.findViewById(R.id.timeEvent)
-        textTime.text = time
+        val format = SimpleDateFormat("HH:mm dd.MM.yyyy")
+        textTime.text = format.format(Date(time.toLong()))
 
         val imgEvent: ImageView = view.findViewById(R.id.imgEvent)
         imgEvent.setImageResource(findID(img))
@@ -95,7 +98,6 @@ class EventFragment : Fragment() {
 
         val numEvent: TextView = view.findViewById(R.id.numbersEvent)
         numEvent.text = "${numList[0]}\n${numList[1]}"
-        //numEvent.text = numList
 
         val emailView: TextView = view.findViewById(R.id.emailEvent)
         val underlineTextEmail = "<u>$email</u>"

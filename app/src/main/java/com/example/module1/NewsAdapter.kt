@@ -10,8 +10,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import java.text.SimpleDateFormat
+import java.util.*
 
-class NewsAdapter(private val onItemClick:  ((NewsUIModel) -> Unit)?) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
+class NewsAdapter(private val onItemClick: ((NewsUIModel) -> Unit)?) :
+    RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
     //private val news = mutableListOf<NewsUIModel>()
     private lateinit var context: Context
@@ -21,6 +24,7 @@ class NewsAdapter(private val onItemClick:  ((NewsUIModel) -> Unit)?) : Recycler
         val labelText: TextView = itemView.findViewById(R.id.text_container)
         val descText: TextView = itemView.findViewById(R.id.desc_container)
         val time: TextView = itemView.findViewById(R.id.time_container)
+
         init {
             itemView.setOnClickListener {
                 onItemClick?.invoke(differ.currentList[adapterPosition])
@@ -35,7 +39,7 @@ class NewsAdapter(private val onItemClick:  ((NewsUIModel) -> Unit)?) : Recycler
         return ViewHolder(itemView)
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
+    @SuppressLint("UseCompatLoadingForDrawables", "SimpleDateFormat")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val news = differ.currentList[position]
         holder.imgView.setImageResource(
@@ -47,14 +51,15 @@ class NewsAdapter(private val onItemClick:  ((NewsUIModel) -> Unit)?) : Recycler
         )
         holder.labelText.text = news.label
         holder.descText.text = news.description
-        holder.time.text = news.time
+        val format = SimpleDateFormat("HH:mm dd.MM.yyyy")
+        holder.time.text =  format.format(Date(news.time))
     }
 
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
 
-    private val differCallback = object : DiffUtil.ItemCallback<NewsUIModel>(){
+    private val differCallback = object : DiffUtil.ItemCallback<NewsUIModel>() {
         override fun areItemsTheSame(oldItem: NewsUIModel, newItem: NewsUIModel): Boolean {
             return oldItem.id == newItem.id
         }
