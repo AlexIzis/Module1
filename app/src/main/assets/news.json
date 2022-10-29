@@ -14,7 +14,7 @@
       "@drawable/avatar_3"
     ],
     "site": "Перейти на сайт организаии",
-    "categories": ["children", "adults"]
+    "categories": ["children"]
   },
   {
     "id": 1,
@@ -31,6 +31,6 @@
       "@drawable/avatar_3"
     ],
     "site": "Перейти на сайт организаии",
-    "categories": ["children", "adults", "elderly"]
+    "categories": ["adults", "elderly"]
   }
 ]

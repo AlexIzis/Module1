@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
 class NewsAdapter(private val onItemClick:  ((NewsUIModel) -> Unit)?) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
-    private val news = mutableListOf<NewsUIModel>()
+    //private val news = mutableListOf<NewsUIModel>()
     private lateinit var context: Context
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -21,7 +23,7 @@ class NewsAdapter(private val onItemClick:  ((NewsUIModel) -> Unit)?) : Recycler
         val time: TextView = itemView.findViewById(R.id.time_container)
         init {
             itemView.setOnClickListener {
-                onItemClick?.invoke(news[adapterPosition])
+                onItemClick?.invoke(differ.currentList[adapterPosition])
             }
         }
     }
@@ -35,7 +37,7 @@ class NewsAdapter(private val onItemClick:  ((NewsUIModel) -> Unit)?) : Recycler
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val news = news[position]
+        val news = differ.currentList[position]
         holder.imgView.setImageResource(
             context.resources.getIdentifier(
                 news.img,
@@ -49,13 +51,26 @@ class NewsAdapter(private val onItemClick:  ((NewsUIModel) -> Unit)?) : Recycler
     }
 
     override fun getItemCount(): Int {
-        return news.size
+        return differ.currentList.size
     }
 
-    @SuppressLint("NotifyDataSetChanged")
+    private val differCallback = object : DiffUtil.ItemCallback<NewsUIModel>(){
+        override fun areItemsTheSame(oldItem: NewsUIModel, newItem: NewsUIModel): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: NewsUIModel, newItem: NewsUIModel): Boolean {
+            return oldItem == newItem
+        }
+
+    }
+
+    val differ = AsyncListDiffer(this, differCallback)
+
+    /*@SuppressLint("NotifyDataSetChanged")
     fun setNews(items: List<NewsUIModel>){
         news.clear()
         news.addAll(items)
         notifyDataSetChanged()
-    }
+    }*/
 }

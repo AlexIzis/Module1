@@ -18,14 +18,21 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class NewsFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var newsList: List<NewsUIModel>
+    private lateinit var category: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        category = ""
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            category = it.getString("category").toString()
+        }
+    }
+
+    private fun filterByCategories(): List<NewsUIModel> {
+        return if (category == "") newsList
+        else {
+            newsList.filter { it.categories.contains(category) }
         }
     }
 
@@ -67,9 +74,9 @@ class NewsFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(ItemMarginDecoration())
-        val listFromJson =
+        newsList =
             JsonParser("news.json", NewsUIModel::class.java, requireContext()).parseJson()
-        adapter.setNews(listFromJson)
+        adapter.differ.submitList(filterByCategories())
 
         val imageFilter: ImageView = view.findViewById(R.id.icon_filter)
         imageFilter.setOnClickListener {
