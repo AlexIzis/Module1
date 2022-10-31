@@ -8,7 +8,5 @@
 settings.gradle,0\5\05efc8b1657769a27696d478ded1e95f38737233
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
-i
-9app/src/main/java/com/example/module1/news/NewsUIModel.kt,4\0\40e8b31b1195c903dd87dcaacb35c1b4c764e06c
 m
 =app/src/main/java/com/example/module1/ItemMarginDecoration.kt,0\6\0658fbaaa54a2b385cd741e9e1a2ee798c854525

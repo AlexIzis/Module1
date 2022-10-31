@@ -10,7 +10,7 @@ data class NewsUIModel(
     val address: String,
     val numberList: List<String>,
     val email: String,
-    val imgOpt: List<String>,
+    val imgOptionally: List<String>,
     val site: String,
     val categories: List<String>
 )

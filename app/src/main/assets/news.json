@@ -9,7 +9,7 @@
     "address": "Санкт-Петербург, Кирочная улица, д. 50А, каб. 208",
     "numberList": ["+7 (937) 037 37-73", "+7 (937) 016 16-16"],
     "email": "Напишите нам",
-    "imgOpt":  [
+    "imgOptionally":  [
       "@drawable/avatar_2",
       "@drawable/avatar_3"
     ],
@@ -26,7 +26,7 @@
     "address": "Санкт-Петербург, Кирочная улица, д. 50А, каб. 208",
     "numberList": ["+7 (937) 037 37-73", "+7 (937) 016 16-16"],
     "email": "Напишите нам",
-    "imgOpt":  [
+    "imgOptionally":  [
       "@drawable/avatar_1",
       "@drawable/avatar_3"
     ],

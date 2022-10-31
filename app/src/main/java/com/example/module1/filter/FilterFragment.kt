@@ -29,7 +29,11 @@ class FilterFragment : Fragment() {
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewFilter)
         val adapter = FilterCategoriesAdapter(onItemClick())
         val listFromJson =
-            JsonParser(getString(R.string.path_to_categories), CategoryUiModel::class.java, requireContext()).parseJson()
+            JsonParser(
+                getString(R.string.path_to_categories),
+                CategoryUiModel::class.java,
+                requireContext()
+            ).parseJson()
         adapter.setCategories(listFromJson)
 
         recyclerView.adapter = adapter
@@ -39,7 +43,6 @@ class FilterFragment : Fragment() {
 
         val backArrow: ImageView = view.findViewById(R.id.backArrowToNews)
         backArrow.setOnClickListener {
-            loadFragment(NewsFragment())
             FragmentNavigation().addFragment(
                 parentFragmentManager,
                 R.id.fragmentContainerView,
@@ -48,19 +51,15 @@ class FilterFragment : Fragment() {
         }
     }
 
-    private fun loadFragment(fr: Fragment) {
-        val fragmentManager = parentFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fragmentContainerView, fr)
-        fragmentTransaction.commit()
-    }
-
     private fun onItemClick() = { category: CategoryUiModel ->
         val bundle = Bundle()
         bundle.putString("category", category.value)
         val fragment = NewsFragment()
         fragment.arguments = bundle
-        activity?.supportFragmentManager?.setFragmentResult("result", bundleOf("category" to category.value))
+        activity?.supportFragmentManager?.setFragmentResult(
+            "result",
+            bundleOf("category" to category.value)
+        )
         activity?.supportFragmentManager?.popBackStack()
         Unit
     }

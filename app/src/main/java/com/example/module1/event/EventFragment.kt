@@ -54,10 +54,10 @@ class EventFragment : Fragment() {
         imgEvent.setImageResource(findID(data.img))
 
         val imgOptEventUp: ImageView = view.findViewById(R.id.imgOpt_1)
-        imgOptEventUp.setImageResource(findID(data.imgOpt[0]))
+        imgOptEventUp.setImageResource(findID(data.imgOptionally[0]))
 
         val imgOptEventDown: ImageView = view.findViewById(R.id.imgOpt_2)
-        imgOptEventDown.setImageResource(findID(data.imgOpt[1]))
+        imgOptEventDown.setImageResource(findID(data.imgOptionally[1]))
 
         val descEvent: TextView = view.findViewById(R.id.descEvent)
         descEvent.text = data.description
