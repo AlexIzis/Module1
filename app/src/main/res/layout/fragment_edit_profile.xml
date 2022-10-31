@@ -27,7 +27,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/back_arrow"
+                    android:id="@+id/backArrow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -52,7 +52,7 @@
                     tools:ignore="TextContrastCheck" />
 
                 <ImageView
-                    android:id="@+id/img_ok"
+                    android:id="@+id/imgOk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"

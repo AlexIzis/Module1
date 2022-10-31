@@ -15,7 +15,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar4">
 
         <ImageView
-            android:id="@+id/image_container"
+            android:id="@+id/imageContainer"
             android:layout_width="wrap_content"
             android:layout_height="222dp"
             android:layout_marginStart="4dp"
@@ -27,7 +27,7 @@
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/text_container"
+            android:id="@+id/textContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="38dp"
@@ -39,20 +39,20 @@
             android:textSize="23sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image_container" />
+            app:layout_constraintTop_toBottomOf="@+id/imageContainer" />
 
         <ImageView
-            android:id="@+id/decor_container"
+            android:id="@+id/decorContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_decor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_container"
+            app:layout_constraintTop_toBottomOf="@+id/textContainer"
             tools:ignore="ContentDescription,ImageContrastCheck" />
 
         <TextView
-            android:id="@+id/desc_container"
+            android:id="@+id/descContainer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="26dp"
@@ -62,7 +62,7 @@
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/decor_container" />
+            app:layout_constraintTop_toBottomOf="@+id/decorContainer" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -80,13 +80,13 @@
                 android:layout_marginEnd="6dp"
                 android:src="@drawable/ic_calendar_today"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/time_container"
+                app:layout_constraintEnd_toStartOf="@+id/timeContainer"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/white"
                 tools:ignore="ContentDescription,ImageContrastCheck" />
 
             <TextView
-                android:id="@+id/time_container"
+                android:id="@+id/timeContainer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"

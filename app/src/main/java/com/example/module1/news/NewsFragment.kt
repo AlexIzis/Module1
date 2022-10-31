@@ -48,7 +48,7 @@ class NewsFragment : Fragment() {
             ).parseJson()
         adapter.differ.submitList(filterByCategories())
 
-        val imageFilter: ImageView = view.findViewById(R.id.icon_filter)
+        val imageFilter: ImageView = view.findViewById(R.id.iconFilter)
         imageFilter.setOnClickListener {
             val fragmentManager = parentFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()

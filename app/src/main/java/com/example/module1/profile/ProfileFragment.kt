@@ -20,7 +20,7 @@ class ProfileFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val pencilButton: ImageView = view.findViewById(R.id.imageView4) ?: return
+        val pencilButton: ImageView = view.findViewById(R.id.imageView4)
         pencilButton.setOnClickListener {
             FragmentNavigation().addFragment(
                 parentFragmentManager,

@@ -27,7 +27,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/back_arrow_to_news"
+                    android:id="@+id/backArrowToNews"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -65,7 +65,7 @@
         </androidx.appcompat.widget.Toolbar>
 
         <View
-            android:id="@+id/view_top_filter"
+            android:id="@+id/viewTopFilter"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/warm_grey"
@@ -84,7 +84,7 @@
             app:layout_constraintTop_toBottomOf="@+id/toolbar5" />
 
         <View
-            android:id="@+id/view_low_filter"
+            android:id="@+id/viewLowFilter"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/warm_grey"

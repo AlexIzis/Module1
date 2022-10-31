@@ -36,7 +36,7 @@
                         android:layout_height="match_parent">
 
                         <ImageView
-                            android:id="@+id/back_arrow_from_event"
+                            android:id="@+id/backArrowFromEvent"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
@@ -58,7 +58,7 @@
                             android:textSize="21sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/imageView9"
-                            app:layout_constraintStart_toEndOf="@+id/back_arrow_from_event"
+                            app:layout_constraintStart_toEndOf="@+id/backArrowFromEvent"
                             app:layout_constraintTop_toTopOf="parent"/>
 
                         <ImageView

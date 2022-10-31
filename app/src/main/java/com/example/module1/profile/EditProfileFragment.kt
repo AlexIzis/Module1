@@ -113,7 +113,7 @@ class EditProfileFragment : Fragment() {
             ).show()
         }
 
-        val backArrow: ImageView = view.findViewById(R.id.back_arrow)
+        val backArrow: ImageView = view.findViewById(R.id.backArrow)
         backArrow.setOnClickListener {
             FragmentNavigation().addFragment(
                 parentFragmentManager,

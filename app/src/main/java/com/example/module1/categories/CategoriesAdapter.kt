@@ -14,8 +14,8 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
     private val categories = mutableListOf<CategoryUiModel>()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imgView: ImageView = itemView.findViewById(R.id.image_category)
-        val textView: TextView = itemView.findViewById(R.id.text_category)
+        val imgView: ImageView = itemView.findViewById(R.id.imageCategory)
+        val textView: TextView = itemView.findViewById(R.id.textCategory)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

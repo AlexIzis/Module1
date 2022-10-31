@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/profile_image"
+                    android:id="@+id/profileImage"
                     android:layout_width="match_parent"
                     android:layout_height="220dp"
                     android:contentDescription="@string/profile_image"
@@ -95,10 +95,10 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/profileNameSize"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+                    app:layout_constraintTop_toBottomOf="@+id/profileImage" />
 
                 <TextView
-                    android:id="@+id/label_profile_date_birth"
+                    android:id="@+id/labelProfileDateBirth"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -109,7 +109,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/profile_name" />
 
                 <TextView
-                    android:id="@+id/profile_date_birth"
+                    android:id="@+id/profileDateBirth"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -117,10 +117,10 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/profileDateBirth"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/label_profile_date_birth" />
+                    app:layout_constraintTop_toBottomOf="@+id/labelProfileDateBirth" />
 
                 <TextView
-                    android:id="@+id/label_sphere_profile"
+                    android:id="@+id/labelSphereProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -128,10 +128,10 @@
                     android:text="@string/label_sphere"
                     android:textSize="@dimen/labelProfileDateBirth"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_date_birth" />
+                    app:layout_constraintTop_toBottomOf="@+id/profileDateBirth" />
 
                 <TextView
-                    android:id="@+id/sphere_profile"
+                    android:id="@+id/sphereProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -139,7 +139,7 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/profileDateBirth"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/label_sphere_profile" />
+                    app:layout_constraintTop_toBottomOf="@+id/labelSphereProfile" />
 
                 <TextView
                     android:id="@+id/question"
@@ -151,7 +151,7 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/profileDateBirth"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/sphere_profile" />
+                    app:layout_constraintTop_toBottomOf="@+id/sphereProfile" />
 
                 <Switch
                     android:id="@+id/switch1"
@@ -176,7 +176,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/question" />
 
                 <TextView
-                    android:id="@+id/label_profile_friends"
+                    android:id="@+id/labelProfileFriends"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -194,7 +194,7 @@
                     android:layout_marginTop="16dp"
                     android:contentDescription="@string/avatar1"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/label_profile_friends"
+                    app:layout_constraintTop_toBottomOf="@+id/labelProfileFriends"
                     app:srcCompat="@drawable/avatar_3" />
 
                 <ImageView
@@ -220,7 +220,7 @@
                     app:srcCompat="@drawable/avatar_1" />
 
                 <TextView
-                    android:id="@+id/text_avatar1"
+                    android:id="@+id/textAvatar1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -229,10 +229,10 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/profileDateBirth"
                     app:layout_constraintStart_toEndOf="@+id/imageView"
-                    app:layout_constraintTop_toBottomOf="@+id/label_profile_friends" />
+                    app:layout_constraintTop_toBottomOf="@+id/labelProfileFriends" />
 
                 <TextView
-                    android:id="@+id/text_avatar2"
+                    android:id="@+id/textAvatar2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -241,10 +241,10 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/profileDateBirth"
                     app:layout_constraintStart_toEndOf="@+id/imageView2"
-                    app:layout_constraintTop_toBottomOf="@+id/text_avatar1" />
+                    app:layout_constraintTop_toBottomOf="@+id/textAvatar1" />
 
                 <TextView
-                    android:id="@+id/text_avatar3"
+                    android:id="@+id/textAvatar3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -253,7 +253,7 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/profileDateBirth"
                     app:layout_constraintStart_toEndOf="@+id/imageView3"
-                    app:layout_constraintTop_toBottomOf="@+id/text_avatar2" />
+                    app:layout_constraintTop_toBottomOf="@+id/textAvatar2" />
 
                 <View
                     android:id="@+id/view2"
@@ -262,7 +262,7 @@
                     android:layout_marginTop="32dp"
                     android:background="@color/warm_grey"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/text_avatar3" />
+                    app:layout_constraintTop_toBottomOf="@+id/textAvatar3" />
 
                 <Button
                     android:id="@+id/button_logout"

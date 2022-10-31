@@ -79,7 +79,7 @@ class EventFragment : Fragment() {
         val underlineTextSite = "<u>${data.site}</u>"
         siteView.text = HtmlCompat.fromHtml(underlineTextSite, HtmlCompat.FROM_HTML_MODE_LEGACY)
 
-        val backArrow: ImageView = view.findViewById(R.id.back_arrow_from_event)
+        val backArrow: ImageView = view.findViewById(R.id.backArrowFromEvent)
         backArrow.setOnClickListener {
             FragmentNavigation().addFragment(
                 parentFragmentManager,

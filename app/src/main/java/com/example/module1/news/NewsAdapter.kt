@@ -17,10 +17,10 @@ class NewsAdapter(private val onItemClick: ((NewsUIModel) -> Unit)) :
     RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imgView: ImageView = itemView.findViewById(R.id.image_container)
-        val labelText: TextView = itemView.findViewById(R.id.text_container)
-        val descText: TextView = itemView.findViewById(R.id.desc_container)
-        val time: TextView = itemView.findViewById(R.id.time_container)
+        val imgView: ImageView = itemView.findViewById(R.id.imageContainer)
+        val labelText: TextView = itemView.findViewById(R.id.textContainer)
+        val descText: TextView = itemView.findViewById(R.id.descContainer)
+        val time: TextView = itemView.findViewById(R.id.timeContainer)
 
         init {
             itemView.setOnClickListener {

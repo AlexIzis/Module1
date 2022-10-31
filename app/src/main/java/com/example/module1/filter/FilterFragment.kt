@@ -37,7 +37,7 @@ class FilterFragment : Fragment() {
         recyclerView.addItemDecoration(ItemMarginDecoration())
 
 
-        val backArrow: ImageView = view.findViewById(R.id.back_arrow_to_news)
+        val backArrow: ImageView = view.findViewById(R.id.backArrowToNews)
         backArrow.setOnClickListener {
             loadFragment(NewsFragment())
             FragmentNavigation().addFragment(
