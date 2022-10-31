@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.module1.FragmentNavigation
 import com.example.module1.ItemMarginDecoration
 import com.example.module1.JsonParser
 import com.example.module1.R
 import com.example.module1.event.EventFragment
 import com.example.module1.filter.FilterFragment
+import com.google.gson.Gson
 
 class NewsFragment : Fragment() {
     private lateinit var newsList: List<NewsUIModel>
@@ -25,42 +27,11 @@ class NewsFragment : Fragment() {
         }
     }
 
-    private fun filterByCategories(): List<NewsUIModel> {
-        return if (category == "") newsList
-        else {
-            newsList.filter { it.categories.contains(category) }
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         return inflater.inflate(R.layout.fragment_news, container, false)
-    }
-
-    private fun loadFragment(fr: Fragment) {
-        val fragmentManager = parentFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fragmentContainerView, fr)
-        fragmentTransaction.commit()
-    }
-
-    private fun onItemClick() = { news: NewsUIModel ->
-        val bundle = Bundle()
-        bundle.putString("img", news.img)
-        bundle.putString("label", news.label)
-        bundle.putString("desc", news.description)
-        bundle.putLong("time", news.time)
-        bundle.putString("org", news.organization)
-        bundle.putString("address", news.address)
-        bundle.putStringArray("numList", news.numberList.toTypedArray())
-        bundle.putString("email", news.email)
-        bundle.putStringArray("imgOpt", news.imgOpt.toTypedArray())
-        bundle.putString("site", news.site)
-        val fragment = EventFragment()
-        fragment.arguments = bundle
-        loadFragment(fragment)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -70,12 +41,47 @@ class NewsFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(ItemMarginDecoration())
         newsList =
-            JsonParser(getString(R.string.path_to_news), NewsUIModel::class.java, requireContext()).parseJson()
+            JsonParser(
+                getString(R.string.path_to_news),
+                NewsUIModel::class.java,
+                requireContext()
+            ).parseJson()
         adapter.differ.submitList(filterByCategories())
 
         val imageFilter: ImageView = view.findViewById(R.id.icon_filter)
         imageFilter.setOnClickListener {
-            loadFragment(FilterFragment())
+            val fragmentManager = parentFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.add(R.id.fragmentContainerView, FilterFragment())
+            fragmentTransaction.commit()
+        }
+
+        activity?.supportFragmentManager?.setFragmentResultListener(
+            "result",
+            viewLifecycleOwner
+        ) { _, bundle ->
+            category = bundle.getString("category").toString()
+            adapter.differ.submitList(filterByCategories())
+        }
+    }
+
+    private fun onItemClick() = { news: NewsUIModel ->
+        val bundle = Bundle()
+        bundle.putString("new", Gson().toJson(news))
+        val fragment = EventFragment()
+        fragment.arguments = bundle
+        FragmentNavigation().addFragment(
+            parentFragmentManager,
+            R.id.fragmentContainerView,
+            fragment
+        )
+    }
+
+    private fun filterByCategories(): List<NewsUIModel> {
+        return if (category == "") newsList
+        else {
+            newsList.filter { it.categories.contains(category) }
         }
     }
 }

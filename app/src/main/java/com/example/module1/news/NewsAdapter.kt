@@ -1,7 +1,6 @@
 package com.example.module1.news
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,10 +13,8 @@ import com.example.module1.R
 import java.text.SimpleDateFormat
 import java.util.*
 
-class NewsAdapter(private val onItemClick: ((NewsUIModel) -> Unit)?) :
+class NewsAdapter(private val onItemClick: ((NewsUIModel) -> Unit)) :
     RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
-
-    private lateinit var context: Context
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imgView: ImageView = itemView.findViewById(R.id.image_container)
@@ -27,7 +24,7 @@ class NewsAdapter(private val onItemClick: ((NewsUIModel) -> Unit)?) :
 
         init {
             itemView.setOnClickListener {
-                onItemClick?.invoke(differ.currentList[adapterPosition])
+                onItemClick.invoke(differ.currentList[adapterPosition])
             }
         }
     }
@@ -35,13 +32,13 @@ class NewsAdapter(private val onItemClick: ((NewsUIModel) -> Unit)?) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.news_item, parent, false)
-        context = parent.context
         return ViewHolder(itemView)
     }
 
     @SuppressLint("UseCompatLoadingForDrawables", "SimpleDateFormat")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val news = differ.currentList[position]
+        val context = holder.imgView.context
         holder.imgView.setImageResource(
             context.resources.getIdentifier(
                 news.img,
@@ -51,8 +48,7 @@ class NewsAdapter(private val onItemClick: ((NewsUIModel) -> Unit)?) :
         )
         holder.labelText.text = news.label
         holder.descText.text = news.description
-        val format = SimpleDateFormat("HH:mm dd.MM.yyyy")
-        holder.time.text =  format.format(Date(news.time))
+        holder.time.text = SimpleDateFormat("MMMM dd, yyyy").format(Date(news.time))
     }
 
     override fun getItemCount(): Int {

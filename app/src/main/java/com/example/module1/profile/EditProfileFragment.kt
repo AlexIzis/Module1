@@ -20,6 +20,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.module1.FragmentNavigation
 import com.example.module1.R
 import java.util.*
 
@@ -36,45 +37,6 @@ class EditProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         return inflater.inflate(R.layout.fragment_edit_profile, container, false)
-    }
-
-    private fun takePhoto() {
-        val intent = Intent(Intent.ACTION_GET_CONTENT)
-        intent.type = "image/*"
-        getResultFromGallery.launch(intent)
-
-    }
-
-    private fun doPhoto() {
-        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        getResultFromCamera.launch(cameraIntent)
-    }
-
-    private fun deletePhoto() {
-        image.setImageResource(R.drawable.ic_photo_camera)
-    }
-
-    private fun showDialog() {
-        AlertDialog.Builder(requireContext())
-            .apply {
-                setItems(
-                    R.array.values
-                ) { _, i ->
-                    when (i) {
-                        0 -> {
-                            takePhoto()
-                        }
-                        1 -> {
-                            doPhoto()
-                        }
-                        2 -> {
-                            deletePhoto()
-                        }
-                    }
-                }
-            }
-            .create()
-            .show()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -153,10 +115,50 @@ class EditProfileFragment : Fragment() {
 
         val backArrow: ImageView = view.findViewById(R.id.back_arrow)
         backArrow.setOnClickListener {
-            val fragmentManager = parentFragmentManager
-            val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.fragmentContainerView, ProfileFragment())
-            fragmentTransaction.commit()
+            FragmentNavigation().addFragment(
+                parentFragmentManager,
+                R.id.fragmentContainerView,
+                ProfileFragment()
+            )
         }
+    }
+
+
+    private fun takePhoto() {
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "image/*"
+        getResultFromGallery.launch(intent)
+    }
+
+    private fun doPhoto() {
+        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        getResultFromCamera.launch(cameraIntent)
+    }
+
+    private fun deletePhoto() {
+        image.setImageResource(R.drawable.ic_photo_camera)
+    }
+
+    private fun showDialog() {
+        AlertDialog.Builder(requireContext())
+            .apply {
+                setItems(
+                    R.array.values
+                ) { _, i ->
+                    when (i) {
+                        0 -> {
+                            takePhoto()
+                        }
+                        1 -> {
+                            doPhoto()
+                        }
+                        2 -> {
+                            deletePhoto()
+                        }
+                    }
+                }
+            }
+            .create()
+            .show()
     }
 }

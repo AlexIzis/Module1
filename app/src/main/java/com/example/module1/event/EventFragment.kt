@@ -10,37 +10,22 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
+import com.example.module1.FragmentNavigation
 import com.example.module1.news.NewsFragment
 import com.example.module1.R
+import com.example.module1.news.NewsUIModel
+import com.google.gson.Gson
 import java.text.SimpleDateFormat
 import java.util.*
 
 class EventFragment : Fragment() {
-    private lateinit var label: String
-    private lateinit var desc: String
-    private var time: Long = 0
-    private lateinit var img: String
-    private lateinit var organization: String
-    private lateinit var address: String
-    private lateinit var numList: Array<String>
-    private lateinit var email: String
-    private lateinit var imgOpt: Array<String>
-    private lateinit var site: String
+    private lateinit var new: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            label = it.getString("label").toString()
-            desc = it.getString("desc").toString()
-            time = it.getLong("time")
-            img = it.getString("img").toString()
-            organization = it.getString("org").toString()
-            address = it.getString("address").toString()
-            numList = it.getStringArray("numList") as Array<String>
-            email = it.getString("email").toString()
-            imgOpt = it.getStringArray("imgOpt") as Array<String>
-            site = it.getString("site").toString()
+            new = it.getString("new").toString()
         }
     }
 
@@ -51,59 +36,60 @@ class EventFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_event, container, false)
     }
 
-    private fun findID(name: String): Int {
-        return requireContext().resources.getIdentifier(name, "img", requireContext().packageName)
-    }
-
     @SuppressLint("SetTextI18n", "UseCompatLoadingForDrawables", "SimpleDateFormat")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val textLabel: TextView = view.findViewById(R.id.EventLabelText)
+        val data = Gson().fromJson(new, NewsUIModel::class.java)
+        val textLabel: TextView = view.findViewById(R.id.eventLabelText)
         textLabel.movementMethod = ScrollingMovementMethod()
         textLabel.setHorizontallyScrolling(true)
-        textLabel.text = label
+        textLabel.text = data.label
 
         val textHeader: TextView = view.findViewById(R.id.headingEvent)
-        textHeader.text = label
+        textHeader.text = data.label
 
         val textTime: TextView = view.findViewById(R.id.timeEvent)
-        val format = SimpleDateFormat("HH:mm dd.MM.yyyy")
-        textTime.text = format.format(Date(time))
+        textTime.text = SimpleDateFormat("MMMM dd, yyyy").format(Date(data.time))
 
         val imgEvent: ImageView = view.findViewById(R.id.imgEvent)
-        imgEvent.setImageResource(findID(img))
+        imgEvent.setImageResource(findID(data.img))
 
         val imgOptEventUp: ImageView = view.findViewById(R.id.imgOpt_1)
-        imgOptEventUp.setImageResource(findID(imgOpt[0]))
+        imgOptEventUp.setImageResource(findID(data.imgOpt[0]))
 
         val imgOptEventDown: ImageView = view.findViewById(R.id.imgOpt_2)
-        imgOptEventDown.setImageResource(findID(imgOpt[1]))
+        imgOptEventDown.setImageResource(findID(data.imgOpt[1]))
 
         val descEvent: TextView = view.findViewById(R.id.descEvent)
-        descEvent.text = desc
+        descEvent.text = data.description
 
         val orgEvent: TextView = view.findViewById(R.id.organisationEvent)
-        orgEvent.text = organization
+        orgEvent.text = data.organization
 
         val addEvent: TextView = view.findViewById(R.id.addressEvent)
-        addEvent.text = address
+        addEvent.text = data.address
 
         val numEvent: TextView = view.findViewById(R.id.numbersEvent)
-        numEvent.text = "${numList[0]}\n${numList[1]}"
+        numEvent.text = "${data.numberList[0]}\n${data.numberList[1]}"
 
         val emailView: TextView = view.findViewById(R.id.emailEvent)
-        val underlineTextEmail = "<u>$email</u>"
+        val underlineTextEmail = "<u>${data.email}</u>"
         emailView.text = HtmlCompat.fromHtml(underlineTextEmail, HtmlCompat.FROM_HTML_MODE_LEGACY)
 
         val siteView: TextView = view.findViewById(R.id.siteEvent)
-        val underlineTextSite = "<u>$site</u>"
+        val underlineTextSite = "<u>${data.site}</u>"
         siteView.text = HtmlCompat.fromHtml(underlineTextSite, HtmlCompat.FROM_HTML_MODE_LEGACY)
 
         val backArrow: ImageView = view.findViewById(R.id.back_arrow_from_event)
         backArrow.setOnClickListener {
-            val fragmentManager = parentFragmentManager
-            val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.fragmentContainerView, NewsFragment())
-            fragmentTransaction.commit()
+            FragmentNavigation().addFragment(
+                parentFragmentManager,
+                R.id.fragmentContainerView,
+                NewsFragment()
+            )
         }
+    }
+
+    private fun findID(name: String): Int {
+        return requireContext().resources.getIdentifier(name, "img", requireContext().packageName)
     }
 }

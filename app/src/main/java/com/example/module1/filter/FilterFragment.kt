@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.module1.FragmentNavigation
 import com.example.module1.ItemMarginDecoration
 import com.example.module1.JsonParser
 import com.example.module1.news.NewsFragment
@@ -21,21 +23,6 @@ class FilterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         return inflater.inflate(R.layout.fragment_filter, container, false)
-    }
-
-    private fun loadFragment(fr: Fragment) {
-        val fragmentManager = parentFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.fragmentContainerView, fr)
-        fragmentTransaction.commit()
-    }
-
-    private fun onItemClick() = { category: CategoryUiModel ->
-        val bundle = Bundle()
-        bundle.putString("category", category.value)
-        val fragment = NewsFragment()
-        fragment.arguments = bundle
-        loadFragment(fragment)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,6 +40,28 @@ class FilterFragment : Fragment() {
         val backArrow: ImageView = view.findViewById(R.id.back_arrow_to_news)
         backArrow.setOnClickListener {
             loadFragment(NewsFragment())
+            FragmentNavigation().addFragment(
+                parentFragmentManager,
+                R.id.fragmentContainerView,
+                NewsFragment()
+            )
         }
+    }
+
+    private fun loadFragment(fr: Fragment) {
+        val fragmentManager = parentFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragmentContainerView, fr)
+        fragmentTransaction.commit()
+    }
+
+    private fun onItemClick() = { category: CategoryUiModel ->
+        val bundle = Bundle()
+        bundle.putString("category", category.value)
+        val fragment = NewsFragment()
+        fragment.arguments = bundle
+        activity?.supportFragmentManager?.setFragmentResult("result", bundleOf("category" to category.value))
+        activity?.supportFragmentManager?.popBackStack()
+        Unit
     }
 }

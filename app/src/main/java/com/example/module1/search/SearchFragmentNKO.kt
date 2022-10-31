@@ -22,13 +22,6 @@ class SearchFragmentNKO : Fragment() {
         return inflater.inflate(R.layout.fragment_search_nko, container, false)
     }
 
-    private fun getRandomString(length: Int): String {
-        val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
-        return (1..length)
-            .map { allowedChars.random() }
-            .joinToString("")
-    }
-
     fun updateDate() {
         nkoItems.clear()
         for (i in 1..5) {
@@ -42,5 +35,12 @@ class SearchFragmentNKO : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
         updateDate()
+    }
+
+    private fun getRandomString(length: Int): String {
+        val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
+        return (1..length)
+            .map { allowedChars.random() }
+            .joinToString("")
     }
 }
