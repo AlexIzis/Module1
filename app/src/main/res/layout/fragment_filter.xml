@@ -8,6 +8,7 @@
     tools:context=".filter.FilterFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutFilter"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/light_grey_two">
@@ -52,6 +53,7 @@
                     tools:ignore="TextContrastCheck" />
 
                 <ImageView
+                    android:id="@+id/sentToNews"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="24dp"
@@ -69,11 +71,11 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/warm_grey"
-            app:layout_constraintBottom_toTopOf="@+id/recyclerViewFilter"
+            app:layout_constraintBottom_toTopOf="@+id/checkChildren"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <!--<androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewFilter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,7 +83,58 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar5" />-->
+
+        <CheckBox
+            android:id="@+id/checkChildren"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar5" />
+
+        <CheckBox
+            android:id="@+id/checkAdults"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkChildren" />
+
+        <CheckBox
+            android:id="@+id/checkElderly"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkAdults" />
+
+        <CheckBox
+            android:id="@+id/checkAnimals"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkElderly" />
+
+        <CheckBox
+            android:id="@+id/checkEvents"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkAnimals" />
 
         <View
             android:id="@+id/viewLowFilter"
@@ -90,7 +143,8 @@
             android:background="@color/warm_grey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewFilter" />
+            app:layout_constraintTop_toBottomOf="@+id/checkEvents" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

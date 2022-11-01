@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.module1.R
@@ -16,6 +17,7 @@ class FilterCategoriesAdapter(private val onItemClick: ((CategoryUiModel) -> Uni
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textView: TextView = itemView.findViewById(R.id.text_category_filter)
+        //val checkBox: CheckBox = itemView.findViewById(R.id.CheckBoxFilter)
 
         init {
             itemView.setOnClickListener {
@@ -37,6 +39,7 @@ class FilterCategoriesAdapter(private val onItemClick: ((CategoryUiModel) -> Uni
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val tmpItem = categoriesFilter[position]
         holder.textView.text = tmpItem.text
+        //holder.checkBox.text = tmpItem.text
     }
 
     override fun getItemCount(): Int {
