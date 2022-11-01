@@ -14,7 +14,6 @@ import com.example.module1.JsonParser
 import com.example.module1.R
 import com.example.module1.event.EventFragment
 import com.example.module1.filter.FilterFragment
-import com.google.gson.Gson
 
 class NewsFragment : Fragment() {
     private lateinit var newsList: List<NewsUIModel>
@@ -50,11 +49,11 @@ class NewsFragment : Fragment() {
 
         val imageFilter: ImageView = view.findViewById(R.id.iconFilter)
         imageFilter.setOnClickListener {
-            val fragmentManager = parentFragmentManager
-            val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.add(R.id.fragmentContainerView, FilterFragment())
-            fragmentTransaction.commit()
+            FragmentNavigation().addFragment(
+                parentFragmentManager,
+                R.id.fragmentContainerView,
+                FilterFragment()
+            )
         }
 
         activity?.supportFragmentManager?.setFragmentResultListener(
@@ -68,7 +67,7 @@ class NewsFragment : Fragment() {
 
     private fun onItemClick() = { news: NewsUIModel ->
         val bundle = Bundle()
-        bundle.putString("new", Gson().toJson(news))
+        bundle.putParcelable("new", news)
         val fragment = EventFragment()
         fragment.arguments = bundle
         FragmentNavigation().addFragment(

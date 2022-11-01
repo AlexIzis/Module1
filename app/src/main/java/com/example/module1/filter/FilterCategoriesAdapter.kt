@@ -37,7 +37,6 @@ class FilterCategoriesAdapter(private val onItemClick: ((CategoryUiModel) -> Uni
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val tmpItem = categoriesFilter[position]
         holder.textView.text = tmpItem.text
-
     }
 
     override fun getItemCount(): Int {

@@ -43,19 +43,11 @@ class FilterFragment : Fragment() {
 
         val backArrow: ImageView = view.findViewById(R.id.backArrowToNews)
         backArrow.setOnClickListener {
-            FragmentNavigation().addFragment(
-                parentFragmentManager,
-                R.id.fragmentContainerView,
-                NewsFragment()
-            )
+            parentFragmentManager.popBackStack()
         }
     }
 
     private fun onItemClick() = { category: CategoryUiModel ->
-        val bundle = Bundle()
-        bundle.putString("category", category.value)
-        val fragment = NewsFragment()
-        fragment.arguments = bundle
         activity?.supportFragmentManager?.setFragmentResult(
             "result",
             bundleOf("category" to category.value)

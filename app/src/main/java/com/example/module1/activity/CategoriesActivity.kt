@@ -17,11 +17,20 @@ class CategoriesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_categories)
 
-        FragmentNavigation().addFragment(
-            supportFragmentManager,
-            R.id.fragmentContainerView,
-            CategoriesFragment()
-        )
+        val oldFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView)
+        if (oldFragment == null) {
+            FragmentNavigation().addFragment(
+                supportFragmentManager,
+                R.id.fragmentContainerView,
+                CategoriesFragment()
+            )
+        } else if (oldFragment::javaClass != CategoriesFragment::javaClass) {
+            FragmentNavigation().replaceFragment(
+                supportFragmentManager,
+                R.id.fragmentContainerView,
+                CategoriesFragment()
+            )
+        }
 
         supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
@@ -30,7 +39,7 @@ class CategoriesActivity : AppCompatActivity() {
         navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.news -> {
-                    FragmentNavigation().addFragment(
+                    FragmentNavigation().replaceFragment(
                         supportFragmentManager,
                         R.id.fragmentContainerView,
                         NewsFragment()
@@ -38,7 +47,7 @@ class CategoriesActivity : AppCompatActivity() {
                     true
                 }
                 R.id.heart -> {
-                    FragmentNavigation().addFragment(
+                    FragmentNavigation().replaceFragment(
                         supportFragmentManager,
                         R.id.fragmentContainerView,
                         CategoriesFragment()
@@ -46,7 +55,7 @@ class CategoriesActivity : AppCompatActivity() {
                     true
                 }
                 R.id.search -> {
-                    FragmentNavigation().addFragment(
+                    FragmentNavigation().replaceFragment(
                         supportFragmentManager,
                         R.id.fragmentContainerView,
                         MainSearchFragment()
@@ -58,7 +67,7 @@ class CategoriesActivity : AppCompatActivity() {
                     true
                 }
                 R.id.profile -> {
-                    FragmentNavigation().addFragment(
+                    FragmentNavigation().replaceFragment(
                         supportFragmentManager,
                         R.id.fragmentContainerView,
                         ProfileFragment()

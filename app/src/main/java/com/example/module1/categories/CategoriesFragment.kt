@@ -10,6 +10,7 @@ import com.example.module1.ItemMarginDecoration
 import com.example.module1.JsonParser
 import com.example.module1.R
 import com.google.android.flexbox.*
+import java.util.concurrent.Executors
 
 class CategoriesFragment : Fragment() {
 
@@ -20,6 +21,12 @@ class CategoriesFragment : Fragment() {
     ): View {
         return inflater.inflate(R.layout.fragment_categories, container, false)
     }
+
+    /*private fun Fragment?.runOnUIThread(action: Runnable) {
+        this ?: return
+        if (!isAdded) return
+        activity?.runOnUiThread(action)
+    }*/
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewHelp)
@@ -34,7 +41,16 @@ class CategoriesFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(ItemMarginDecoration())
         val listFromJson =
-            JsonParser(getString(R.string.path_to_categories), CategoryUiModel::class.java, requireContext()).parseJson()
+            JsonParser(
+                getString(R.string.path_to_categories),
+                CategoryUiModel::class.java,
+                requireContext()
+            ).parseJson()
         adapter.setCategories(listFromJson)
+
+        /*val executor = Executors.newSingleThreadExecutor()
+        executor.execute {
+            Thread.sleep(2000)
+        }*/
     }
 }
