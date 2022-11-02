@@ -17,14 +17,7 @@ import com.example.module1.filter.FilterFragment
 
 class NewsFragment : Fragment() {
     private lateinit var newsList: List<NewsUIModel>
-    private var category: String = ""
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            category = it.getString("category").toString()
-        }
-    }
+    private var category = arrayListOf<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,7 +53,7 @@ class NewsFragment : Fragment() {
             "result",
             viewLifecycleOwner
         ) { _, bundle ->
-            category = bundle.getString("category").toString()
+            category = bundle.getStringArrayList("category")!!
             adapter.differ.submitList(filterByCategories())
         }
     }
@@ -78,9 +71,14 @@ class NewsFragment : Fragment() {
     }
 
     private fun filterByCategories(): List<NewsUIModel> {
-        return if (category == "") newsList
-        else {
-            newsList.filter { it.categories.contains(category) }
+        return if (category.isEmpty()) {
+            newsList
+        } else {
+            val filterNews = arrayListOf<NewsUIModel>()
+            for (i in category){
+                filterNews.addAll(newsList.filter { it.categories.contains(i) })
+            }
+            filterNews.toList()
         }
     }
 }

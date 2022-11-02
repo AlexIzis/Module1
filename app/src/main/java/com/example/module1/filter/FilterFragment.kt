@@ -8,18 +8,13 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageView
 import androidx.core.os.bundleOf
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.module1.FragmentNavigation
-import com.example.module1.ItemMarginDecoration
 import com.example.module1.JsonParser
-import com.example.module1.news.NewsFragment
 import com.example.module1.R
 import com.example.module1.categories.CategoryUiModel
 
 class FilterFragment : Fragment() {
 
-    private val categories = mutableListOf<String>()
+    private val categories = arrayListOf<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,8 +24,6 @@ class FilterFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        /*val recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewFilter)
-        val adapter = FilterCategoriesAdapter(onItemClick())*/
         val listFromJson =
             JsonParser(
                 getString(R.string.path_to_categories),
@@ -68,17 +61,11 @@ class FilterFragment : Fragment() {
             categories.add("events")
         }
 
-
-        /*adapter.setCategories(listFromJson)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.addItemDecoration(ItemMarginDecoration())*/
-
         val okButton: ImageView = view.findViewById(R.id.sentToNews)
         okButton.setOnClickListener {
             activity?.supportFragmentManager?.setFragmentResult(
                 "result",
-                bundleOf("category" to categories[0])
+                bundleOf("category" to categories)
             )
             parentFragmentManager.popBackStack()
         }
@@ -88,13 +75,4 @@ class FilterFragment : Fragment() {
             parentFragmentManager.popBackStack()
         }
     }
-
-    /*private fun onItemClick() = { category: CategoryUiModel ->
-        activity?.supportFragmentManager?.setFragmentResult(
-            "result",
-            bundleOf("category" to category.value)
-        )
-        activity?.supportFragmentManager?.popBackStack()
-        Unit
-    }*/
 }

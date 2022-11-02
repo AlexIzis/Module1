@@ -17,7 +17,9 @@ class CategoriesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_categories)
 
-        /*val oldFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView)
+        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+
+        val oldFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView)
         if (oldFragment == null) {
             FragmentNavigation().addFragment(
                 supportFragmentManager,
@@ -30,13 +32,7 @@ class CategoriesActivity : AppCompatActivity() {
                 R.id.fragmentContainerView,
                 CategoriesFragment()
             )
-        }*/
-
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.add(R.id.fragmentContainerView, CategoriesFragment())
-        fragmentTransaction.commit()
-
-        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        }
 
         val navigation: BottomNavigationView = findViewById(R.id.btnNavHelp)
         navigation.selectedItemId = R.id.heart
