@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.module1.ItemMarginDecoration
@@ -22,12 +23,6 @@ class CategoriesFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_categories, container, false)
     }
 
-    /*private fun Fragment?.runOnUIThread(action: Runnable) {
-        this ?: return
-        if (!isAdded) return
-        activity?.runOnUiThread(action)
-    }*/
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewHelp)
         val adapter = CategoriesAdapter()
@@ -40,17 +35,21 @@ class CategoriesFragment : Fragment() {
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(ItemMarginDecoration())
-        val listFromJson =
-            JsonParser(
-                getString(R.string.path_to_categories),
-                CategoryUiModel::class.java,
-                requireContext()
-            ).parseJson()
-        adapter.setCategories(listFromJson)
 
-        /*val executor = Executors.newSingleThreadExecutor()
+        val executor = Executors.newSingleThreadExecutor()
+        val loading: ProgressBar = view.findViewById(R.id.progressBarCategories)
         executor.execute {
-            Thread.sleep(2000)
-        }*/
+            Thread.sleep(5000)
+            val listFromJson =
+                JsonParser(
+                    getString(R.string.path_to_categories),
+                    CategoryUiModel::class.java,
+                    requireContext()
+                ).parseJson()
+            activity?.runOnUiThread {
+                adapter.setCategories(listFromJson)
+                loading.visibility = View.GONE
+            }
+        }
     }
 }
