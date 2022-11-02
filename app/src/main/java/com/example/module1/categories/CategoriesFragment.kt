@@ -22,11 +22,12 @@ class CategoriesFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_categories, container, false)
     }
 
-    /*private fun Fragment?.runOnUIThread(action: Runnable) {
+    //функция расширение, увидел на форуме решил попробовать, но не помогло
+    private fun Fragment?.runOnUIThread(action: Runnable) {
         this ?: return
         if (!isAdded) return
         activity?.runOnUiThread(action)
-    }*/
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewHelp)
@@ -48,9 +49,19 @@ class CategoriesFragment : Fragment() {
             ).parseJson()
         adapter.setCategories(listFromJson)
 
+        TODO("Поток запускается, но в момент вызова функции runOnUIThread выбрасывается исключение Fragment not attached to a context")
         /*val executor = Executors.newSingleThreadExecutor()
         executor.execute {
             Thread.sleep(2000)
+            val listFromJson =
+                JsonParser(
+                    getString(R.string.path_to_categories),
+                    CategoryUiModel::class.java,
+                    requireContext()
+                ).parseJson()
+            runOnUIThread{
+                adapter.setCategories(listFromJson)
+            }
         }*/
     }
 }

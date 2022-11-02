@@ -38,3 +38,17 @@ p
 @app/src/main/java/com/example/module1/profile/ProfileFragment.kt,1\f\1f796cd5d959574fc4347403aff77c730d7e71a3
 i
 9app/src/main/java/com/example/module1/news/NewsAdapter.kt,8\4\84eb91cf1ab7a8cdd71e57fd612d7ef66fa4ea7f
+l
+<app/src/main/java/com/example/module1/event/EventFragment.kt,a\9\a94911751e121629765c131c494a6e59f4a04658
+k
+;app/src/main/java/com/example/module1/FragmentNavigation.kt,b\2\b207fa74369cf513683fcbbd29be8929936bc607
+i
+9app/src/main/java/com/example/module1/news/NewsUIModel.kt,4\0\40e8b31b1195c903dd87dcaacb35c1b4c764e06c
+t
+Dapp/src/main/java/com/example/module1/profile/EditProfileFragment.kt,9\e\9e324c5c7b30caf79df1bea8128651d32826e5b0
+w
+Gapp/src/main/java/com/example/module1/filter/FilterCategoriesAdapter.kt,3\b\3b172e5e038fe43348b3aa8bb59a0978362408f6
+j
+:app/src/main/java/com/example/module1/news/NewsFragment.kt,7\a\7aa65720e0e4776438263d7710844ce75eb25488
+n
+>app/src/main/java/com/example/module1/filter/FilterFragment.kt,9\2\924489c6e9803a20983d9e222f3419f0697028a6
