@@ -2,26 +2,12 @@
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-<
-build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
-?
-settings.gradle,0\5\05efc8b1657769a27696d478ded1e95f38737233
-@
-app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
-m
-=app/src/main/java/com/example/module1/ItemMarginDecoration.kt,0\6\0658fbaaa54a2b385cd741e9e1a2ee798c854525
-P
- app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
-c
-3app/src/main/java/com/example/module1/JsonParser.kt,b\1\b1d54747964bc0388264e4b757570132a2182323
 v
 Fapp/src/main/java/com/example/module1/activity/SplashScreenActivity.kt,a\6\a6816d7055f39376ebbecd2d9b6386071e51a7b4
 w
 Gapp/src/androidTest/java/com/example/module1/ExampleInstrumentedTest.kt,a\1\a1d927371058d9359928fa3effec01771a9d83e4
 h
 8app/src/test/java/com/example/module1/ExampleUnitTest.kt,b\9\b979231dfa768da8d02d94a29c1b21cc19504bd1
-s
-Capp/src/main/java/com/example/module1/categories/CategoryUiModel.kt,6\0\606da234925028f5d0bbb33fbf3c9764c4ae0418
 m
 =app/src/main/java/com/example/module1/search/SearchAdapter.kt,8\e\8e56fd0ca6b0bd0180dca14bda734cfaa83bd582
 q

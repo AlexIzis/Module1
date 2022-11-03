@@ -1,16 +1,20 @@
 package com.example.module1.news
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.module1.FragmentNavigation
 import com.example.module1.ItemMarginDecoration
-import com.example.module1.JsonParser
 import com.example.module1.R
 import com.example.module1.event.EventFragment
 import com.example.module1.filter.FilterFragment
@@ -18,6 +22,8 @@ import com.example.module1.filter.FilterFragment
 class NewsFragment : Fragment() {
     private lateinit var newsList: List<NewsUIModel>
     private var category = arrayListOf<String>()
+    private val adapter = NewsAdapter(onItemClick())
+    private lateinit var loading: ProgressBar
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,18 +33,19 @@ class NewsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        loading = view.findViewById(R.id.progressBarNews)
+
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewNews)
-        val adapter = NewsAdapter(onItemClick())
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(ItemMarginDecoration())
-        newsList =
-            JsonParser(
-                getString(R.string.path_to_news),
-                NewsUIModel::class.java,
-                requireContext()
-            ).parseJson()
-        adapter.differ.submitList(filterByCategories())
+
+        val intentToService = Intent(activity, LoadNewsService::class.java)
+        val myReceiver = MyBroadcastReceiver()
+        val intentFilter = IntentFilter("Load_News")
+        intentFilter.addCategory(Intent.CATEGORY_DEFAULT)
+        activity?.registerReceiver(myReceiver, intentFilter)
+        activity?.startService(intentToService)
 
         val imageFilter: ImageView = view.findViewById(R.id.iconFilter)
         imageFilter.setOnClickListener {
@@ -56,6 +63,18 @@ class NewsFragment : Fragment() {
             category = bundle.getStringArrayList("category")!!
             adapter.differ.submitList(filterByCategories())
         }
+    }
+
+    inner class MyBroadcastReceiver : BroadcastReceiver(){
+        override fun onReceive(p0: Context?, p1: Intent?) {
+            val result = p1?.getParcelableArrayListExtra<NewsUIModel>("categories")
+            if (result != null){
+                newsList = result
+                loading.visibility = View.GONE
+                adapter.differ.submitList(filterByCategories())
+            }
+        }
+
     }
 
     private fun onItemClick() = { news: NewsUIModel ->

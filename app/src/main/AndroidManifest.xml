@@ -11,6 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Module1">
+        <service
+            android:name=".news.LoadNewsService"
+            android:enabled="true"
+            android:exported="false" />
+
         <activity
             android:name=".activity.CategoriesActivity"
             android:exported="false" />
