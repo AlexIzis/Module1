@@ -16,19 +16,22 @@ class CategoriesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_categories)
 
-        val oldFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView)
-        if (oldFragment == null) {
-            FragmentNavigation().addFragment(
-                supportFragmentManager,
-                R.id.fragmentContainerView,
-                CategoriesFragment()
-            )
-        } else if (oldFragment::javaClass != CategoriesFragment::javaClass) {
-            FragmentNavigation().replaceFragment(
-                supportFragmentManager,
-                R.id.fragmentContainerView,
-                CategoriesFragment()
-            )
+        val hasInstance = savedInstanceState?.getBoolean("load_key")
+        if (hasInstance == null) {
+            val oldFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView)
+            if (oldFragment == null) {
+                FragmentNavigation().addFragment(
+                    supportFragmentManager,
+                    R.id.fragmentContainerView,
+                    CategoriesFragment()
+                )
+            } else if (oldFragment::javaClass != CategoriesFragment::javaClass) {
+                FragmentNavigation().replaceFragment(
+                    supportFragmentManager,
+                    R.id.fragmentContainerView,
+                    CategoriesFragment()
+                )
+            }
         }
 
         val navigation: BottomNavigationView = findViewById(R.id.btnNavHelp)
@@ -84,5 +87,10 @@ class CategoriesActivity : AppCompatActivity() {
         } else {
             supportFragmentManager.popBackStack()
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean("load_key", true)
     }
 }

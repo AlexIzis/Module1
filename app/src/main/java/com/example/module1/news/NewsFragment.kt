@@ -20,7 +20,7 @@ import com.example.module1.event.EventFragment
 import com.example.module1.filter.FilterFragment
 
 class NewsFragment : Fragment() {
-    private lateinit var newsList: List<NewsUIModel>
+    private var newsList: ArrayList<NewsUIModel> = ArrayList()
     private var category = arrayListOf<String>()
     private val adapter = NewsAdapter(onItemClick())
     private lateinit var loading: ProgressBar
@@ -45,7 +45,6 @@ class NewsFragment : Fragment() {
         val intentFilter = IntentFilter("Load_News")
         intentFilter.addCategory(Intent.CATEGORY_DEFAULT)
         activity?.registerReceiver(myReceiver, intentFilter)
-        activity?.startService(intentToService)
 
         val imageFilter: ImageView = view.findViewById(R.id.iconFilter)
         imageFilter.setOnClickListener {
@@ -54,6 +53,18 @@ class NewsFragment : Fragment() {
                 R.id.fragmentContainerView,
                 FilterFragment()
             )
+        }
+
+        if (savedInstanceState != null){
+            val result = savedInstanceState.getParcelableArrayList<NewsUIModel>("list_of_news")
+            if(result != null){
+                newsList = result
+                loading.visibility = View.GONE
+                adapter.differ.submitList(result)
+            }
+        }
+        if (newsList.size == 0){
+            activity?.startService(intentToService)
         }
 
         activity?.supportFragmentManager?.setFragmentResultListener(
@@ -98,6 +109,13 @@ class NewsFragment : Fragment() {
                 filterNews.addAll(newsList.filter { it.categories.contains(i) })
             }
             filterNews.toList()
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        if (newsList.isNotEmpty()) {
+            outState.putParcelableArrayList("list_of_news", newsList)
         }
     }
 }

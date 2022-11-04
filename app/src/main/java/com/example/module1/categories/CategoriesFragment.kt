@@ -1,6 +1,7 @@
 package com.example.module1.categories
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +12,11 @@ import com.example.module1.ItemMarginDecoration
 import com.example.module1.JsonParser
 import com.example.module1.R
 import com.google.android.flexbox.*
+import java.util.ArrayList
 import java.util.concurrent.Executors
 
 class CategoriesFragment : Fragment() {
+    private var listFromJson: ArrayList<CategoryUiModel> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,18 +41,30 @@ class CategoriesFragment : Fragment() {
 
         val executor = Executors.newSingleThreadExecutor()
         val loading: ProgressBar = view.findViewById(R.id.progressBarCategories)
-        executor.execute {
-            Thread.sleep(5000)
-            val listFromJson =
-                JsonParser(
-                    getString(R.string.path_to_categories),
-                    CategoryUiModel::class.java,
-                    requireContext()
-                ).parseJson()
-            activity?.runOnUiThread {
-                adapter.setCategories(listFromJson)
-                loading.visibility = View.GONE
+        if (savedInstanceState != null) {
+            listFromJson =
+                savedInstanceState.getParcelableArrayList<CategoryUiModel>("list_of_categories") as ArrayList<CategoryUiModel>
+            adapter.setCategories(listFromJson)
+            loading.visibility = View.GONE
+        } else {
+            executor.execute {
+                Thread.sleep(5000)
+                listFromJson =
+                    JsonParser(
+                        getString(R.string.path_to_categories),
+                        CategoryUiModel::class.java,
+                        requireContext()
+                    ).parseJson() as ArrayList<CategoryUiModel>
+                activity?.runOnUiThread {
+                    adapter.setCategories(listFromJson)
+                    loading.visibility = View.GONE
+                }
             }
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelableArrayList("list_of_categories", listFromJson as ArrayList<out Parcelable>)
     }
 }
