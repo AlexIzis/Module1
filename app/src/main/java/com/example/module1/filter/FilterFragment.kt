@@ -12,6 +12,9 @@ import com.example.module1.JsonParser
 import com.example.module1.R
 import com.example.module1.categories.CategoryUiModel
 
+const val KEY_FROM_FILTER = "category"
+const val REQUEST_KEY_FILTER = "result"
+
 class FilterFragment : Fragment() {
 
     private val categories = arrayListOf<String>()
@@ -64,8 +67,8 @@ class FilterFragment : Fragment() {
         val okButton: ImageView = view.findViewById(R.id.sentToNews)
         okButton.setOnClickListener {
             activity?.supportFragmentManager?.setFragmentResult(
-                "result",
-                bundleOf("category" to categories)
+                REQUEST_KEY_FILTER,
+                bundleOf(KEY_FROM_FILTER to categories)
             )
             parentFragmentManager.popBackStack()
         }

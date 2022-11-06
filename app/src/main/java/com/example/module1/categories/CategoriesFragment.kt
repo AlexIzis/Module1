@@ -15,6 +15,8 @@ import com.google.android.flexbox.*
 import java.util.ArrayList
 import java.util.concurrent.Executors
 
+const val CATEGORY_LIST = "list_of_categories"
+
 class CategoriesFragment : Fragment() {
     private var listFromJson: ArrayList<CategoryUiModel> = ArrayList()
 
@@ -43,7 +45,7 @@ class CategoriesFragment : Fragment() {
         val loading: ProgressBar = view.findViewById(R.id.progressBarCategories)
         if (savedInstanceState != null) {
             listFromJson =
-                savedInstanceState.getParcelableArrayList<CategoryUiModel>("list_of_categories") as ArrayList<CategoryUiModel>
+                savedInstanceState.getParcelableArrayList<CategoryUiModel>(CATEGORY_LIST) as ArrayList<CategoryUiModel>
             adapter.setCategories(listFromJson)
             loading.visibility = View.GONE
         } else {
@@ -65,6 +67,9 @@ class CategoriesFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putParcelableArrayList("list_of_categories", listFromJson as ArrayList<out Parcelable>)
+        outState.putParcelableArrayList(
+            CATEGORY_LIST,
+            listFromJson as ArrayList<out Parcelable>
+        )
     }
 }

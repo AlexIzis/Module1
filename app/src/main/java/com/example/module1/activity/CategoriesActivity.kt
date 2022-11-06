@@ -10,28 +10,20 @@ import com.example.module1.profile.ProfileFragment
 import com.example.module1.search.MainSearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+const val LOAD_KEY = "load_key"
+
 class CategoriesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_categories)
 
-        val hasInstance = savedInstanceState?.getBoolean("load_key")
-        if (hasInstance == null) {
-            val oldFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView)
-            if (oldFragment == null) {
-                FragmentNavigation().addFragment(
-                    supportFragmentManager,
-                    R.id.fragmentContainerView,
-                    CategoriesFragment()
-                )
-            } else if (oldFragment::javaClass != CategoriesFragment::javaClass) {
-                FragmentNavigation().replaceFragment(
-                    supportFragmentManager,
-                    R.id.fragmentContainerView,
-                    CategoriesFragment()
-                )
-            }
+        if (savedInstanceState == null) {
+            FragmentNavigation().addFragment(
+                supportFragmentManager,
+                R.id.fragmentContainerView,
+                CategoriesFragment()
+            )
         }
 
         val navigation: BottomNavigationView = findViewById(R.id.btnNavHelp)
@@ -91,6 +83,6 @@ class CategoriesActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putBoolean("load_key", true)
+        outState.putBoolean(LOAD_KEY, true)
     }
 }

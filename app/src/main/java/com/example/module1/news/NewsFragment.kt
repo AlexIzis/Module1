@@ -17,7 +17,12 @@ import com.example.module1.FragmentNavigation
 import com.example.module1.ItemMarginDecoration
 import com.example.module1.R
 import com.example.module1.event.EventFragment
+import com.example.module1.event.KEY_NEW
 import com.example.module1.filter.FilterFragment
+import com.example.module1.filter.KEY_FROM_FILTER
+import com.example.module1.filter.REQUEST_KEY_FILTER
+
+const val SAVED_INSTANCE_KEY_NEWS = "list_of_news"
 
 class NewsFragment : Fragment() {
     private var newsList: ArrayList<NewsUIModel> = ArrayList()
@@ -41,8 +46,8 @@ class NewsFragment : Fragment() {
         recyclerView.addItemDecoration(ItemMarginDecoration())
 
         val intentToService = Intent(activity, LoadNewsService::class.java)
-        val myReceiver = MyBroadcastReceiver()
-        val intentFilter = IntentFilter("Load_News")
+        val myReceiver = NewsBroadcastReceiver()
+        val intentFilter = IntentFilter(INTENT_FILTER_ACTION)
         intentFilter.addCategory(Intent.CATEGORY_DEFAULT)
         activity?.registerReceiver(myReceiver, intentFilter)
 
@@ -56,7 +61,8 @@ class NewsFragment : Fragment() {
         }
 
         if (savedInstanceState != null){
-            val result = savedInstanceState.getParcelableArrayList<NewsUIModel>("list_of_news")
+            val result = savedInstanceState.getParcelableArrayList<NewsUIModel>(
+                SAVED_INSTANCE_KEY_NEWS)
             if(result != null){
                 newsList = result
                 loading.visibility = View.GONE
@@ -68,17 +74,17 @@ class NewsFragment : Fragment() {
         }
 
         activity?.supportFragmentManager?.setFragmentResultListener(
-            "result",
+            REQUEST_KEY_FILTER,
             viewLifecycleOwner
         ) { _, bundle ->
-            category = bundle.getStringArrayList("category")!!
+            category = requireNotNull(bundle.getStringArrayList(KEY_FROM_FILTER))
             adapter.differ.submitList(filterByCategories())
         }
     }
 
-    inner class MyBroadcastReceiver : BroadcastReceiver(){
+    inner class NewsBroadcastReceiver : BroadcastReceiver(){
         override fun onReceive(p0: Context?, p1: Intent?) {
-            val result = p1?.getParcelableArrayListExtra<NewsUIModel>("categories")
+            val result = p1?.getParcelableArrayListExtra<NewsUIModel>(KEY_FROM_NEWS_SERVICE)
             if (result != null){
                 newsList = result
                 loading.visibility = View.GONE
@@ -90,7 +96,7 @@ class NewsFragment : Fragment() {
 
     private fun onItemClick() = { news: NewsUIModel ->
         val bundle = Bundle()
-        bundle.putParcelable("new", news)
+        bundle.putParcelable(KEY_NEW, news)
         val fragment = EventFragment()
         fragment.arguments = bundle
         FragmentNavigation().addFragment(
@@ -115,7 +121,7 @@ class NewsFragment : Fragment() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         if (newsList.isNotEmpty()) {
-            outState.putParcelableArrayList("list_of_news", newsList)
+            outState.putParcelableArrayList(SAVED_INSTANCE_KEY_NEWS, newsList)
         }
     }
 }

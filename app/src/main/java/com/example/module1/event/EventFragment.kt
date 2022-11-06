@@ -15,14 +15,14 @@ import com.example.module1.news.NewsUIModel
 import java.text.SimpleDateFormat
 import java.util.*
 
+const val KEY_NEW = "new"
 class EventFragment : Fragment() {
     private lateinit var new: NewsUIModel
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            new = it.getParcelable("new")!!
+            new = requireNotNull(it.getParcelable(KEY_NEW))
         }
     }
 
