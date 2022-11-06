@@ -1,0 +1,27 @@
+[
+  {
+    "img": "@drawable/little",
+    "text": "Дети",
+    "value": "children"
+  },
+  {
+    "img": "@drawable/dad",
+    "text": "Взрослые",
+    "value": "adults"
+  },
+  {
+    "img": "@drawable/granny",
+    "text": "Пожилые",
+    "value": "elderly"
+  },
+  {
+    "img": "@drawable/cat",
+    "text": "Животные",
+    "value": "animals"
+  },
+  {
+    "img": "@drawable/event",
+    "text": "События",
+    "value": "events"
+  }
+]
