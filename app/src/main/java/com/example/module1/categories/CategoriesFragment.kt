@@ -4,12 +4,11 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
-import android.os.Bundle
-import android.os.IBinder
-import android.os.Parcelable
+import android.os.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -22,21 +21,24 @@ const val CATEGORY_LIST = "list_of_categories"
 
 class CategoriesFragment : Fragment() {
     private var listFromJson: ArrayList<CategoryUiModel> = ArrayList()
+    private lateinit var mService: LoadCategoriesService
     private var mBound: Boolean = false
-    private /*lateinit*/ var mService/*: LoadCategoriesService*/ = LoadCategoriesService().LocalBinder().getService()
+
     private val connection = object : ServiceConnection {
-        override fun onServiceConnected(p0: ComponentName?, p1: IBinder?) {
-            val binder = p1 as LoadCategoriesService.LocalBinder
+
+        override fun onServiceConnected(className: ComponentName, service: IBinder) {
+            val binder = service as LoadCategoriesService.LocalBinder
             mService = binder.getService()
             mBound = true
         }
-        override fun onServiceDisconnected(p0: ComponentName?) {
+
+        override fun onServiceDisconnected(arg0: ComponentName) {
             mBound = false
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onStart() {
+        super.onStart()
         Intent(requireContext(), LoadCategoriesService::class.java).also { intent ->
             activity?.bindService(intent, connection, Context.BIND_AUTO_CREATE)
         }
@@ -69,6 +71,13 @@ class CategoriesFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(ItemMarginDecoration())
 
+        val button = view.findViewById<Button>(R.id.button)
+        button.setOnClickListener {
+            listFromJson = mService.printHello()
+            adapter.setCategories(listFromJson)
+        }
+
+
         //val executor = Executors.newSingleThreadExecutor()
         val loading: ProgressBar = view.findViewById(R.id.progressBarCategories)
         if (savedInstanceState != null) {
@@ -77,9 +86,9 @@ class CategoriesFragment : Fragment() {
             adapter.setCategories(listFromJson)
             loading.visibility = View.GONE
         } else {
-            listFromJson = mService.loadData()
-            adapter.setCategories(listFromJson)
+            //listFromJson = mService.printHello()
             loading.visibility = View.GONE
+            adapter.setCategories(listFromJson)
             /*executor.execute {
                 Thread.sleep(5000)
                 listFromJson =
