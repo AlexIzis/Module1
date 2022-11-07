@@ -23,22 +23,19 @@ class CategoriesFragment : Fragment() {
     private var listFromJson: ArrayList<CategoryUiModel> = ArrayList()
     private lateinit var mService: LoadCategoriesService
     private var mBound: Boolean = false
-
     private val connection = object : ServiceConnection {
-
         override fun onServiceConnected(className: ComponentName, service: IBinder) {
             val binder = service as LoadCategoriesService.LocalBinder
             mService = binder.getService()
             mBound = true
         }
-
         override fun onServiceDisconnected(arg0: ComponentName) {
             mBound = false
         }
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         Intent(requireContext(), LoadCategoriesService::class.java).also { intent ->
             activity?.bindService(intent, connection, Context.BIND_AUTO_CREATE)
         }
@@ -59,6 +56,7 @@ class CategoriesFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val loading: ProgressBar = view.findViewById(R.id.progressBarCategories)
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewHelp)
         val adapter = CategoriesAdapter()
         val layoutManager = FlexboxLayoutManager(context).apply {
@@ -73,35 +71,20 @@ class CategoriesFragment : Fragment() {
 
         val button = view.findViewById<Button>(R.id.button)
         button.setOnClickListener {
-            listFromJson = mService.printHello()
+            listFromJson = mService.printCategories()
+            loading.visibility = View.GONE
             adapter.setCategories(listFromJson)
         }
 
-
-        //val executor = Executors.newSingleThreadExecutor()
-        val loading: ProgressBar = view.findViewById(R.id.progressBarCategories)
         if (savedInstanceState != null) {
             listFromJson =
                 savedInstanceState.getParcelableArrayList<CategoryUiModel>(CATEGORY_LIST) as ArrayList<CategoryUiModel>
             adapter.setCategories(listFromJson)
             loading.visibility = View.GONE
         } else {
-            //listFromJson = mService.printHello()
+            /*listFromJson = mService.printHello()
             loading.visibility = View.GONE
-            adapter.setCategories(listFromJson)
-            /*executor.execute {
-                Thread.sleep(5000)
-                listFromJson =
-                    JsonParser(
-                        getString(R.string.path_to_categories),
-                        CategoryUiModel::class.java,
-                        requireContext()
-                    ).parseJson() as ArrayList<CategoryUiModel>
-                activity?.runOnUiThread {
-                    adapter.setCategories(listFromJson)
-                    loading.visibility = View.GONE
-                }
-            }*/
+            adapter.setCategories(listFromJson)*/
         }
     }
 

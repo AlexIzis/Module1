@@ -8,17 +8,27 @@ import com.example.module1.R
 import kotlin.collections.ArrayList
 
 class LoadCategoriesService : Service() {
-    //var categories: ArrayList<CategoryUiModel> = arrayListOf()
     private val binder = LocalBinder()
+    var categories: ArrayList<CategoryUiModel> = arrayListOf()
 
-    fun printHello(): ArrayList<CategoryUiModel> {
-        return JsonParser(
-            getString(R.string.path_to_categories),
-            CategoryUiModel::class.java,
-            applicationContext
-        ).parseJson() as ArrayList<CategoryUiModel>
+    fun printCategories(): ArrayList<CategoryUiModel> {
+        if (!ServiceThread().isAlive){
+            ServiceThread().start()
+        }
+        Thread.sleep(5000)
+        return categories
     }
 
+    private inner class ServiceThread : Thread() {
+        override fun run() {
+            categories =
+                JsonParser(
+                    getString(R.string.path_to_categories),
+                    CategoryUiModel::class.java,
+                    applicationContext
+                ).parseJson() as ArrayList<CategoryUiModel>
+        }
+    }
 
     override fun onBind(intent: Intent): IBinder {
         return binder
