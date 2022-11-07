@@ -25,6 +25,9 @@ import com.example.module1.R
 import java.util.*
 
 const val REQUEST_CODE = 1
+private const val TAKE_PHOTO_FROM_GALLERY = 0
+private const val TAKE_PHOTO_FROM_CAMERA = 1
+private const val DELETE_PHOTO = 2
 
 class EditProfileFragment : Fragment() {
     private lateinit var getResultFromCamera: ActivityResultLauncher<Intent>
@@ -146,13 +149,13 @@ class EditProfileFragment : Fragment() {
                     R.array.values
                 ) { _, i ->
                     when (i) {
-                        0 -> {
+                        TAKE_PHOTO_FROM_GALLERY -> {
                             takePhoto()
                         }
-                        1 -> {
+                        TAKE_PHOTO_FROM_CAMERA -> {
                             doPhoto()
                         }
-                        2 -> {
+                        DELETE_PHOTO -> {
                             deletePhoto()
                         }
                     }

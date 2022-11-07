@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Module1">
         <service
+            android:name=".categories.LoadCategoriesService"
+            android:enabled="true"
+            android:exported="false" />
+        <service
             android:name=".news.LoadNewsService"
             android:enabled="true"
             android:exported="false" />

@@ -21,7 +21,7 @@ class LoadNewsService : Service() {
         return START_NOT_STICKY
     }
 
-    inner class ServiceThread : Thread() {
+    private inner class ServiceThread : Thread() {
         override fun run() {
             sleep(5000)
             news = JsonParser(

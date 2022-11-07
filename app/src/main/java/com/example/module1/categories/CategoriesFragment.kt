@@ -1,6 +1,11 @@
 package com.example.module1.categories
 
+import android.content.ComponentName
+import android.content.Context
+import android.content.Intent
+import android.content.ServiceConnection
 import android.os.Bundle
+import android.os.IBinder
 import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
@@ -9,16 +14,39 @@ import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.module1.ItemMarginDecoration
-import com.example.module1.JsonParser
 import com.example.module1.R
 import com.google.android.flexbox.*
 import java.util.ArrayList
-import java.util.concurrent.Executors
 
 const val CATEGORY_LIST = "list_of_categories"
 
 class CategoriesFragment : Fragment() {
     private var listFromJson: ArrayList<CategoryUiModel> = ArrayList()
+    private var mBound: Boolean = false
+    private /*lateinit*/ var mService/*: LoadCategoriesService*/ = LoadCategoriesService().LocalBinder().getService()
+    private val connection = object : ServiceConnection {
+        override fun onServiceConnected(p0: ComponentName?, p1: IBinder?) {
+            val binder = p1 as LoadCategoriesService.LocalBinder
+            mService = binder.getService()
+            mBound = true
+        }
+        override fun onServiceDisconnected(p0: ComponentName?) {
+            mBound = false
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Intent(requireContext(), LoadCategoriesService::class.java).also { intent ->
+            activity?.bindService(intent, connection, Context.BIND_AUTO_CREATE)
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        activity?.unbindService(connection)
+        mBound = false
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,7 +69,7 @@ class CategoriesFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(ItemMarginDecoration())
 
-        val executor = Executors.newSingleThreadExecutor()
+        //val executor = Executors.newSingleThreadExecutor()
         val loading: ProgressBar = view.findViewById(R.id.progressBarCategories)
         if (savedInstanceState != null) {
             listFromJson =
@@ -49,7 +77,10 @@ class CategoriesFragment : Fragment() {
             adapter.setCategories(listFromJson)
             loading.visibility = View.GONE
         } else {
-            executor.execute {
+            listFromJson = mService.loadData()
+            adapter.setCategories(listFromJson)
+            loading.visibility = View.GONE
+            /*executor.execute {
                 Thread.sleep(5000)
                 listFromJson =
                     JsonParser(
@@ -61,7 +92,7 @@ class CategoriesFragment : Fragment() {
                     adapter.setCategories(listFromJson)
                     loading.visibility = View.GONE
                 }
-            }
+            }*/
         }
     }
 
