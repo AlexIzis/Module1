@@ -13,10 +13,12 @@ const val KEY_FROM_NEWS_SERVICE = "from_service"
 
 class LoadNewsService : Service() {
     private lateinit var news: List<NewsUIModel>
+    private var thread: ServiceThread? = null
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        if (!ServiceThread().isAlive){
-            ServiceThread().start()
+        if (thread == null){
+            thread = ServiceThread()
+            thread?.start()
         }
         return START_NOT_STICKY
     }

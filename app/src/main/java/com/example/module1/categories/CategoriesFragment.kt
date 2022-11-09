@@ -8,34 +8,32 @@ import android.os.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.module1.ItemMarginDecoration
 import com.example.module1.R
 import com.google.android.flexbox.*
-import java.util.ArrayList
+import java.lang.ref.WeakReference
 
-const val CATEGORY_LIST = "list_of_categories"
+private const val CATEGORY_LIST = "list_of_categories"
 
-class CategoriesFragment : Fragment() {
-    private var listFromJson: ArrayList<CategoryUiModel> = ArrayList()
-    private lateinit var mService: LoadCategoriesService
-    private var mBound: Boolean = false
+class CategoriesFragment : Fragment(), OnCategoriesCallback {
+
+    private var listCategories = arrayListOf<CategoryUiModel>()
     private val connection = object : ServiceConnection {
-        override fun onServiceConnected(className: ComponentName, service: IBinder) {
-            val binder = service as LoadCategoriesService.LocalBinder
-            mService = binder.getService()
-            mBound = true
+        override fun onServiceConnected(className: ComponentName, ibinder: IBinder) {
+            service = (ibinder as LoadCategoriesService.LocalBinder).getService()
+            service.printCategories(WeakReference(this@CategoriesFragment))
         }
-        override fun onServiceDisconnected(arg0: ComponentName) {
-            mBound = false
-        }
+        override fun onServiceDisconnected(arg0: ComponentName) = Unit
     }
+    private lateinit var loading: ProgressBar
+    private val adapter = CategoriesAdapter()
+    private lateinit var service: LoadCategoriesService
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onStart() {
+        super.onStart()
         Intent(requireContext(), LoadCategoriesService::class.java).also { intent ->
             activity?.bindService(intent, connection, Context.BIND_AUTO_CREATE)
         }
@@ -44,7 +42,6 @@ class CategoriesFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         activity?.unbindService(connection)
-        mBound = false
     }
 
     override fun onCreateView(
@@ -56,9 +53,7 @@ class CategoriesFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val loading: ProgressBar = view.findViewById(R.id.progressBarCategories)
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewHelp)
-        val adapter = CategoriesAdapter()
         val layoutManager = FlexboxLayoutManager(context).apply {
             justifyContent = JustifyContent.SPACE_BETWEEN
             alignItems = AlignItems.CENTER
@@ -69,30 +64,27 @@ class CategoriesFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(ItemMarginDecoration())
 
-        val button = view.findViewById<Button>(R.id.button)
-        button.setOnClickListener {
-            listFromJson = mService.printCategories()
+        if (savedInstanceState != null){
+            listCategories = savedInstanceState.getParcelableArrayList<CategoryUiModel>(
+                CATEGORY_LIST) as ArrayList<CategoryUiModel>
+            loading = view.findViewById(R.id.progressBarCategories)
             loading.visibility = View.GONE
-            adapter.setCategories(listFromJson)
+            adapter.setCategories(listCategories)
         }
+    }
 
-        if (savedInstanceState != null) {
-            listFromJson =
-                savedInstanceState.getParcelableArrayList<CategoryUiModel>(CATEGORY_LIST) as ArrayList<CategoryUiModel>
-            adapter.setCategories(listFromJson)
-            loading.visibility = View.GONE
-        } else {
-            /*listFromJson = mService.printHello()
-            loading.visibility = View.GONE
-            adapter.setCategories(listFromJson)*/
-        }
+    override fun onLoaded(categories: List<CategoryUiModel>) {
+        loading = view?.findViewById(R.id.progressBarCategories) ?: return
+        loading.visibility = View.GONE
+        listCategories = categories as ArrayList<CategoryUiModel>
+        adapter.setCategories(categories)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putParcelableArrayList(
             CATEGORY_LIST,
-            listFromJson as ArrayList<out Parcelable>
+            listCategories as ArrayList<out Parcelable>
         )
     }
 }

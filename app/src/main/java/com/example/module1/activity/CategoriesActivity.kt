@@ -10,7 +10,7 @@ import com.example.module1.profile.ProfileFragment
 import com.example.module1.search.MainSearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-const val LOAD_KEY = "load_key"
+private const val LOAD_KEY = "load_key"
 
 class CategoriesActivity : AppCompatActivity() {
 
