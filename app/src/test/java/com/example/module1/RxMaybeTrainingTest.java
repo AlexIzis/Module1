@@ -60,8 +60,8 @@ public class RxMaybeTrainingTest {
         testObserver.assertNoErrors();
         testObserver.assertComplete();
     }
-    // TODO: 11.11.2022 найти
-    /*@Test
+    /*// TODO: 11.11.2022 найти
+    @Test
     public void positiveOrEmpty_positiveSingle() {
         TestObserver<Integer> testObserver = mRxMaybeTraining
                 .positiveOrEmpty(Single.just(1))
@@ -70,12 +70,12 @@ public class RxMaybeTrainingTest {
         testObserver.assertNoErrors();
         testObserver.assertComplete();
         testObserver.assertValues(1);
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void positiveOrEmpty_negativeSingle() {
         TestObserver<Integer> testObserver = mRxMaybeTraining
-                .positiveOrEmpty(Single.just(-1))
+                .positiveOrEmpty(Single.just(Integer(-1)))
                 .test();
 
         testObserver.assertNoValues();
