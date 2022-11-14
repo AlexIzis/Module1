@@ -47,7 +47,7 @@ public class RxCombiningTrainingTest {
     @Test
     public void summation() {
         TestObserver<Integer> testObserver = mRxCombiningTraining.summation(
-                Observable.fromArray(1, 2, 3, 4, 5),
+                Observable.fromArray(1, 2, 3, 4, 5, 6),
                 Observable.fromArray(10, 20, 30, 40, 50)
         )
                 .test();

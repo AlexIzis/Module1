@@ -1,7 +1,14 @@
 package com.example.module1.rx;
 
 
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableEmitter;
+import io.reactivex.rxjava3.core.ObservableOnSubscribe;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
  * @author Arthur Korchagin (artur.korchagin@simbirsoft.com)
@@ -19,7 +26,7 @@ public class RxCreatingTraining {
      * @return {@link Observable}, который эммитит только значение {@code value}
      */
     public Observable<Integer> valueToObservable(int value) {
-        throw new NotImplementedException();
+        return Observable.just(value);
     }
 
     /**
@@ -29,7 +36,7 @@ public class RxCreatingTraining {
      * @return {@link Observable}, который эммитит по порядку все строки из заданного массива
      */
     public Observable<String> arrayToObservable(String[] array) {
-        throw new NotImplementedException();
+        return Observable.fromArray(array);
     }
 
     /**
@@ -40,7 +47,8 @@ public class RxCreatingTraining {
      * {@link #expensiveMethod()}
      */
     public Observable<Integer> expensiveMethodResult() {
-        throw new NotImplementedException();
+        return Observable.just(1)
+                .doOnSubscribe(d -> expensiveMethodResult());
     }
 
     /**

@@ -8,6 +8,7 @@ import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.functions.BiFunction;
 
 /**
  * @author Arthur Korchagin (artur.korchagin@simbirsoft.com)
@@ -44,7 +45,13 @@ public class RxCombiningTraining {
     public Observable<List<String>> requestItems(Observable<String> searchObservable,
                                                  Observable<Integer> categoryObservable) {
 
-        throw new NotImplementedException();
+        return Observable.combineLatest(searchObservable, categoryObservable,
+                new BiFunction<String, Integer, List<String>>() {
+                    @Override
+                    public List<String> apply(String s, Integer integer) throws Exception {
+                        return searchItems(s, integer);
+                    }
+                });
     }
 
     /**
@@ -69,32 +76,7 @@ public class RxCombiningTraining {
      * элементы последовательности {@code intObservable}
      */
     public Observable<Integer> additionalFirstItem(int firstItem, Observable<Integer> intObservable) {
-        ArrayList<Integer> integerList = new ArrayList();
-
-        Observer<Integer> observer = new Observer() {
-            @Override
-            public void onSubscribe(@NonNull Disposable d) {
-
-            }
-
-            @Override
-            public void onNext(Object o) {
-                integerList.add((Integer) o);
-            }
-
-            @Override
-            public void onError(@NonNull Throwable e) {
-
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        };
-        integerList.add(firstItem);
-        intObservable.subscribe(observer);
-        return Observable.fromIterable(integerList);
+        return intObservable.startWithItem(firstItem);
     }
 
     /* Вспомогательные методы */
