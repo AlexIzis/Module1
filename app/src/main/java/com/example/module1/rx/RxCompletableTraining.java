@@ -17,7 +17,8 @@ public class RxCompletableTraining {
      * @return {@link Completable}, который вызывает {@link #havyMethod()}
      */
     public Completable callFunction() {
-        throw new NotImplementedException();
+        return Completable.complete()
+                .doOnComplete(this::havyMethod);
     }
 
     /**
@@ -28,7 +29,11 @@ public class RxCompletableTraining {
      * @return {@code Completable}
      */
     public Completable completeWhenTrue(Single<Boolean> checkSingle) {
-        throw new NotImplementedException();
+        if(checkSingle.blockingGet()){
+            return Completable.complete();
+        } else {
+            return Completable.error(new ExpectedException());
+        }
     }
 
     /* Вспомогательные методы */

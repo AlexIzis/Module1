@@ -60,8 +60,6 @@ d
 4app/src/main/java/com/example/module1/rx/Entity.java,b\f\bf18487557c9c247601a7d5824dcad7b8bacd4cb
 o
 ?app/src/main/java/com/example/module1/rx/ExpectedException.java,6\b\6b60392a4889efb85757010a7c534f83dd90017f
-s
-Capp/src/main/java/com/example/module1/rx/RxCompletableTraining.java,c\b\cba4fdaf2f9d101d03a078acfb33f5aab6b14863
 p
 @app/src/main/java/com/example/module1/rx/RxCreatingTraining.java,6\a\6ac90afb301824ed15d5bdcc839da1da77f3d38f
 q
@@ -86,11 +84,15 @@ o
 ?app/src/test/java/com/example/module1/RxSingleTrainingTest.java,a\5\a5bdad63fdc34af35c172d468bfcd025f7a82d79
 u
 Eapp/src/test/java/com/example/module1/RxTransformingTrainingTest.java,1\b\1b0ae59da501d2fda52d2c16df9b1ad053d9ba2c
-t
-Dapp/src/test/java/com/example/module1/RxCompletableTrainingTest.java,7\6\76d238654f8ac5b98b135c8bd3b45a19504ac7e9
 q
 Aapp/src/test/java/com/example/module1/RxCreatingTrainingTest.java,d\4\d45da0a4a20bd3f342d1a561a839dcab2b5cd234
 o
 ?app/src/test/java/com/example/module1/RxErrorsTrainingTest.java,d\e\debfb5f3790ce296e4abdb06331b4df128add901
 r
 Bapp/src/test/java/com/example/module1/RxFilteringTrainingTest.java,b\3\b34cc508bfdb6c987efe955d5ceb84247bf4e54f
+@
+app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+n
+>app/src/test/java/com/example/module1/RxMaybeTrainingTest.java,0\e\0ee15e97879db20af9acfe89b3b01d4b3a3d63e0
+q
+Aapp/src/main/java/com/example/module1/rx/RxCombiningTraining.java,3\e\3e85bb0ca7f04a94704c011a7e89066fe0e7e2c6

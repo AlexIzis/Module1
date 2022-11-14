@@ -28,8 +28,7 @@ public class RxCombiningTraining {
      * результирующей последовательности тоже сработает этот метод.
      */
     public Observable<Integer> summation(Observable<Integer> integerObservable1, Observable<Integer> integerObservable2) {
-        return Observable.zip(integerObservable1, integerObservable2,
-                Integer::sum);
+        return Observable.zip(integerObservable1, integerObservable2, Integer::sum);
     }
 
     /**
