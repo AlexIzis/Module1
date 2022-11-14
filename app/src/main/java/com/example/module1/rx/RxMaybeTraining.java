@@ -1,6 +1,8 @@
 package com.example.module1.rx;
 
 
+import java.util.function.BiFunction;
+
 import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
@@ -21,7 +23,11 @@ public class RxMaybeTraining {
      * либо не эммитит ничего, если {@code value} отрицательное
      */
     public Maybe<Integer> positiveOrEmpty(Integer value) {
-        throw new NotImplementedException();
+        if (value > 0) {
+            return Maybe.just(value);
+        } else {
+            return Maybe.empty();
+        }
     }
 
     /**
@@ -43,7 +49,11 @@ public class RxMaybeTraining {
      * последовательность пустая
      */
     public Maybe<Integer> calculateSumOfValues(Observable<Integer> integerObservable) {
-        throw new NotImplementedException();
+        // TODO: 14.11.2022 Не проходит второй тест
+        final int[] n = {0};
+        integerObservable.scan(((integer, integer2) -> integer + integer2))
+                .subscribe(integer -> n[0] = integer);
+        return Maybe.just(n[0]);
     }
 
     /**
