@@ -32,7 +32,7 @@ public class RxCompletableTraining {
      * @return {@code Completable}
      */
     public Completable completeWhenTrue(Single<Boolean> checkSingle) {
-        // TODO: 15.11.2022 Не решено
+        // TODO: 15.11.2022 Не придумал как реализовать по-другому
         if(checkSingle.blockingGet()){
             return Completable.complete();
         } else {

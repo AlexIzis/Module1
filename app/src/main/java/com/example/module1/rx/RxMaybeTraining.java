@@ -26,7 +26,7 @@ public class RxMaybeTraining {
      */
     public Maybe<Integer> positiveOrEmpty(Integer value) {
         return Maybe.just(value)
-                .filter(integer -> value>0);
+                .filter(integer -> value > 0);
     }
 
     /**
@@ -48,11 +48,7 @@ public class RxMaybeTraining {
      * последовательность пустая
      */
     public Maybe<Integer> calculateSumOfValues(Observable<Integer> integerObservable) {
-        // TODO: 15.11.2022 Не решено
-        final int[] n = {0};
-        integerObservable.scan(((integer, integer2) -> integer + integer2))
-                .subscribe(integer -> n[0] = integer);
-        return Maybe.just(n[0]);
+        return integerObservable.reduce((Integer::sum));
     }
 
     /**

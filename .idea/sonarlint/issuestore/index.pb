@@ -56,8 +56,6 @@ X
 (gradle/wrapper/gradle-wrapper.properties,f\b\fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
 t
 Dapp/src/main/java/com/example/module1/activity/CategoriesActivity.kt,d\1\d16fa4555fdd4a2cf822dc1dbd286307775b67f1
-d
-4app/src/main/java/com/example/module1/rx/Entity.java,b\f\bf18487557c9c247601a7d5824dcad7b8bacd4cb
 o
 ?app/src/main/java/com/example/module1/rx/ExpectedException.java,6\b\6b60392a4889efb85757010a7c534f83dd90017f
 w
