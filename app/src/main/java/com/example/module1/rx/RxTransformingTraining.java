@@ -23,7 +23,7 @@ public class RxTransformingTraining {
      * преобразованные из чисел в {@code intObservable}
      */
     public Observable<String> transformIntToString(Observable<Integer> intObservable) {
-        throw new NotImplementedException();
+        return intObservable.map(Object::toString);
     }
 
     /**

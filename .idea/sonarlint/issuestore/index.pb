@@ -66,7 +66,11 @@ u
 Eapp/src/main/java/com/example/module1/rx/NotImplementedException.java,0\e\0ebe6c126cb32614e7d3a6dacc7770c3b7d4a9df
 b
 2app/src/main/java/com/example/module1/rx/Pair.java,7\4\74202ede873c6882543081c89c67384cfa6b9427
-u
-Eapp/src/test/java/com/example/module1/RxTransformingTrainingTest.java,1\b\1b0ae59da501d2fda52d2c16df9b1ad053d9ba2c
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+h
+8app/src/test/java/com/example/module1/ExampleUnitTest.kt,b\9\b979231dfa768da8d02d94a29c1b21cc19504bd1
+r
+Bapp/src/test/java/com/example/module1/RxCombiningTrainingTest.java,4\7\47a4e5089c96d71e1a3bea1328687024d6247ce9
+o
+?app/src/test/java/com/example/module1/RxErrorsTrainingTest.java,d\e\debfb5f3790ce296e4abdb06331b4df128add901

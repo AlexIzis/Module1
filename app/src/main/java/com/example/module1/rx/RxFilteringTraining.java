@@ -81,7 +81,7 @@ public class RxFilteringTraining {
      * если время ожидания превышает {@code timeMills}
      */
     public Observable<Integer> errorIfLongWait(int timeMills, Observable<Integer> intValues) {
-        throw new NotImplementedException();
+        return intValues.timeout(timeMills, TimeUnit.MILLISECONDS);
     }
 
     /**

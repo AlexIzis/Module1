@@ -23,7 +23,8 @@ public class RxSingleTraining {
      * либо ошибку {@link ExpectedException} если оно отрицательное
      */
     public Single<Integer> onlyOneElement(Integer value) {
-        throw new NotImplementedException();
+
+       throw new NotImplementedException();
     }
 
     /**

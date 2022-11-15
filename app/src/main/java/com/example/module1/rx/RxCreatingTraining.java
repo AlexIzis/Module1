@@ -2,10 +2,7 @@ package com.example.module1.rx;
 
 import java.util.concurrent.TimeUnit;
 
-import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.ObservableEmitter;
-import io.reactivex.rxjava3.core.ObservableOnSubscribe;
 
 /**
  * @author Arthur Korchagin (artur.korchagin@simbirsoft.com)
@@ -44,9 +41,7 @@ public class RxCreatingTraining {
      * {@link #expensiveMethod()}
      */
     public Observable<Integer> expensiveMethodResult() {
-        // TODO: 14.11.2022 Не работает 
-        return Observable.just(expensiveMethod())
-                .doOnSubscribe(disposable ->  expensiveMethod());
+        return Observable.defer(() -> Observable.just(expensiveMethod()));
     }
 
     /**
@@ -60,9 +55,7 @@ public class RxCreatingTraining {
      * {@code onError} или {@code onComplete} не должны вызваться.
      */
     public Observable<Long> increasingSequenceWithDelays(long initialDelay, long period) {
-        // TODO: 14.11.2022 Не работает 
-        return Observable.timer(period,  TimeUnit.MILLISECONDS)
-                .delay(initialDelay, TimeUnit.MILLISECONDS);
+        return Observable.interval(initialDelay, period, TimeUnit.MILLISECONDS);
     }
 
     /**
@@ -88,11 +81,11 @@ public class RxCreatingTraining {
      * 3. {@link #unstableMethod(boolean)}
      */
     public Observable<Integer> combinationExpensiveMethods(final boolean unstableCondition) {
-        // TODO: 14.11.2022 Проходит первый из двух
         return Observable.create(emitter -> {
             emitter.onNext(expensiveMethod());
             emitter.onNext(alternativeExpensiveMethod());
             emitter.onNext(unstableMethod(unstableCondition));
+            emitter.onComplete();
         });
     }
 
