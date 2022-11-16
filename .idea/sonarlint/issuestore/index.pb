@@ -38,10 +38,6 @@ t
 Dapp/src/main/java/com/example/module1/profile/EditProfileFragment.kt,9\e\9e324c5c7b30caf79df1bea8128651d32826e5b0
 y
 Iapp/src/main/java/com/example/module1/categories/LoadCategoriesService.kt,c\3\c392447d0280780c148c500820daeba16e05389a
-m
-=app/src/main/java/com/example/module1/news/LoadNewsService.kt,6\b\6bb2891ec78906b12f187bfa3c614158547e689d
-j
-:app/src/main/java/com/example/module1/news/NewsFragment.kt,7\a\7aa65720e0e4776438263d7710844ce75eb25488
 i
 9app/src/main/java/com/example/module1/news/NewsUIModel.kt,4\0\40e8b31b1195c903dd87dcaacb35c1b4c764e06c
 s
