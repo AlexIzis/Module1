@@ -16,6 +16,8 @@ import rx.Observer
 
 class LoginFragment : Fragment() {
     lateinit var binding: FragmentLoginBinding
+    private var inputEmail: String = ""
+    private var inputPassword: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,10 +35,20 @@ class LoginFragment : Fragment() {
                 parentFragmentManager, R.id.fragmentContainerView, CategoriesFragment()
             )
         }
+
+        if (savedInstanceState !== null){
+            inputEmail = savedInstanceState.getString("mail").toString()
+            inputPassword = savedInstanceState.getString("pass").toString()
+            binding.inputLoginEdit.setText(inputEmail)
+            binding.inputLoginPasswordEdit.setText(inputPassword)
+        }
+
         Observable.combineLatest(
             emailObservable,
             passwordObservable
         ) { newEmail, newPassword ->
+            inputEmail = newEmail.toString()
+            inputPassword = newPassword.toString()
             (!TextUtils.isEmpty(newEmail) && newEmail.length >= 6) &&
                     (!TextUtils.isEmpty(newPassword) && newPassword.length >= 6)
         }.subscribe(object : Observer<Boolean?> {
@@ -46,5 +58,11 @@ class LoginFragment : Fragment() {
                 binding.loginButton.isEnabled = t == true
             }
         })
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("mail", inputEmail)
+        outState.putString("pass", inputPassword)
     }
 }
