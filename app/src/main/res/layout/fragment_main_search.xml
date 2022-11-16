@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <androidx.appcompat.widget.SearchView
+                <android.widget.SearchView
                     android:id="@+id/searchView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
                     app:voiceIcon="@drawable/ic_mic">
 
 
-                </androidx.appcompat.widget.SearchView>
+                </android.widget.SearchView>
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tabLayout"

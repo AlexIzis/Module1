@@ -30,6 +30,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val emailObservable = RxTextView.textChanges(binding.inputLoginEdit)
         val passwordObservable = RxTextView.textChanges(binding.inputLoginPasswordEdit)
+
         binding.loginButton.setOnClickListener {
             FragmentNavigation().replaceFragment(
                 parentFragmentManager, R.id.fragmentContainerView, CategoriesFragment()

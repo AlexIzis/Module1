@@ -3,16 +3,6 @@
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 m
-=app/src/main/java/com/example/module1/search/SearchAdapter.kt,8\e\8e56fd0ca6b0bd0180dca14bda734cfaa83bd582
-q
-Aapp/src/main/java/com/example/module1/search/SearchFragmentNKO.kt,b\7\b7ee3f773068d3b4a44022f5fd46dfd3c94f9607
-i
-9app/src/main/java/com/example/module1/search/VpAdapter.kt,b\0\b015439b616be79c0797b56dd37b7c32b38ec56b
-t
-Dapp/src/main/java/com/example/module1/search/SearchFragmentEvents.kt,6\e\6e9f186807d618cece75c32ca8f39cc29cc6bad0
-r
-Bapp/src/main/java/com/example/module1/search/MainSearchFragment.kt,a\d\adcab0b1992f49db49c40069501c5290ca888a50
-m
 =app/src/main/java/com/example/module1/ItemMarginDecoration.kt,0\6\0658fbaaa54a2b385cd741e9e1a2ee798c854525
 k
 ;app/src/main/java/com/example/module1/FragmentNavigation.kt,b\2\b207fa74369cf513683fcbbd29be8929936bc607
@@ -32,8 +22,6 @@ v
 Fapp/src/main/java/com/example/module1/categories/CategoriesFragment.kt,7\c\7cfd52e40ab03d62971f68bbdd8cf6cf8078ac12
 n
 >app/src/main/java/com/example/module1/filter/FilterFragment.kt,9\2\924489c6e9803a20983d9e222f3419f0697028a6
-l
-<app/src/main/java/com/example/module1/event/EventFragment.kt,a\9\a94911751e121629765c131c494a6e59f4a04658
 t
 Dapp/src/main/java/com/example/module1/profile/EditProfileFragment.kt,9\e\9e324c5c7b30caf79df1bea8128651d32826e5b0
 y
