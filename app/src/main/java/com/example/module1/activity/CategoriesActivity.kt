@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.module1.*
+import com.example.module1.auth.LoginFragment
 import com.example.module1.categories.CategoriesFragment
 import com.example.module1.news.NewsFragment
 import com.example.module1.profile.ProfileFragment
@@ -22,7 +23,7 @@ class CategoriesActivity : AppCompatActivity() {
             FragmentNavigation().addFragment(
                 supportFragmentManager,
                 R.id.fragmentContainerView,
-                CategoriesFragment()
+                LoginFragment()
             )
         }
 
