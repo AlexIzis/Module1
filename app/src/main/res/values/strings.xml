@@ -75,6 +75,6 @@
     <string name="news">Новости</string>
     <string name="path_to_categories">categories.json</string>
     <string name="path_to_news">news.json</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login">Авторизация</string>
+    <string name="button_login">Войти</string>
 </resources>

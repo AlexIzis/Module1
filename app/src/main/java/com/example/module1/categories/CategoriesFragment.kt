@@ -12,9 +12,13 @@ import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.module1.ItemMarginDecoration
+import com.example.module1.JsonParser
 import com.example.module1.R
 import com.google.android.flexbox.*
-import java.lang.ref.WeakReference
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 
 private const val CATEGORY_LIST = "list_of_categories"
 
@@ -24,8 +28,9 @@ class CategoriesFragment : Fragment(), OnCategoriesCallback {
     private val connection = object : ServiceConnection {
         override fun onServiceConnected(className: ComponentName, ibinder: IBinder) {
             service = (ibinder as LoadCategoriesService.LocalBinder).getService()
-            service.printCategories(WeakReference(this@CategoriesFragment))
+            //service.printCategories(WeakReference(this@CategoriesFragment))
         }
+
         override fun onServiceDisconnected(arg0: ComponentName) = Unit
     }
     private lateinit var loading: ProgressBar
@@ -64,12 +69,30 @@ class CategoriesFragment : Fragment(), OnCategoriesCallback {
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(ItemMarginDecoration())
 
-        if (savedInstanceState != null){
+        if (savedInstanceState != null) {
             listCategories = savedInstanceState.getParcelableArrayList<CategoryUiModel>(
-                CATEGORY_LIST) as ArrayList<CategoryUiModel>
+                CATEGORY_LIST
+            ) as ArrayList<CategoryUiModel>
             loading = view.findViewById(R.id.progressBarCategories)
             loading.visibility = View.GONE
             adapter.setCategories(listCategories)
+        } else {
+            Observable.just(
+                JsonParser(
+                    getString(R.string.path_to_categories),
+                    CategoryUiModel::class.java,
+                    requireContext()
+                ).parseJson()
+            )
+                .subscribeOn(Schedulers.computation())
+                .delay(5000, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    listCategories = it as ArrayList<CategoryUiModel>
+                    loading = view.findViewById(R.id.progressBarCategories)
+                    loading.visibility = View.GONE
+                    adapter.setCategories(listCategories)
+                }
         }
     }
 

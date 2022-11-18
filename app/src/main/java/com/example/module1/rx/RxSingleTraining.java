@@ -3,8 +3,13 @@ package com.example.module1.rx;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Emitter;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.core.SingleEmitter;
+import io.reactivex.rxjava3.core.SingleOnSubscribe;
+import io.reactivex.rxjava3.functions.Consumer;
 
 
 /**
@@ -23,8 +28,13 @@ public class RxSingleTraining {
      * либо ошибку {@link ExpectedException} если оно отрицательное
      */
     public Single<Integer> onlyOneElement(Integer value) {
-        // TODO: 15.11.2022 Не придумал как реализовать
-        return Single.just(value);
+        return Single.create(emitter -> {
+            if (value >= 0){
+                emitter.onSuccess(value);
+            } else {
+                emitter.onError(new ExpectedException());
+            }
+        });
     }
 
     /**
@@ -36,8 +46,7 @@ public class RxSingleTraining {
      * последовательность пустая
      */
     public Single<Integer> onlyOneElementOfSequence(Observable<Integer> integerObservable) {
-        // TODO: 15.11.2022 Не придумал как реализовать
-        throw new NotImplementedException();
+        return integerObservable.elementAtOrError(0);
     }
 
     /**

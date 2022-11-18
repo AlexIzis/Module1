@@ -15,12 +15,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.module1.FragmentNavigation
 import com.example.module1.ItemMarginDecoration
+import com.example.module1.JsonParser
 import com.example.module1.R
 import com.example.module1.event.EventFragment
 import com.example.module1.event.KEY_NEW
 import com.example.module1.filter.FilterFragment
 import com.example.module1.filter.KEY_FROM_FILTER
 import com.example.module1.filter.REQUEST_KEY_FILTER
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Scheduler
+import io.reactivex.rxjava3.schedulers.Schedulers
+import java.util.*
+import java.util.concurrent.TimeUnit
+import kotlin.collections.ArrayList
 
 const val SAVED_INSTANCE_KEY_NEWS = "list_of_news"
 
@@ -60,17 +68,33 @@ class NewsFragment : Fragment() {
             )
         }
 
-        if (savedInstanceState != null){
+        if (savedInstanceState != null) {
             val result = savedInstanceState.getParcelableArrayList<NewsUIModel>(
-                SAVED_INSTANCE_KEY_NEWS)
-            if(result != null){
+                SAVED_INSTANCE_KEY_NEWS
+            )
+            if (result != null) {
                 newsList = result
                 loading.visibility = View.GONE
                 adapter.differ.submitList(result)
             }
         }
-        if (newsList.size == 0){
-            activity?.startService(intentToService)
+        if (newsList.size == 0) {
+            //activity?.startService(intentToService)
+            Observable.just(
+                JsonParser(
+                    getString(R.string.path_to_news),
+                    NewsUIModel::class.java,
+                    requireContext()
+                ).parseJson()
+            )
+                .subscribeOn(Schedulers.computation())
+                .delay(5000, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    newsList = it as ArrayList<NewsUIModel>
+                    loading.visibility = View.GONE
+                    adapter.differ.submitList(it)
+                }
         }
 
         activity?.supportFragmentManager?.setFragmentResultListener(
@@ -82,10 +106,10 @@ class NewsFragment : Fragment() {
         }
     }
 
-    inner class NewsBroadcastReceiver : BroadcastReceiver(){
+    inner class NewsBroadcastReceiver : BroadcastReceiver() {
         override fun onReceive(p0: Context?, p1: Intent?) {
             val result = p1?.getParcelableArrayListExtra<NewsUIModel>(KEY_FROM_NEWS_SERVICE)
-            if (result != null){
+            if (result != null) {
                 newsList = result
                 loading.visibility = View.GONE
                 adapter.differ.submitList(filterByCategories())
@@ -111,7 +135,7 @@ class NewsFragment : Fragment() {
             newsList
         } else {
             val filterNews = arrayListOf<NewsUIModel>()
-            for (i in category){
+            for (i in category) {
                 filterNews.addAll(newsList.filter { it.categories.contains(i) })
             }
             filterNews.toList()
