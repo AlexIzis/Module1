@@ -112,7 +112,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView17" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/inputLogin1"
+        android:id="@+id/inputLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="21dp"
@@ -125,7 +125,7 @@
         app:layout_constraintTop_toBottomOf="@id/textLoginWithApp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/inputLoginEdit1"
+            android:id="@+id/inputLoginEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white" />
@@ -133,7 +133,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/inputEmailPassword1"
+        android:id="@+id/inputEmailPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="21dp"
@@ -143,10 +143,10 @@
         app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputLogin1">
+        app:layout_constraintTop_toBottomOf="@+id/inputLogin">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/inputLoginPasswordEdit1"
+            android:id="@+id/inputLoginPasswordEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white" />
@@ -154,13 +154,13 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/loginButton1"
+        android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:text="@string/button_login"
-        app:layout_constraintEnd_toEndOf="@+id/inputEmailPassword1"
-        app:layout_constraintStart_toStartOf="@+id/inputEmailPassword1"
-        app:layout_constraintTop_toBottomOf="@+id/inputEmailPassword1" />
+        app:layout_constraintEnd_toEndOf="@+id/inputEmailPassword"
+        app:layout_constraintStart_toStartOf="@+id/inputEmailPassword"
+        app:layout_constraintTop_toBottomOf="@+id/inputEmailPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

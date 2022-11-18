@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
 import android.os.*
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -85,9 +86,13 @@ class CategoriesFragment : Fragment(), OnCategoriesCallback {
                 ).parseJson()
             )
                 .subscribeOn(Schedulers.computation())
+                .doOnNext {
+                    Log.d("tag", Thread.currentThread().name)
+                }
                 .delay(5000, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
+                    Log.d("tag", Thread.currentThread().name)
                     listCategories = it as ArrayList<CategoryUiModel>
                     loading = view.findViewById(R.id.progressBarCategories)
                     loading.visibility = View.GONE

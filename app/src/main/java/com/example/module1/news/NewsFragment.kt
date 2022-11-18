@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -88,9 +89,13 @@ class NewsFragment : Fragment() {
                 ).parseJson()
             )
                 .subscribeOn(Schedulers.computation())
+                .doOnNext {
+                    Log.d("tag", Thread.currentThread().name)
+                }
                 .delay(5000, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
+                    Log.d("tag", Thread.currentThread().name)
                     newsList = it as ArrayList<NewsUIModel>
                     loading.visibility = View.GONE
                     adapter.differ.submitList(it)

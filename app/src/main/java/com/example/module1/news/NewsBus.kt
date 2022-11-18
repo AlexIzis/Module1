@@ -5,7 +5,7 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 
 class NewsBus {
     companion object {
-        private var readed = arrayListOf<String>()
+        private var readNews = arrayListOf<String>()
         private val publisher: PublishSubject<String> = PublishSubject.create()
         private var currentInstance: NewsBus? = null
         val instance: NewsBus?
@@ -16,10 +16,10 @@ class NewsBus {
                 return currentInstance
             }
         fun publish(id: String) {
-            if (!readed.contains(id)) {
-                readed.add(id)
+            if (!readNews.contains(id)) {
+                readNews.add(id)
             }
-            publisher.onNext(readed.size.toString())
+            publisher.onNext(readNews.size.toString())
         }
 
         fun listen(): Observable<String> {

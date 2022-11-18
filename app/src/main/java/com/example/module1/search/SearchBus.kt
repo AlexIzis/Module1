@@ -7,7 +7,6 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 class SearchBus {
     companion object {
         private val publisher: PublishSubject<String> = PublishSubject.create()
-
         private var mInstance: SearchBus? = null
         val instance: SearchBus?
             get() {
