@@ -77,4 +77,6 @@
     <string name="path_to_news">news.json</string>
     <string name="login">Авторизация</string>
     <string name="button_login">Войти</string>
+    <string name="string_with_social">Для участия в мероприятиях войдите в приложение через социальые сети</string>
+    <string name="string_with_app">Или авторизуйтесь через приложение</string>
 </resources>
