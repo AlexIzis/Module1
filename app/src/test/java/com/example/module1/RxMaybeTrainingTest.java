@@ -60,7 +60,7 @@ public class RxMaybeTrainingTest {
         testObserver.assertNoErrors();
         testObserver.assertComplete();
     }
-    /*// TODO: 11.11.2022 найти
+
     @Test
     public void positiveOrEmpty_positiveSingle() {
         TestObserver<Integer> testObserver = mRxMaybeTraining
@@ -75,13 +75,13 @@ public class RxMaybeTrainingTest {
     @Test
     public void positiveOrEmpty_negativeSingle() {
         TestObserver<Integer> testObserver = mRxMaybeTraining
-                .positiveOrEmpty(Single.just(Integer(-1)))
+                .positiveOrEmpty(Single.just(-1))
                 .test();
 
         testObserver.assertNoValues();
         testObserver.assertNoErrors();
         testObserver.assertComplete();
-    }*/
+    }
 
     @Test
     public void calculateSumOfValues_hasValues() {

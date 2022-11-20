@@ -80,7 +80,6 @@ class NewsFragment : Fragment() {
             }
         }
         if (newsList.size == 0) {
-            //activity?.startService(intentToService)
             Observable.just(
                 JsonParser(
                     getString(R.string.path_to_news),
@@ -88,15 +87,16 @@ class NewsFragment : Fragment() {
                     requireContext()
                 ).parseJson()
             )
-                .subscribeOn(Schedulers.computation())
+                .subscribeOn(Schedulers.io())
                 .doOnNext {
                     Log.d("tag", Thread.currentThread().name)
                 }
                 .delay(5000, TimeUnit.MILLISECONDS)
+                .map { it as ArrayList<NewsUIModel> }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     Log.d("tag", Thread.currentThread().name)
-                    newsList = it as ArrayList<NewsUIModel>
+                    newsList = it
                     loading.visibility = View.GONE
                     adapter.differ.submitList(it)
                 }

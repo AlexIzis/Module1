@@ -36,8 +36,14 @@ public class RxMaybeTraining {
      * @return {@code Maybe} который эммитит значение из {@code valueSingle} если оно эммитит
      * положительное число, иначе не эммитит ничего
      */
-    Maybe<Integer> positiveOrEmpty(Single<Integer> valueSingle) {
-        throw new NotImplementedException();
+    public Maybe<Integer> positiveOrEmpty(Single<Integer> valueSingle) {
+        return valueSingle.concatMapMaybe(integer -> {
+            if (integer > 0) {
+                return Maybe.just(integer);
+            } else {
+                return Maybe.empty();
+            }
+        });
     }
 
     /**

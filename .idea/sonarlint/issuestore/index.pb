@@ -51,10 +51,6 @@ d
 u
 Eapp/src/test/java/com/example/module1/RxTransformingTrainingTest.java,1\b\1b0ae59da501d2fda52d2c16df9b1ad053d9ba2c
 n
->app/src/test/java/com/example/module1/RxMaybeTrainingTest.java,0\e\0ee15e97879db20af9acfe89b3b01d4b3a3d63e0
-q
-Aapp/src/main/java/com/example/module1/rx/RxCombiningTraining.java,3\e\3e85bb0ca7f04a94704c011a7e89066fe0e7e2c6
-n
 >app/src/main/java/com/example/module1/rx/RxErrorsTraining.java,1\5\154c39f92d1ef2935a90c9a2a733a0dc2ffaa016
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
@@ -80,19 +76,17 @@ u
 Eapp/src/main/java/com/example/module1/categories/CategoriesAdapter.kt,7\7\77d708c8a8b582b0978b62d096e36b61c5b29f86
 o
 ?app/src/test/java/com/example/module1/RxSingleTrainingTest.java,a\5\a5bdad63fdc34af35c172d468bfcd025f7a82d79
-m
-=app/src/main/java/com/example/module1/rx/RxMaybeTraining.java,8\7\8756cb1f7eeeb3257c5e5558968871f6e752cacb
 p
 @app/src/main/java/com/example/module1/rx/RxCreatingTraining.java,6\a\6ac90afb301824ed15d5bdcc839da1da77f3d38f
 t
 Dapp/src/test/java/com/example/module1/RxCompletableTrainingTest.java,7\6\76d238654f8ac5b98b135c8bd3b45a19504ac7e9
-s
-Capp/src/main/java/com/example/module1/rx/RxCompletableTraining.java,c\b\cba4fdaf2f9d101d03a078acfb33f5aab6b14863
 t
 Dapp/src/main/java/com/example/module1/search/SearchFragmentEvents.kt,6\e\6e9f186807d618cece75c32ca8f39cc29cc6bad0
 r
 Bapp/src/main/java/com/example/module1/search/MainSearchFragment.kt,a\d\adcab0b1992f49db49c40069501c5290ca888a50
-n
->app/src/main/java/com/example/module1/rx/RxSingleTraining.java,a\0\a09060182192b6aa947e8c362a6ef239ff705338
 v
 Fapp/src/main/java/com/example/module1/activity/SplashScreenActivity.kt,a\6\a6816d7055f39376ebbecd2d9b6386071e51a7b4
+l
+<app/src/main/java/com/example/module1/event/EventFragment.kt,a\9\a94911751e121629765c131c494a6e59f4a04658
+i
+9app/src/main/java/com/example/module1/search/SearchBus.kt,a\1\a1fb7c352b167e418573649ec9b4dc9fedf18128

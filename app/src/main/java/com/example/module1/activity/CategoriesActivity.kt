@@ -12,6 +12,7 @@ import com.example.module1.profile.ProfileFragment
 import com.example.module1.search.MainSearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 private const val LOAD_KEY = "load_key"
@@ -38,12 +39,26 @@ class CategoriesActivity : AppCompatActivity() {
             applicationContext
         ).parseJson().size
 
+        // TODO: При загрузке число не инициализируется
+        /*Observable.just(
+            JsonParser(
+                getString(R.string.path_to_news),
+                NewsUIModel::class.java,
+                applicationContext
+            ).parseJson().size
+        )
+            .subscribeOn(Schedulers.computation())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                countAllNews = it
+            }*/
+
         val navigation: BottomNavigationView = findViewById(R.id.btnNavHelp)
         navigation.getOrCreateBadge(R.id.news).number = countAllNews - readNews
 
         NewsBus.listen().subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe{
+            .subscribe {
                 navigation.getOrCreateBadge(R.id.news).number = countAllNews - it.toInt()
             }
 

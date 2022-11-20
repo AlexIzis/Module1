@@ -10,9 +10,6 @@ import com.example.module1.R
 import com.jakewharton.rxbinding.widget.RxTextView
 import rx.Observable
 
-
-private const val MAIL_KEY = "mail"
-private const val PASSWORD_KEY = "pass"
 class LoginActivity : AppCompatActivity() {
     private var inputEmail: String = ""
     private var inputPassword: String = ""
@@ -33,28 +30,23 @@ class LoginActivity : AppCompatActivity() {
         val emailObservable = RxTextView.textChanges(emailText)
         val passwordObservable = RxTextView.textChanges(passwordText)
 
-        if (savedInstanceState != null) {
-            inputEmail = savedInstanceState.getString(MAIL_KEY).toString()
-            inputPassword = savedInstanceState.getString(PASSWORD_KEY).toString()
-            emailText.setText(inputEmail)
-            passwordText.setText(inputPassword)
-        }
+        analyzeLoginData(emailObservable, passwordObservable, loginButton)
+    }
 
+    private fun analyzeLoginData(
+        emailObservable: Observable<CharSequence>,
+        passwordObservable: Observable<CharSequence>,
+        loginButton: Button
+    ) {
         Observable.combineLatest(
             emailObservable, passwordObservable
         ) { email, password ->
             inputEmail = email.toString()
             inputPassword = password.toString()
-            (!TextUtils.isEmpty(email) && email.length >= 6) &&
-                    (!TextUtils.isEmpty(password) && password.length >= 6)
+            (email.isNotEmpty() && email.length >= 6) &&
+                    (password.isNotEmpty() && password.length >= 6)
         }.subscribe {
             loginButton.isEnabled = it
         }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putString(MAIL_KEY, inputEmail)
-        outState.putString(PASSWORD_KEY, inputPassword)
     }
 }

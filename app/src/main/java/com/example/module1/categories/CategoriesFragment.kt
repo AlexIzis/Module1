@@ -29,7 +29,6 @@ class CategoriesFragment : Fragment(), OnCategoriesCallback {
     private val connection = object : ServiceConnection {
         override fun onServiceConnected(className: ComponentName, ibinder: IBinder) {
             service = (ibinder as LoadCategoriesService.LocalBinder).getService()
-            //service.printCategories(WeakReference(this@CategoriesFragment))
         }
 
         override fun onServiceDisconnected(arg0: ComponentName) = Unit
@@ -85,15 +84,16 @@ class CategoriesFragment : Fragment(), OnCategoriesCallback {
                     requireContext()
                 ).parseJson()
             )
-                .subscribeOn(Schedulers.computation())
+                .subscribeOn(Schedulers.io())
                 .doOnNext {
                     Log.d("tag", Thread.currentThread().name)
                 }
                 .delay(5000, TimeUnit.MILLISECONDS)
+                .map { it as ArrayList<CategoryUiModel> }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     Log.d("tag", Thread.currentThread().name)
-                    listCategories = it as ArrayList<CategoryUiModel>
+                    listCategories = it
                     loading = view.findViewById(R.id.progressBarCategories)
                     loading.visibility = View.GONE
                     adapter.setCategories(listCategories)
