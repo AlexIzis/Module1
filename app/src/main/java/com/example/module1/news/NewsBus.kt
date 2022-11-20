@@ -15,6 +15,7 @@ class NewsBus {
                 }
                 return currentInstance
             }
+
         fun publish(id: String) {
             if (!readNews.contains(id)) {
                 readNews.add(id)

@@ -1,6 +1,7 @@
 package com.example.module1.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.module1.*
@@ -33,28 +34,20 @@ class CategoriesActivity : AppCompatActivity() {
             )
         }
 
-        countAllNews = JsonParser(
-            getString(R.string.path_to_news),
-            NewsUIModel::class.java,
-            applicationContext
-        ).parseJson().size
-
-        // TODO: При загрузке число не инициализируется
-        /*Observable.just(
+        val navigation: BottomNavigationView = findViewById(R.id.btnNavHelp)
+        Observable.just(
             JsonParser(
                 getString(R.string.path_to_news),
                 NewsUIModel::class.java,
                 applicationContext
-            ).parseJson().size
+            ).parseJson()
         )
-            .subscribeOn(Schedulers.computation())
+            .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                countAllNews = it
-            }*/
-
-        val navigation: BottomNavigationView = findViewById(R.id.btnNavHelp)
-        navigation.getOrCreateBadge(R.id.news).number = countAllNews - readNews
+                countAllNews = it.size
+                navigation.getOrCreateBadge(R.id.news).number = countAllNews
+            }
 
         NewsBus.listen().subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())

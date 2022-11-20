@@ -25,9 +25,7 @@ import com.example.module1.filter.KEY_FROM_FILTER
 import com.example.module1.filter.REQUEST_KEY_FILTER
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.schedulers.Schedulers
-import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
 
@@ -80,13 +78,13 @@ class NewsFragment : Fragment() {
             }
         }
         if (newsList.size == 0) {
-            Observable.just(
+            Observable.fromCallable {
                 JsonParser(
                     getString(R.string.path_to_news),
                     NewsUIModel::class.java,
                     requireContext()
                 ).parseJson()
-            )
+            }
                 .subscribeOn(Schedulers.io())
                 .doOnNext {
                     Log.d("tag", Thread.currentThread().name)
