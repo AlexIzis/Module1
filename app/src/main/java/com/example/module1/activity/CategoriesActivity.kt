@@ -21,6 +21,7 @@ private const val LOAD_KEY = "load_key"
 class CategoriesActivity : AppCompatActivity() {
     private var countAllNews = 0
     private lateinit var bus: Disposable
+    private lateinit var disposable: Disposable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +36,7 @@ class CategoriesActivity : AppCompatActivity() {
         }
 
         val navigation: BottomNavigationView = findViewById(R.id.btnNavHelp)
-        Observable.just(
+        disposable = Observable.just(
             JsonParser(
                 getString(R.string.path_to_news),
                 NewsUIModel::class.java,
@@ -111,6 +112,7 @@ class CategoriesActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
+        disposable.dispose()
         bus.dispose()
         outState.putBoolean(LOAD_KEY, true)
     }
