@@ -80,8 +80,6 @@ v
 Fapp/src/main/java/com/example/module1/activity/SplashScreenActivity.kt,a\6\a6816d7055f39376ebbecd2d9b6386071e51a7b4
 l
 <app/src/main/java/com/example/module1/event/EventFragment.kt,a\9\a94911751e121629765c131c494a6e59f4a04658
-o
-?app/src/main/java/com/example/module1/activity/LoginActivity.kt,3\2\320fcc2d36b3ac220f73c520c448d7b24c4b8de5
 q
 Aapp/src/main/java/com/example/module1/rx/RxCombiningTraining.java,3\e\3e85bb0ca7f04a94704c011a7e89066fe0e7e2c6
 n
@@ -94,7 +92,3 @@ m
 =app/src/main/java/com/example/module1/rx/RxMaybeTraining.java,8\7\8756cb1f7eeeb3257c5e5558968871f6e752cacb
 m
 =app/src/main/java/com/example/module1/search/SearchAdapter.kt,8\e\8e56fd0ca6b0bd0180dca14bda734cfaa83bd582
-r
-Bapp/src/main/java/com/example/module1/search/MainSearchFragment.kt,a\d\adcab0b1992f49db49c40069501c5290ca888a50
-t
-Dapp/src/main/java/com/example/module1/search/SearchFragmentEvents.kt,6\e\6e9f186807d618cece75c32ca8f39cc29cc6bad0

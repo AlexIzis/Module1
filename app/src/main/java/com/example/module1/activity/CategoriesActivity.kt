@@ -13,12 +13,14 @@ import com.example.module1.search.MainSearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 private const val LOAD_KEY = "load_key"
 
 class CategoriesActivity : AppCompatActivity() {
     private var countAllNews = 0
+    private lateinit var bus: Disposable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +49,7 @@ class CategoriesActivity : AppCompatActivity() {
                 navigation.getOrCreateBadge(R.id.news).number = countAllNews
             }
 
-        NewsBus.listen().subscribeOn(Schedulers.computation())
+        bus = NewsBus.listen().subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 navigation.getOrCreateBadge(R.id.news).number = countAllNews - it.toInt()
@@ -109,6 +111,7 @@ class CategoriesActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
+        bus.dispose()
         outState.putBoolean(LOAD_KEY, true)
     }
 }

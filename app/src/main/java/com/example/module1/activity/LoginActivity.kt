@@ -3,16 +3,17 @@ package com.example.module1.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
 import com.example.module1.R
 import com.jakewharton.rxbinding.widget.RxTextView
 import rx.Observable
+import rx.Subscription
 
 class LoginActivity : AppCompatActivity() {
     private var inputEmail: String = ""
     private var inputPassword: String = ""
+    private lateinit var disposableBus: Subscription
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
         passwordObservable: Observable<CharSequence>,
         loginButton: Button
     ) {
-        Observable.combineLatest(
+        disposableBus = Observable.combineLatest(
             emailObservable, passwordObservable
         ) { email, password ->
             inputEmail = email.toString()
@@ -48,5 +49,10 @@ class LoginActivity : AppCompatActivity() {
         }.subscribe {
             loginButton.isEnabled = it
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        disposableBus.unsubscribe()
     }
 }

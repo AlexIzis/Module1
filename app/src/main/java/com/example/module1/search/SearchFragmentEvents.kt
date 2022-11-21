@@ -13,10 +13,15 @@ import com.example.module1.JsonParser
 import com.example.module1.R
 import com.example.module1.news.NewsUIModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.internal.operators.flowable.FlowableUnsubscribeOn
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class SearchFragmentEvents : Fragment() {
     private var news: ArrayList<NewsUIModel> = arrayListOf()
+    private lateinit var unsubscribeNews: Disposable
+    private lateinit var unsubscribeSearchBus: Disposable
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,20 +36,27 @@ class SearchFragmentEvents : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         val adapter = SearchEventsAdapter()
         recyclerView.adapter = adapter
-        news = JsonParser(
-            getString(R.string.path_to_news),
-            NewsUIModel::class.java,
-            requireContext()
-        ).parseJson() as ArrayList<NewsUIModel>
+
         val imgSearch: ImageView = view.findViewById(R.id.imageView5)
         val textIfNoResults: TextView = view.findViewById(R.id.textViewAnnotation)
-        if (news.size > 0) {
-            imgSearch.visibility = View.GONE
-            textIfNoResults.visibility = View.GONE
-            adapter.setResults(news)
+        unsubscribeNews = Observable.fromCallable {
+            JsonParser(
+                getString(R.string.path_to_news),
+                NewsUIModel::class.java,
+                requireContext()
+            ).parseJson()
         }
+            .subscribeOn(Schedulers.computation())
+            .map { it as ArrayList<NewsUIModel> }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                news = it
+                imgSearch.visibility = View.GONE
+                textIfNoResults.visibility = View.GONE
+                adapter.setResults(news)
+            }
 
-        SearchBus.listen().subscribeOn(Schedulers.computation())
+        unsubscribeSearchBus = SearchBus.listen().subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 adapter.setResults(searchSystem(it))
@@ -53,5 +65,11 @@ class SearchFragmentEvents : Fragment() {
 
     private fun searchSystem(search: String): ArrayList<NewsUIModel> {
         return news.filter { it.label.contains(search) } as ArrayList<NewsUIModel>
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unsubscribeNews.dispose()
+        unsubscribeSearchBus.dispose()
     }
 }

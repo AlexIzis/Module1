@@ -25,6 +25,7 @@ import com.example.module1.filter.KEY_FROM_FILTER
 import com.example.module1.filter.REQUEST_KEY_FILTER
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
@@ -36,6 +37,7 @@ class NewsFragment : Fragment() {
     private var category = arrayListOf<String>()
     private val adapter = NewsAdapter(onItemClick())
     private lateinit var loading: ProgressBar
+    private lateinit var unsubscribe: Disposable
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -78,7 +80,7 @@ class NewsFragment : Fragment() {
             }
         }
         if (newsList.size == 0) {
-            Observable.fromCallable {
+            unsubscribe = Observable.fromCallable {
                 JsonParser(
                     getString(R.string.path_to_news),
                     NewsUIModel::class.java,
@@ -89,6 +91,9 @@ class NewsFragment : Fragment() {
                 .doOnNext {
                     Log.d("tag", Thread.currentThread().name)
                 }
+                .doOnComplete{
+
+                }
                 .delay(5000, TimeUnit.MILLISECONDS)
                 .map { it as ArrayList<NewsUIModel> }
                 .observeOn(AndroidSchedulers.mainThread())
@@ -98,6 +103,7 @@ class NewsFragment : Fragment() {
                     loading.visibility = View.GONE
                     adapter.differ.submitList(it)
                 }
+
         }
 
         activity?.supportFragmentManager?.setFragmentResultListener(
@@ -147,6 +153,7 @@ class NewsFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
+        unsubscribe.dispose()
         if (newsList.isNotEmpty()) {
             outState.putParcelableArrayList(SAVED_INSTANCE_KEY_NEWS, newsList)
         }

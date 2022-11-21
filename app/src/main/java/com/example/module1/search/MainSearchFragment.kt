@@ -11,9 +11,11 @@ import com.example.module1.R
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.jakewharton.rxbinding.widget.RxSearchView
+import rx.Subscription
 import java.util.concurrent.TimeUnit
 
 class MainSearchFragment : Fragment() {
+    private lateinit var unsubscribe: Subscription
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,10 +54,15 @@ class MainSearchFragment : Fragment() {
             }
         })
         val searchView: SearchView = view.findViewById(R.id.searchView)
-        RxSearchView.queryTextChanges(searchView)
+        unsubscribe = RxSearchView.queryTextChanges(searchView)
             .debounce(500, TimeUnit.MILLISECONDS)
             .subscribe{
             SearchBus.publish(it.toString())
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unsubscribe.unsubscribe()
     }
 }
