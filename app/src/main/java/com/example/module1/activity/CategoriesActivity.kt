@@ -1,7 +1,6 @@
 package com.example.module1.activity
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.module1.*
@@ -20,7 +19,6 @@ private const val LOAD_KEY = "load_key"
 
 class CategoriesActivity : AppCompatActivity() {
     private var countAllNews = 0
-    private var readNews = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,12 +38,12 @@ class CategoriesActivity : AppCompatActivity() {
                 getString(R.string.path_to_news),
                 NewsUIModel::class.java,
                 applicationContext
-            ).parseJson()
+            ).parseJson().size
         )
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                countAllNews = it.size
+                countAllNews = it
                 navigation.getOrCreateBadge(R.id.news).number = countAllNews
             }
 

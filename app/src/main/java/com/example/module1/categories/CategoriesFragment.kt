@@ -77,13 +77,13 @@ class CategoriesFragment : Fragment(), OnCategoriesCallback {
             loading.visibility = View.GONE
             adapter.setCategories(listCategories)
         } else {
-            Observable.just(
+            Observable.fromCallable {
                 JsonParser(
                     getString(R.string.path_to_categories),
                     CategoryUiModel::class.java,
                     requireContext()
                 ).parseJson()
-            )
+            }
                 .subscribeOn(Schedulers.io())
                 .doOnNext {
                     Log.d("tag", Thread.currentThread().name)

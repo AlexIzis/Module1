@@ -60,8 +60,6 @@ i
 9app/src/main/java/com/example/module1/search/VpAdapter.kt,b\0\b015439b616be79c0797b56dd37b7c32b38ec56b
 q
 Aapp/src/main/java/com/example/module1/search/SearchFragmentNKO.kt,b\7\b7ee3f773068d3b4a44022f5fd46dfd3c94f9607
-s
-Capp/src/main/java/com/example/module1/search/SearchEventsAdapter.kt,7\c\7c10e8a1aad660523a50487d64fc0ae640e882cc
 q
 Aapp/src/main/java/com/example/module1/rx/RxFilteringTraining.java,c\7\c79ae63214fb4c97b058b27b0478df341d1013ac
 t
@@ -82,12 +80,8 @@ v
 Fapp/src/main/java/com/example/module1/activity/SplashScreenActivity.kt,a\6\a6816d7055f39376ebbecd2d9b6386071e51a7b4
 l
 <app/src/main/java/com/example/module1/event/EventFragment.kt,a\9\a94911751e121629765c131c494a6e59f4a04658
-i
-9app/src/main/java/com/example/module1/search/SearchBus.kt,a\1\a1fb7c352b167e418573649ec9b4dc9fedf18128
 o
 ?app/src/main/java/com/example/module1/activity/LoginActivity.kt,3\2\320fcc2d36b3ac220f73c520c448d7b24c4b8de5
-v
-Fapp/src/main/java/com/example/module1/categories/CategoriesFragment.kt,7\c\7cfd52e40ab03d62971f68bbdd8cf6cf8078ac12
 q
 Aapp/src/main/java/com/example/module1/rx/RxCombiningTraining.java,3\e\3e85bb0ca7f04a94704c011a7e89066fe0e7e2c6
 n
@@ -102,3 +96,5 @@ m
 =app/src/main/java/com/example/module1/search/SearchAdapter.kt,8\e\8e56fd0ca6b0bd0180dca14bda734cfaa83bd582
 r
 Bapp/src/main/java/com/example/module1/search/MainSearchFragment.kt,a\d\adcab0b1992f49db49c40069501c5290ca888a50
+t
+Dapp/src/main/java/com/example/module1/search/SearchFragmentEvents.kt,6\e\6e9f186807d618cece75c32ca8f39cc29cc6bad0

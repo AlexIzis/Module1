@@ -2,16 +2,24 @@ package com.example.module1.news
 
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.PublishSubject
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.internal.synchronized
 
 class NewsBus {
     companion object {
         private var readNews = arrayListOf<String>()
         private val publisher: PublishSubject<String> = PublishSubject.create()
         private var currentInstance: NewsBus? = null
+        @OptIn(InternalCoroutinesApi::class)
         val instance: NewsBus?
             get() {
                 if (currentInstance == null) {
-                    currentInstance = NewsBus()
+                    instance?.let {
+                        synchronized(it){
+                            if (currentInstance == null)
+                                currentInstance = NewsBus()
+                        }
+                    }
                 }
                 return currentInstance
             }
