@@ -4,13 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.module1.R
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.jakewharton.rxbinding.widget.RxSearchView
+import rx.Subscription
+import java.util.concurrent.TimeUnit
 
 class MainSearchFragment : Fragment() {
+    private lateinit var unsubscribe: Subscription
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,5 +53,16 @@ class MainSearchFragment : Fragment() {
                 }
             }
         })
+        val searchView: SearchView = view.findViewById(R.id.searchView)
+        unsubscribe = RxSearchView.queryTextChanges(searchView)
+            .debounce(500, TimeUnit.MILLISECONDS)
+            .subscribe{
+            SearchBus.publish(it.toString())
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        unsubscribe.unsubscribe()
     }
 }

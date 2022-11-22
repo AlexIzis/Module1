@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import com.example.module1.R
+import com.example.module1.news.NewsBus
 import com.example.module1.news.NewsUIModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -74,6 +75,8 @@ class EventFragment : Fragment() {
         val siteView: TextView = view.findViewById(R.id.siteEvent)
         val underlineTextSite = "<u>${new.site}</u>"
         siteView.text = HtmlCompat.fromHtml(underlineTextSite, HtmlCompat.FROM_HTML_MODE_LEGACY)
+
+        NewsBus.publish(new.id.toString())
 
         val backArrow: ImageView = view.findViewById(R.id.backArrowFromEvent)
         backArrow.setOnClickListener {

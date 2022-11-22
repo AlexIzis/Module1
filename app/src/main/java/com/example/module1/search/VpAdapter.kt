@@ -12,4 +12,6 @@ class VpAdapter(mainFragment: MainSearchFragment, private val listFR: List<Fragm
     override fun createFragment(position: Int): Fragment {
         return listFR[position]
     }
+
+
 }
