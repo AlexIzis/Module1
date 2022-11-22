@@ -2,27 +2,24 @@ package com.example.module1.search
 
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.PublishSubject
-import kotlinx.coroutines.InternalCoroutinesApi
-import kotlinx.coroutines.internal.synchronized
 
 
 class SearchBus {
     companion object {
         private val publisher: PublishSubject<String> = PublishSubject.create()
-        private var Instance: SearchBus? = null
-        @OptIn(InternalCoroutinesApi::class)
+        private var newInstance: SearchBus? = null
         val instance: SearchBus?
             get() {
-                if (Instance == null) {
+                if (newInstance == null) {
                     instance?.let {
                         synchronized(it) {
-                            if (Instance == null) {
-                                Instance = SearchBus()
+                            if (newInstance == null) {
+                                newInstance = SearchBus()
                             }
                         }
                     }
                 }
-                return Instance
+                return newInstance
             }
 
         fun publish(event: String) {

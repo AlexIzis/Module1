@@ -20,7 +20,7 @@ private const val LOAD_KEY = "load_key"
 
 class CategoriesActivity : AppCompatActivity() {
     private var countAllNews = 0
-    private lateinit var bus: Disposable
+    private lateinit var  busDisposable: Disposable
     private lateinit var disposable: Disposable
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,13 +36,13 @@ class CategoriesActivity : AppCompatActivity() {
         }
 
         val navigation: BottomNavigationView = findViewById(R.id.btnNavHelp)
-        disposable = Observable.just(
+        disposable = Observable.fromCallable {
             JsonParser(
                 getString(R.string.path_to_news),
                 NewsUIModel::class.java,
                 applicationContext
             ).parseJson().size
-        )
+        }
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
@@ -50,7 +50,7 @@ class CategoriesActivity : AppCompatActivity() {
                 navigation.getOrCreateBadge(R.id.news).number = countAllNews
             }
 
-        bus = NewsBus.listen().subscribeOn(Schedulers.computation())
+        busDisposable = NewsBus.listen().subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 navigation.getOrCreateBadge(R.id.news).number = countAllNews - it.toInt()
@@ -112,8 +112,12 @@ class CategoriesActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        disposable.dispose()
-        bus.dispose()
         outState.putBoolean(LOAD_KEY, true)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        disposable.dispose()
+        busDisposable.dispose()
     }
 }

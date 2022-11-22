@@ -67,8 +67,8 @@ class SearchFragmentEvents : Fragment() {
         return news.filter { it.label.contains(search) } as ArrayList<NewsUIModel>
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         unsubscribeNews.dispose()
         unsubscribeSearchBus.dispose()
     }

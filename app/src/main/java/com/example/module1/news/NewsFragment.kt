@@ -37,7 +37,7 @@ class NewsFragment : Fragment() {
     private var category = arrayListOf<String>()
     private val adapter = NewsAdapter(onItemClick())
     private lateinit var loading: ProgressBar
-    private lateinit var unsubscribe: Disposable
+    private lateinit var disposable: Disposable
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -80,7 +80,7 @@ class NewsFragment : Fragment() {
             }
         }
         if (newsList.size == 0) {
-            unsubscribe = Observable.fromCallable {
+            disposable = Observable.fromCallable {
                 JsonParser(
                     getString(R.string.path_to_news),
                     NewsUIModel::class.java,
@@ -90,9 +90,6 @@ class NewsFragment : Fragment() {
                 .subscribeOn(Schedulers.io())
                 .doOnNext {
                     Log.d("tag", Thread.currentThread().name)
-                }
-                .doOnComplete{
-
                 }
                 .delay(5000, TimeUnit.MILLISECONDS)
                 .map { it as ArrayList<NewsUIModel> }
@@ -153,9 +150,13 @@ class NewsFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        unsubscribe.dispose()
         if (newsList.isNotEmpty()) {
             outState.putParcelableArrayList(SAVED_INSTANCE_KEY_NEWS, newsList)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        disposable.dispose()
     }
 }
