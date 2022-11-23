@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.module1.*
 import com.example.module1.categories.CategoriesFragment
 import com.example.module1.news.NewsBus
+import com.example.module1.news.NewsFlow
 import com.example.module1.news.NewsFragment
 import com.example.module1.news.NewsUIModel
 import com.example.module1.profile.ProfileFragment
@@ -15,12 +16,16 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.FlowCollector
+import kotlinx.coroutines.launch
 
 private const val LOAD_KEY = "load_key"
 
 class CategoriesActivity : AppCompatActivity() {
     private var countAllNews = 0
-    private lateinit var  busDisposable: Disposable
+    private lateinit var busDisposable: Disposable
     private lateinit var disposable: Disposable
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,11 +55,17 @@ class CategoriesActivity : AppCompatActivity() {
                 navigation.getOrCreateBadge(R.id.news).number = countAllNews
             }
 
-        busDisposable = NewsBus.listen().subscribeOn(Schedulers.computation())
+        /*busDisposable = NewsBus.listen().subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 navigation.getOrCreateBadge(R.id.news).number = countAllNews - it.toInt()
+            }*/
+
+        CoroutineScope(Dispatchers.Main).launch {
+            NewsFlow.outputData().collect {
+                navigation.getOrCreateBadge(R.id.news).number = countAllNews - it
             }
+        }
 
         navigation.selectedItemId = R.id.heart
         navigation.setOnItemSelectedListener { item ->

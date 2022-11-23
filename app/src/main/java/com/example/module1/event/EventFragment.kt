@@ -12,7 +12,11 @@ import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import com.example.module1.R
 import com.example.module1.news.NewsBus
+import com.example.module1.news.NewsFlow
 import com.example.module1.news.NewsUIModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -77,6 +81,14 @@ class EventFragment : Fragment() {
         siteView.text = HtmlCompat.fromHtml(underlineTextSite, HtmlCompat.FROM_HTML_MODE_LEGACY)
 
         NewsBus.publish(new.id.toString())
+
+        CoroutineScope(Dispatchers.IO).launch {
+            if (!NewsFlow.readNews.contains(new.id)){
+                NewsFlow.readNews.add(new.id)
+            }
+            //NewsFlow.flow.emit(NewsFlow.readNews.size)
+            NewsFlow.outputData().emit(NewsFlow.readNews.size)
+        }
 
         val backArrow: ImageView = view.findViewById(R.id.backArrowFromEvent)
         backArrow.setOnClickListener {

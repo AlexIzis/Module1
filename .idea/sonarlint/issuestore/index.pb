@@ -50,8 +50,6 @@ n
 >app/src/main/java/com/example/module1/rx/RxErrorsTraining.java,1\5\154c39f92d1ef2935a90c9a2a733a0dc2ffaa016
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
-@
-app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 i
 9app/src/main/java/com/example/module1/search/VpAdapter.kt,b\0\b015439b616be79c0797b56dd37b7c32b38ec56b
 q
@@ -88,9 +86,17 @@ m
 =app/src/main/java/com/example/module1/search/SearchAdapter.kt,8\e\8e56fd0ca6b0bd0180dca14bda734cfaa83bd582
 v
 Fapp/src/main/java/com/example/module1/categories/CategoriesFragment.kt,7\c\7cfd52e40ab03d62971f68bbdd8cf6cf8078ac12
-l
-<app/src/main/java/com/example/module1/event/EventFragment.kt,a\9\a94911751e121629765c131c494a6e59f4a04658
 t
 Dapp/src/main/java/com/example/module1/profile/EditProfileFragment.kt,9\e\9e324c5c7b30caf79df1bea8128651d32826e5b0
 n
 >app/src/main/java/com/example/module1/filter/FilterFragment.kt,9\2\924489c6e9803a20983d9e222f3419f0697028a6
+o
+?app/src/main/java/com/example/module1/activity/LoginActivity.kt,3\2\320fcc2d36b3ac220f73c520c448d7b24c4b8de5
+j
+:app/src/main/java/com/example/module1/news/NewsFragment.kt,7\a\7aa65720e0e4776438263d7710844ce75eb25488
+r
+Bapp/src/main/java/com/example/module1/search/MainSearchFragment.kt,a\d\adcab0b1992f49db49c40069501c5290ca888a50
+s
+Capp/src/main/java/com/example/module1/search/SearchEventsAdapter.kt,7\c\7c10e8a1aad660523a50487d64fc0ae640e882cc
+t
+Dapp/src/main/java/com/example/module1/search/SearchFragmentEvents.kt,6\e\6e9f186807d618cece75c32ca8f39cc29cc6bad0

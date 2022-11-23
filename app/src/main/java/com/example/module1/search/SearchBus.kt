@@ -1,5 +1,6 @@
 package com.example.module1.search
 
+import android.support.annotation.MainThread
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.PublishSubject
 
@@ -22,6 +23,7 @@ class SearchBus {
                 return newInstance
             }
 
+        @MainThread
         fun publish(event: String) {
             publisher.onNext(event)
         }
