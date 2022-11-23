@@ -75,14 +75,6 @@ class CategoriesActivity : AppCompatActivity() {
             }
         }
 
-
-        /*val async = CoroutineScope(Dispatchers.Main).async {
-            NewsFlow.outputData().collect {
-                navigation.getOrCreateBadge(R.id.news).number = countAllNews - it
-            }
-        }
-        Log.d("async", async.toString())*/
-
         navigation.selectedItemId = R.id.heart
         navigation.setOnItemSelectedListener { item ->
             when (item.itemId) {

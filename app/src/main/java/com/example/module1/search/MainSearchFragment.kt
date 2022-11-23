@@ -1,6 +1,7 @@
 package com.example.module1.search
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,9 @@ import com.example.module1.R
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.jakewharton.rxbinding.widget.RxSearchView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import rx.Subscription
 import java.util.concurrent.TimeUnit
 
@@ -56,9 +60,17 @@ class MainSearchFragment : Fragment() {
         val searchView: SearchView = view.findViewById(R.id.searchView)
         unsubscribe = RxSearchView.queryTextChanges(searchView)
             .debounce(500, TimeUnit.MILLISECONDS)
-            .subscribe{
-            SearchBus.publish(it.toString())
-        }
+            .subscribe {
+                //SearchBus.publish(it.toString())
+                CoroutineScope(Dispatchers.IO).launch {
+                    try {
+                        SearchFlow.outputFlow().emit(it.toString())
+                    } catch (e: Exception) {
+                        Log.d("tag", e.toString())
+                        Log.d("tag", "Программка, не болей")
+                    }
+                }
+            }
     }
 
     override fun onDestroyView() {

@@ -1,6 +1,7 @@
 package com.example.module1.search
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,9 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.internal.operators.flowable.FlowableUnsubscribeOn
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class SearchFragmentEvents : Fragment() {
     private var news: ArrayList<NewsUIModel> = arrayListOf()
@@ -56,11 +60,21 @@ class SearchFragmentEvents : Fragment() {
                 adapter.setResults(news)
             }
 
-        unsubscribeSearchBus = SearchBus.listen().subscribeOn(Schedulers.computation())
+        /*unsubscribeSearchBus = SearchBus.listen().subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 adapter.setResults(searchSystem(it))
+            }*/
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                SearchFlow.outputFlow().collect {
+                    adapter.setResults(searchSystem(it))
+                }
+            } catch (e: Exception){
+                Log.d("tag", e.toString())
+                Log.d("tag", "Программка, не болей")
             }
+        }
     }
 
     private fun searchSystem(search: String): ArrayList<NewsUIModel> {

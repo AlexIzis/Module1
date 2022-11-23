@@ -92,11 +92,3 @@ n
 >app/src/main/java/com/example/module1/filter/FilterFragment.kt,9\2\924489c6e9803a20983d9e222f3419f0697028a6
 o
 ?app/src/main/java/com/example/module1/activity/LoginActivity.kt,3\2\320fcc2d36b3ac220f73c520c448d7b24c4b8de5
-j
-:app/src/main/java/com/example/module1/news/NewsFragment.kt,7\a\7aa65720e0e4776438263d7710844ce75eb25488
-r
-Bapp/src/main/java/com/example/module1/search/MainSearchFragment.kt,a\d\adcab0b1992f49db49c40069501c5290ca888a50
-s
-Capp/src/main/java/com/example/module1/search/SearchEventsAdapter.kt,7\c\7c10e8a1aad660523a50487d64fc0ae640e882cc
-t
-Dapp/src/main/java/com/example/module1/search/SearchFragmentEvents.kt,6\e\6e9f186807d618cece75c32ca8f39cc29cc6bad0
