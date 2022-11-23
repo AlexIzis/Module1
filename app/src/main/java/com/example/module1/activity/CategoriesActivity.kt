@@ -1,11 +1,11 @@
 package com.example.module1.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.module1.*
 import com.example.module1.categories.CategoriesFragment
-import com.example.module1.news.NewsBus
 import com.example.module1.news.NewsFlow
 import com.example.module1.news.NewsFragment
 import com.example.module1.news.NewsUIModel
@@ -16,10 +16,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.FlowCollector
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 private const val LOAD_KEY = "load_key"
 
@@ -61,11 +58,30 @@ class CategoriesActivity : AppCompatActivity() {
                 navigation.getOrCreateBadge(R.id.news).number = countAllNews - it.toInt()
             }*/
 
+        suspend fun getResult() {
+            coroutineScope {
+                NewsFlow.outputData().collect {
+                    navigation.getOrCreateBadge(R.id.news).number = countAllNews - it
+                }
+            }
+        }
+
         CoroutineScope(Dispatchers.Main).launch {
+            try {
+                getResult()
+            } catch (e: Exception) {
+                Log.d("tag", e.toString())
+                Log.d("tag", "Программка, не болей")
+            }
+        }
+
+
+        /*val async = CoroutineScope(Dispatchers.Main).async {
             NewsFlow.outputData().collect {
                 navigation.getOrCreateBadge(R.id.news).number = countAllNews - it
             }
         }
+        Log.d("async", async.toString())*/
 
         navigation.selectedItemId = R.id.heart
         navigation.setOnItemSelectedListener { item ->

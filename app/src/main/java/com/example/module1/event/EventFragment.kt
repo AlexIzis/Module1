@@ -3,6 +3,7 @@ package com.example.module1.event
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +22,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 const val KEY_NEW = "new"
+
 class EventFragment : Fragment() {
     private lateinit var new: NewsUIModel
 
@@ -80,14 +82,18 @@ class EventFragment : Fragment() {
         val underlineTextSite = "<u>${new.site}</u>"
         siteView.text = HtmlCompat.fromHtml(underlineTextSite, HtmlCompat.FROM_HTML_MODE_LEGACY)
 
-        NewsBus.publish(new.id.toString())
+        //NewsBus.publish(new.id.toString())
 
         CoroutineScope(Dispatchers.IO).launch {
-            if (!NewsFlow.readNews.contains(new.id)){
+            if (!NewsFlow.readNews.contains(new.id)) {
                 NewsFlow.readNews.add(new.id)
             }
-            //NewsFlow.flow.emit(NewsFlow.readNews.size)
-            NewsFlow.outputData().emit(NewsFlow.readNews.size)
+            try {
+                NewsFlow.outputData().emit(NewsFlow.readNews.size)
+            } catch (e: Exception) {
+                Log.d("tag", e.toString())
+                Log.d("tag", "Программка, не болей")
+            }
         }
 
         val backArrow: ImageView = view.findViewById(R.id.backArrowFromEvent)
