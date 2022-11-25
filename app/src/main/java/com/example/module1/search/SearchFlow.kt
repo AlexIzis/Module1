@@ -6,7 +6,7 @@ class SearchFlow {
     companion object {
         private val flow = MutableSharedFlow<String>()
 
-        fun outputFlow(): MutableSharedFlow<String>{
+        fun outputFlow(): MutableSharedFlow<String> {
             return flow
         }
     }

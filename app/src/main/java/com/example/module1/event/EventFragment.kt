@@ -82,8 +82,6 @@ class EventFragment : Fragment() {
         val underlineTextSite = "<u>${new.site}</u>"
         siteView.text = HtmlCompat.fromHtml(underlineTextSite, HtmlCompat.FROM_HTML_MODE_LEGACY)
 
-        //NewsBus.publish(new.id.toString())
-
         CoroutineScope(Dispatchers.IO).launch {
             if (!NewsFlow.readNews.contains(new.id)) {
                 NewsFlow.readNews.add(new.id)

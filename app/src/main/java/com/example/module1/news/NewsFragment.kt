@@ -1,9 +1,5 @@
 package com.example.module1.news
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -54,11 +50,6 @@ class NewsFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(ItemMarginDecoration())
 
-        val intentToService = Intent(activity, LoadNewsService::class.java)
-        val myReceiver = NewsBroadcastReceiver()
-        val intentFilter = IntentFilter(INTENT_FILTER_ACTION)
-        intentFilter.addCategory(Intent.CATEGORY_DEFAULT)
-        activity?.registerReceiver(myReceiver, intentFilter)
 
         val imageFilter: ImageView = view.findViewById(R.id.iconFilter)
         imageFilter.setOnClickListener {
@@ -110,18 +101,6 @@ class NewsFragment : Fragment() {
             category = requireNotNull(bundle.getStringArrayList(KEY_FROM_FILTER))
             adapter.differ.submitList(filterByCategories())
         }
-    }
-
-    inner class NewsBroadcastReceiver : BroadcastReceiver() {
-        override fun onReceive(p0: Context?, p1: Intent?) {
-            val result = p1?.getParcelableArrayListExtra<NewsUIModel>(KEY_FROM_NEWS_SERVICE)
-            if (result != null) {
-                newsList = result
-                loading.visibility = View.GONE
-                adapter.differ.submitList(filterByCategories())
-            }
-        }
-
     }
 
     private fun onItemClick() = { news: NewsUIModel ->

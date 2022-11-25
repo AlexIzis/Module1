@@ -16,7 +16,6 @@ import com.example.module1.news.NewsUIModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.internal.operators.flowable.FlowableUnsubscribeOn
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -25,7 +24,6 @@ import kotlinx.coroutines.launch
 class SearchFragmentEvents : Fragment() {
     private var news: ArrayList<NewsUIModel> = arrayListOf()
     private lateinit var unsubscribeNews: Disposable
-    private lateinit var unsubscribeSearchBus: Disposable
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,17 +58,12 @@ class SearchFragmentEvents : Fragment() {
                 adapter.setResults(news)
             }
 
-        /*unsubscribeSearchBus = SearchBus.listen().subscribeOn(Schedulers.computation())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                adapter.setResults(searchSystem(it))
-            }*/
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 SearchFlow.outputFlow().collect {
                     adapter.setResults(searchSystem(it))
                 }
-            } catch (e: Exception){
+            } catch (e: Exception) {
                 Log.d("tag", e.toString())
                 Log.d("tag", "Программка, не болей")
             }
@@ -84,6 +77,5 @@ class SearchFragmentEvents : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         unsubscribeNews.dispose()
-        unsubscribeSearchBus.dispose()
     }
 }

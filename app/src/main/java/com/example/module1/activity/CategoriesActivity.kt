@@ -22,7 +22,6 @@ private const val LOAD_KEY = "load_key"
 
 class CategoriesActivity : AppCompatActivity() {
     private var countAllNews = 0
-    private lateinit var busDisposable: Disposable
     private lateinit var disposable: Disposable
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,12 +50,6 @@ class CategoriesActivity : AppCompatActivity() {
                 countAllNews = it
                 navigation.getOrCreateBadge(R.id.news).number = countAllNews
             }
-
-        /*busDisposable = NewsBus.listen().subscribeOn(Schedulers.computation())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                navigation.getOrCreateBadge(R.id.news).number = countAllNews - it.toInt()
-            }*/
 
         suspend fun getResult() {
             coroutineScope {
@@ -137,6 +130,5 @@ class CategoriesActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         disposable.dispose()
-        busDisposable.dispose()
     }
 }

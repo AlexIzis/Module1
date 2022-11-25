@@ -61,7 +61,6 @@ class MainSearchFragment : Fragment() {
         unsubscribe = RxSearchView.queryTextChanges(searchView)
             .debounce(500, TimeUnit.MILLISECONDS)
             .subscribe {
-                //SearchBus.publish(it.toString())
                 CoroutineScope(Dispatchers.IO).launch {
                     try {
                         SearchFlow.outputFlow().emit(it.toString())
