@@ -12,7 +12,7 @@ class ItemMarginDecoration : RecyclerView.ItemDecoration() {
         parent: RecyclerView,
         state: RecyclerView.State
     ) {
-        outRect.bottom = 30
+        outRect.set(30, 30, 30, 30)
     }
 
 }

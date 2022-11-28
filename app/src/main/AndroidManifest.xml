@@ -15,15 +15,6 @@
             android:name=".activity.LoginActivity"
             android:exported="false" />
 
-        <service
-            android:name=".categories.LoadCategoriesService"
-            android:enabled="true"
-            android:exported="false" />
-        <service
-            android:name=".news.LoadNewsService"
-            android:enabled="true"
-            android:exported="false" />
-
         <activity
             android:name=".activity.CategoriesActivity"
             android:exported="false" />
