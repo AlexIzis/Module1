@@ -18,11 +18,10 @@ import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.*
 
-private const val LOAD_KEY = "load_key"
-
 class CategoriesActivity : AppCompatActivity() {
     private var countAllNews = 0
     private lateinit var disposable: Disposable
+    private lateinit var navigation: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +35,7 @@ class CategoriesActivity : AppCompatActivity() {
             )
         }
 
-        val navigation: BottomNavigationView = findViewById(R.id.btnNavHelp)
+        navigation = findViewById(R.id.btnNavHelp)
         disposable = Observable.fromCallable {
             JsonParser(
                 getString(R.string.path_to_news),
@@ -50,14 +49,6 @@ class CategoriesActivity : AppCompatActivity() {
                 countAllNews = it
                 navigation.getOrCreateBadge(R.id.news).number = countAllNews
             }
-
-        suspend fun getResult() {
-            coroutineScope {
-                NewsFlow.outputData().collect {
-                    navigation.getOrCreateBadge(R.id.news).number = countAllNews - it
-                }
-            }
-        }
 
         CoroutineScope(Dispatchers.Main).launch {
             try {
@@ -114,17 +105,20 @@ class CategoriesActivity : AppCompatActivity() {
         }
     }
 
+    private suspend fun getResult() {
+        coroutineScope {
+            NewsFlow.outputData().collect {
+                navigation.getOrCreateBadge(R.id.news).number = countAllNews - it
+            }
+        }
+    }
+
     override fun onBackPressed() {
         if (supportFragmentManager.backStackEntryCount == 0) {
             super.onBackPressed()
         } else {
             supportFragmentManager.popBackStack()
         }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putBoolean(LOAD_KEY, true)
     }
 
     override fun onDestroy() {
