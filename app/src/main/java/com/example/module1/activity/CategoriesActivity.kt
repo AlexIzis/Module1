@@ -17,6 +17,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
 
 class CategoriesActivity : AppCompatActivity() {
     private var countAllNews = 0
@@ -58,6 +59,15 @@ class CategoriesActivity : AppCompatActivity() {
                 Log.d("tag", "Программка, не болей")
             }
         }
+
+        /*VMNewsFlow().getScope().launch {
+            try {
+                getResult()
+            } catch (e: Exception) {
+                Log.d("tag", e.toString())
+                Log.d("tag", "Программка, не болей")
+            }
+        }*/
 
         navigation.selectedItemId = R.id.heart
         navigation.setOnItemSelectedListener { item ->

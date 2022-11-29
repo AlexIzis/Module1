@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import com.example.module1.R
+import com.example.module1.VMNewsFlow
 import com.example.module1.news.NewsBus
 import com.example.module1.news.NewsFlow
 import com.example.module1.news.NewsUIModel
@@ -93,6 +94,7 @@ class EventFragment : Fragment() {
                 Log.d("tag", "Программка, не болей")
             }
         }
+
 
         val backArrow: ImageView = view.findViewById(R.id.backArrowFromEvent)
         backArrow.setOnClickListener {

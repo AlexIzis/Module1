@@ -24,8 +24,6 @@ i
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-f
-6app/src/main/java/com/example/module1/news/NewsFlow.kt,3\3\33485fac8fc0b59e1d2d74fbb717780bf1671f74
 o
 ?app/src/main/java/com/example/module1/activity/LoginActivity.kt,3\2\320fcc2d36b3ac220f73c520c448d7b24c4b8de5
 v
@@ -50,8 +48,6 @@ c
 3app/src/main/java/com/example/module1/JsonParser.kt,b\1\b1d54747964bc0388264e4b757570132a2182323
 j
 :app/src/main/java/com/example/module1/search/SearchFlow.kt,7\b\7b8942beff8586ae6889aa6463aabab12f5248cd
-t
-Dapp/src/main/java/com/example/module1/activity/CategoriesActivity.kt,d\1\d16fa4555fdd4a2cf822dc1dbd286307775b67f1
 r
 Bapp/src/main/java/com/example/module1/search/MainSearchFragment.kt,a\d\adcab0b1992f49db49c40069501c5290ca888a50
 s
@@ -60,7 +56,5 @@ t
 Dapp/src/main/java/com/example/module1/search/SearchFragmentEvents.kt,6\e\6e9f186807d618cece75c32ca8f39cc29cc6bad0
 q
 Aapp/src/main/java/com/example/module1/search/SearchFragmentNKO.kt,b\7\b7ee3f773068d3b4a44022f5fd46dfd3c94f9607
-l
-<app/src/main/java/com/example/module1/event/EventFragment.kt,a\9\a94911751e121629765c131c494a6e59f4a04658
 i
 9app/src/main/java/com/example/module1/news/NewsUIModel.kt,4\0\40e8b31b1195c903dd87dcaacb35c1b4c764e06c
