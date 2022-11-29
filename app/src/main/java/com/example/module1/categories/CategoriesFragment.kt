@@ -11,12 +11,11 @@ import com.example.module1.ItemMarginDecoration
 import com.example.module1.R
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.module1.CategoryStore
+import com.example.module1.CategoryStoreImpl
 
 class CategoriesFragment : Fragment() {
     private val adapter = CategoriesAdapter()
 
-    //private val viewModel: CategoriesViewModel by viewModels()
     private lateinit var viewModel: CategoriesViewModel
 
     override fun onCreateView(
@@ -26,7 +25,7 @@ class CategoriesFragment : Fragment() {
     ): View {
         viewModel = ViewModelProvider(
             this,
-            CategoriesViewModelFactory(CategoryStore().listCategories)
+            CategoriesViewModelFactory(CategoryStoreImpl())
         )[CategoriesViewModel::class.java]
         return inflater.inflate(R.layout.fragment_categories, container, false)
     }
