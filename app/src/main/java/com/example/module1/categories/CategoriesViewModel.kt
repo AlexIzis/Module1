@@ -1,10 +1,9 @@
 package com.example.module1.categories
 
 import androidx.lifecycle.ViewModel
-import com.example.module1.CategoryStore
 
-class CategoriesViewModel : ViewModel() {
-    private var _listCategories = CategoryStore().listCategories
+class CategoriesViewModel(list: ArrayList<CategoryUiModel>) : ViewModel() {
+    private var _listCategories = list
     val listCategories: ArrayList<CategoryUiModel>
         get() = _listCategories
 }

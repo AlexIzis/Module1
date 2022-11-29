@@ -9,18 +9,25 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.module1.ItemMarginDecoration
 import com.example.module1.R
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.module1.CategoryStore
 
 class CategoriesFragment : Fragment() {
     private val adapter = CategoriesAdapter()
-    private val viewModel: CategoriesViewModel by viewModels()
+
+    //private val viewModel: CategoriesViewModel by viewModels()
+    private lateinit var viewModel: CategoriesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        viewModel = ViewModelProvider(
+            this,
+            CategoriesViewModelFactory(CategoryStore().listCategories)
+        )[CategoriesViewModel::class.java]
         return inflater.inflate(R.layout.fragment_categories, container, false)
     }
 
