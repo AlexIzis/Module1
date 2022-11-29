@@ -1,6 +1,4 @@
-package com.example.module1
-
-import com.example.module1.categories.CategoryUiModel
+package com.example.module1.categories
 
 class CategoryStoreImpl: CategoryStore {
     private var listCategories = arrayListOf(

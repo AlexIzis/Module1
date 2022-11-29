@@ -1,6 +1,4 @@
-package com.example.module1
-
-import com.example.module1.news.NewsUIModel
+package com.example.module1.news
 
 class NewsStoreImpl : NewsStore {
     private var listNews = arrayListOf(

@@ -1,44 +1,38 @@
 package com.example.module1.news
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.module1.FragmentNavigation
 import com.example.module1.ItemMarginDecoration
-import com.example.module1.JsonParser
 import com.example.module1.R
 import com.example.module1.event.EventFragment
 import com.example.module1.event.KEY_NEW
 import com.example.module1.filter.FilterFragment
 import com.example.module1.filter.KEY_FROM_FILTER
 import com.example.module1.filter.REQUEST_KEY_FILTER
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.disposables.Disposable
-import io.reactivex.rxjava3.schedulers.Schedulers
-import java.util.concurrent.TimeUnit
-import kotlin.collections.ArrayList
-
-const val SAVED_INSTANCE_KEY_NEWS = "list_of_news"
 
 class NewsFragment : Fragment() {
-    private var newsList: ArrayList<NewsUIModel> = ArrayList()
     private var category = arrayListOf<String>()
     private val adapter = NewsAdapter(onItemClick())
     private lateinit var loading: ProgressBar
-    private lateinit var disposable: Disposable
+    private lateinit var viewModel: NewsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        viewModel = ViewModelProvider(
+            this,
+            NewsViewModelFactory(NewsStoreImpl())
+        )[NewsViewModel::class.java]
         return inflater.inflate(R.layout.fragment_news, container, false)
     }
 
@@ -60,39 +54,8 @@ class NewsFragment : Fragment() {
             )
         }
 
-        if (savedInstanceState != null) {
-            val result = savedInstanceState.getParcelableArrayList<NewsUIModel>(
-                SAVED_INSTANCE_KEY_NEWS
-            )
-            if (result != null) {
-                newsList = result
-                loading.visibility = View.GONE
-                adapter.differ.submitList(result)
-            }
-        }
-        if (newsList.size == 0) {
-            disposable = Observable.fromCallable {
-                JsonParser(
-                    getString(R.string.path_to_news),
-                    NewsUIModel::class.java,
-                    requireContext()
-                ).parseJson()
-            }
-                .subscribeOn(Schedulers.io())
-                .doOnNext {
-                    Log.d("tag", Thread.currentThread().name)
-                }
-                .delay(5000, TimeUnit.MILLISECONDS)
-                .map { it as ArrayList<NewsUIModel> }
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    Log.d("tag", Thread.currentThread().name)
-                    newsList = it
-                    loading.visibility = View.GONE
-                    adapter.differ.submitList(it)
-                }
-
-        }
+        loading.visibility = View.GONE
+        adapter.differ.submitList(viewModel.listNews)
 
         activity?.supportFragmentManager?.setFragmentResultListener(
             REQUEST_KEY_FILTER,
@@ -117,25 +80,13 @@ class NewsFragment : Fragment() {
 
     private fun filterByCategories(): List<NewsUIModel> {
         return if (category.isEmpty()) {
-            newsList
+            viewModel.listNews
         } else {
             val filterNews = arrayListOf<NewsUIModel>()
             for (i in category) {
-                filterNews.addAll(newsList.filter { it.categories.contains(i) })
+                filterNews.addAll(viewModel.listNews.filter { it.categories.contains(i) })
             }
             filterNews.toList()
         }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        if (newsList.isNotEmpty()) {
-            outState.putParcelableArrayList(SAVED_INSTANCE_KEY_NEWS, newsList)
-        }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        disposable.dispose()
     }
 }
