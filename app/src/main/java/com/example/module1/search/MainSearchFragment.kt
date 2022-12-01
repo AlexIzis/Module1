@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit
 
 class MainSearchFragment : Fragment() {
     private lateinit var unsubscribe: Subscription
-    private val viewModel: VMSearch by viewModels()
+    private val viewModel: VMSearch by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -9,13 +9,10 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class VMSearch : ViewModel() {
-    companion object {
-        private val _flow = MutableStateFlow("...")
-    }
+    private val _flow = MutableStateFlow("...")
+    val searchFlow: StateFlow<String> = _flow.asStateFlow()
 
-    val flow: StateFlow<String> = _flow.asStateFlow()
-
-    fun searchResult(string: String) {
+    fun searchResult(string: String){
         viewModelScope.launch {
             try {
                 _flow.emit(string)

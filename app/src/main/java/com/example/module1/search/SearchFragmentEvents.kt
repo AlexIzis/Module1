@@ -8,9 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.module1.JsonParser
@@ -27,7 +25,7 @@ import kotlinx.coroutines.launch
 class SearchFragmentEvents : Fragment() {
     private var news: ArrayList<NewsUIModel> = arrayListOf()
     private lateinit var unsubscribeNews: Disposable
-    private val viewModel: VMSearch by viewModels()
+    private val viewModel: VMSearch by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -67,7 +65,7 @@ class SearchFragmentEvents : Fragment() {
                 /*SearchFlow.outputFlow().collect {
                     adapter.setResults(searchSystem(it))
                 }*/
-                viewModel.flow.collect{
+                viewModel.searchFlow.collect{
                     adapter.setResults(searchSystem(it))
                 }
             } catch (e: Exception) {
