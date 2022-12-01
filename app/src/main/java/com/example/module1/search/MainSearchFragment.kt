@@ -7,6 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.example.module1.R
 import com.google.android.material.tabs.TabLayout
@@ -20,6 +24,7 @@ import java.util.concurrent.TimeUnit
 
 class MainSearchFragment : Fragment() {
     private lateinit var unsubscribe: Subscription
+    private val viewModel: VMSearch by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,7 +68,8 @@ class MainSearchFragment : Fragment() {
             .subscribe {
                 CoroutineScope(Dispatchers.IO).launch {
                     try {
-                        SearchFlow.outputFlow().emit(it.toString())
+                        //SearchFlow.outputFlow().emit(it.toString())
+                        viewModel.searchResult(it.toString())
                     } catch (e: Exception) {
                         Log.d("tag", e.toString())
                         Log.d("tag", "Программка, не болей")

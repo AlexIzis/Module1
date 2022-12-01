@@ -11,6 +11,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.example.module1.R
 import com.example.module1.VMNewsFlow
 import com.example.module1.news.NewsBus
@@ -26,6 +29,7 @@ const val KEY_NEW = "new"
 
 class EventFragment : Fragment() {
     private lateinit var new: NewsUIModel
+    private val viewModel: VMNewsFlow by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,17 +87,20 @@ class EventFragment : Fragment() {
         val underlineTextSite = "<u>${new.site}</u>"
         siteView.text = HtmlCompat.fromHtml(underlineTextSite, HtmlCompat.FROM_HTML_MODE_LEGACY)
 
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModel.emitData(new.id)
+
+        /*CoroutineScope(Dispatchers.IO).launch {
             if (!NewsFlow.readNews.contains(new.id)) {
                 NewsFlow.readNews.add(new.id)
             }
             try {
-                NewsFlow.outputData().emit(NewsFlow.readNews.size)
+                *//*NewsFlow.outputData().emit(NewsFlow.readNews.size)*//*
+                viewModel.emitData(new.id)
             } catch (e: Exception) {
                 Log.d("tag", e.toString())
                 Log.d("tag", "Программка, не болей")
             }
-        }
+        }*/
 
 
         val backArrow: ImageView = view.findViewById(R.id.backArrowFromEvent)
