@@ -13,7 +13,7 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
 
     private val categories = mutableListOf<CategoryUiModel>()
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imgView: ImageView = itemView.findViewById(R.id.imageCategory)
         val textView: TextView = itemView.findViewById(R.id.textCategory)
     }

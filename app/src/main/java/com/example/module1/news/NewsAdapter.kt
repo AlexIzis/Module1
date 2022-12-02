@@ -16,23 +16,21 @@ import java.util.*
 class NewsAdapter(private val onItemClick: ((NewsUIModel) -> Unit)) :
     RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imgView: ImageView = itemView.findViewById(R.id.imageContainer)
         val labelText: TextView = itemView.findViewById(R.id.textContainer)
         val descText: TextView = itemView.findViewById(R.id.descContainer)
         val time: TextView = itemView.findViewById(R.id.timeContainer)
-
-        init {
-            itemView.setOnClickListener {
-                onItemClick.invoke(differ.currentList[adapterPosition])
-            }
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.news_item, parent, false)
-        return ViewHolder(itemView)
+        return ViewHolder(itemView).apply {
+            itemView.setOnClickListener {
+                onItemClick.invoke(differ.currentList[adapterPosition])
+            }
+        }
     }
 
     @SuppressLint("UseCompatLoadingForDrawables", "SimpleDateFormat")

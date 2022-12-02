@@ -12,9 +12,6 @@ import com.example.module1.JsonParser
 import com.example.module1.R
 import com.example.module1.categories.CategoryUiModel
 
-const val KEY_FROM_FILTER = "category"
-const val REQUEST_KEY_FILTER = "result"
-
 class FilterFragment : Fragment() {
 
     private val categories = arrayListOf<String>()
@@ -77,5 +74,10 @@ class FilterFragment : Fragment() {
         backArrow.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
+    }
+
+    companion object {
+        const val KEY_FROM_FILTER = "category"
+        const val REQUEST_KEY_FILTER = "result"
     }
 }

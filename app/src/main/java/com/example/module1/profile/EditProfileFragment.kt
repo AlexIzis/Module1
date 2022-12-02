@@ -24,11 +24,6 @@ import com.example.module1.FragmentNavigation
 import com.example.module1.R
 import java.util.*
 
-const val REQUEST_CODE = 1
-private const val TAKE_PHOTO_FROM_GALLERY = 0
-private const val TAKE_PHOTO_FROM_CAMERA = 1
-private const val DELETE_PHOTO = 2
-
 class EditProfileFragment : Fragment() {
     private lateinit var getResultFromCamera: ActivityResultLauncher<Intent>
     private lateinit var getResultFromGallery: ActivityResultLauncher<Intent>
@@ -163,5 +158,12 @@ class EditProfileFragment : Fragment() {
             }
             .create()
             .show()
+    }
+
+    companion object {
+        const val REQUEST_CODE = 1
+        private const val TAKE_PHOTO_FROM_GALLERY = 0
+        private const val TAKE_PHOTO_FROM_CAMERA = 1
+        private const val DELETE_PHOTO = 2
     }
 }

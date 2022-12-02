@@ -3,7 +3,6 @@ package com.example.module1.event
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,20 +11,11 @@ import android.widget.TextView
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.example.module1.R
 import com.example.module1.VMNewsFlow
-import com.example.module1.news.NewsBus
-import com.example.module1.news.NewsFlow
 import com.example.module1.news.NewsUIModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
-
-const val KEY_NEW = "new"
 
 class EventFragment : Fragment() {
     private lateinit var new: NewsUIModel
@@ -59,13 +49,13 @@ class EventFragment : Fragment() {
         textTime.text = SimpleDateFormat("MMMM dd, yyyy").format(Date(new.time))
 
         val imgEvent: ImageView = view.findViewById(R.id.imgEvent)
-        imgEvent.setImageResource(findID(new.img))
+        imgEvent.setImageResource(findImageID(new.img))
 
         val imgOptEventUp: ImageView = view.findViewById(R.id.imgOpt_1)
-        imgOptEventUp.setImageResource(findID(new.imgOptionally[0]))
+        imgOptEventUp.setImageResource(findImageID(new.imgOptionally[0]))
 
         val imgOptEventDown: ImageView = view.findViewById(R.id.imgOpt_2)
-        imgOptEventDown.setImageResource(findID(new.imgOptionally[1]))
+        imgOptEventDown.setImageResource(findImageID(new.imgOptionally[1]))
 
         val descEvent: TextView = view.findViewById(R.id.descEvent)
         descEvent.text = new.description
@@ -81,6 +71,11 @@ class EventFragment : Fragment() {
 
         val emailView: TextView = view.findViewById(R.id.emailEvent)
         val underlineTextEmail = "<u>${new.email}</u>"
+        /*val underlineTextEmail = SpannableString(new.email).apply {
+            setSpan(
+                UnderlineSpan(), 1, new.email.length - 1, Spannable.SPAN_EXCLUSIVE_INCLUSIVE
+            )
+        }*/
         emailView.text = HtmlCompat.fromHtml(underlineTextEmail, HtmlCompat.FROM_HTML_MODE_LEGACY)
 
         val siteView: TextView = view.findViewById(R.id.siteEvent)
@@ -89,27 +84,17 @@ class EventFragment : Fragment() {
 
         viewModel.emitData(new.id)
 
-        /*CoroutineScope(Dispatchers.IO).launch {
-            if (!NewsFlow.readNews.contains(new.id)) {
-                NewsFlow.readNews.add(new.id)
-            }
-            try {
-                *//*NewsFlow.outputData().emit(NewsFlow.readNews.size)*//*
-                viewModel.emitData(new.id)
-            } catch (e: Exception) {
-                Log.d("tag", e.toString())
-                Log.d("tag", "Программка, не болей")
-            }
-        }*/
-
-
         val backArrow: ImageView = view.findViewById(R.id.backArrowFromEvent)
         backArrow.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
     }
 
-    private fun findID(name: String): Int {
+    private fun findImageID(name: String): Int {
         return requireContext().resources.getIdentifier(name, "img", requireContext().packageName)
+    }
+
+    companion object {
+        const val KEY_NEW = "new"
     }
 }

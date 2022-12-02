@@ -12,7 +12,7 @@ import com.example.module1.news.NewsUIModel
 class SearchEventsAdapter: RecyclerView.Adapter<SearchEventsAdapter.ViewHolder>() {
     private var events = mutableListOf<NewsUIModel>()
 
-    inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val title: TextView = itemView.findViewById(R.id.textViewSearchItem)
     }
 

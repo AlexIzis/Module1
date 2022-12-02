@@ -1,16 +1,15 @@
 package com.example.module1.categories
 
-import android.os.*
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.module1.ItemMarginDecoration
 import com.example.module1.R
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 
 class CategoriesFragment : Fragment() {
     private val adapter = CategoriesAdapter()
@@ -35,8 +34,6 @@ class CategoriesFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(ItemMarginDecoration())
 
-        val loading: ProgressBar = view.findViewById(R.id.progressBarCategories)
-        loading.visibility = View.GONE
         adapter.setCategories(viewModel.listCategories)
     }
 }

@@ -62,9 +62,6 @@ class SearchFragmentEvents : Fragment() {
 
         CoroutineScope(Dispatchers.Main).launch {
             try {
-                /*SearchFlow.outputFlow().collect {
-                    adapter.setResults(searchSystem(it))
-                }*/
                 viewModel.searchFlow.collect{
                     adapter.setResults(searchSystem(it))
                 }

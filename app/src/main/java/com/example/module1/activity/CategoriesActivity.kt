@@ -60,7 +60,6 @@ class CategoriesActivity : AppCompatActivity() {
 
         CoroutineScope(Dispatchers.Main).launch {
             try {
-                /*getResult()*/
                 viewModel.flow.collect{
                     navigation.getOrCreateBadge(R.id.news).number = countAllNews - it
                 }
@@ -112,14 +111,6 @@ class CategoriesActivity : AppCompatActivity() {
                 else -> {
                     false
                 }
-            }
-        }
-    }
-
-    private suspend fun getResult() {
-        coroutineScope {
-            NewsFlow.outputData().collect {
-                navigation.getOrCreateBadge(R.id.news).number = countAllNews - it
             }
         }
     }

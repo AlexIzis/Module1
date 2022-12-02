@@ -14,10 +14,10 @@ import com.example.module1.FragmentNavigation
 import com.example.module1.ItemMarginDecoration
 import com.example.module1.R
 import com.example.module1.event.EventFragment
-import com.example.module1.event.KEY_NEW
+import com.example.module1.event.EventFragment.Companion.KEY_NEW
 import com.example.module1.filter.FilterFragment
-import com.example.module1.filter.KEY_FROM_FILTER
-import com.example.module1.filter.REQUEST_KEY_FILTER
+import com.example.module1.filter.FilterFragment.Companion.KEY_FROM_FILTER
+import com.example.module1.filter.FilterFragment.Companion.REQUEST_KEY_FILTER
 
 class NewsFragment : Fragment() {
     private var category = arrayListOf<String>()

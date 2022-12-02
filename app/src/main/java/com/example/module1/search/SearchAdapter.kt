@@ -12,7 +12,7 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
     private val searchResults = mutableListOf<String>()
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val result: TextView = itemView.findViewById(R.id.textViewSearchItem)
     }
 
