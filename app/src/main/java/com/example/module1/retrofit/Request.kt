@@ -1,0 +1,27 @@
+package com.example.module1.retrofit
+
+import com.example.module1.news.NewsUIModel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class Request {
+    private lateinit var list: List<NewsUIModel>
+
+    fun startRequest() {
+        val service = Common.retrofitServices
+        service.getNewsList().enqueue(object : Callback<MutableList<NewsUIModel>> {
+            override fun onResponse(
+                call: Call<MutableList<NewsUIModel>>,
+                response: Response<MutableList<NewsUIModel>>
+            ) {
+                list = response.body() as List<NewsUIModel>
+            }
+
+            override fun onFailure(call: Call<MutableList<NewsUIModel>>, t: Throwable) {
+                throw t
+            }
+
+        })
+    }
+}
