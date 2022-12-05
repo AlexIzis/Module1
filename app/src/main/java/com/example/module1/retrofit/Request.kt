@@ -17,11 +17,15 @@ class Request {
                 call: Call<MutableList<NewsUIModel>>,
                 response: Response<MutableList<NewsUIModel>>
             ) {
-                list = response.body() as List<NewsUIModel>
+                if (response.body() == null) {
+                    Log.d("errorNetwork", response.toString())
+                } else {
+                    list = response.body() as List<NewsUIModel>
+                }
             }
 
             override fun onFailure(call: Call<MutableList<NewsUIModel>>, t: Throwable) {
-                Log.d("error", t.toString())
+                Log.d("errorNetwork", t.toString())
                 list = NewsStoreImpl().getNews()
             }
 

@@ -14,6 +14,7 @@ import com.example.module1.news.NewsFlow
 import com.example.module1.news.NewsFragment
 import com.example.module1.news.NewsUIModel
 import com.example.module1.profile.ProfileFragment
+import com.example.module1.retrofit.Request
 import com.example.module1.search.MainSearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -42,6 +43,8 @@ class CategoriesActivity : AppCompatActivity() {
                 CategoriesFragment()
             )
         }
+
+        Request().startRequest()
 
         navigation = findViewById(R.id.btnNavHelp)
         disposable = Observable.fromCallable {

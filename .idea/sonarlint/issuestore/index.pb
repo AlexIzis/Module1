@@ -40,8 +40,6 @@ t
 Dapp/src/main/java/com/example/module1/search/SearchFragmentEvents.kt,6\e\6e9f186807d618cece75c32ca8f39cc29cc6bad0
 c
 3app/src/main/java/com/example/module1/VMNewsFlow.kt,b\e\be017df7e2943389d868ee27b6c97e745e1cb33b
-t
-Dapp/src/main/java/com/example/module1/activity/CategoriesActivity.kt,d\1\d16fa4555fdd4a2cf822dc1dbd286307775b67f1
 o
 ?app/src/main/java/com/example/module1/activity/LoginActivity.kt,3\2\320fcc2d36b3ac220f73c520c448d7b24c4b8de5
 u
@@ -88,3 +86,5 @@ m
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+k
+;app/src/main/java/com/example/module1/news/NewsStoreImpl.kt,0\c\0cde9465d23863b02e27472710c354e8c19389c6
