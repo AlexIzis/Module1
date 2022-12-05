@@ -84,3 +84,7 @@ i
 9app/src/main/java/com/example/module1/search/VpAdapter.kt,b\0\b015439b616be79c0797b56dd37b7c32b38ec56b
 m
 =app/src/main/java/com/example/module1/ItemMarginDecoration.kt,0\6\0658fbaaa54a2b385cd741e9e1a2ee798c854525
+@
+app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e

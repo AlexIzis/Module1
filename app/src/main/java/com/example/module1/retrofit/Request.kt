@@ -1,5 +1,7 @@
 package com.example.module1.retrofit
 
+import android.util.Log
+import com.example.module1.news.NewsStoreImpl
 import com.example.module1.news.NewsUIModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -19,7 +21,8 @@ class Request {
             }
 
             override fun onFailure(call: Call<MutableList<NewsUIModel>>, t: Throwable) {
-                throw t
+                Log.d("error", t.toString())
+                list = NewsStoreImpl().getNews()
             }
 
         })
