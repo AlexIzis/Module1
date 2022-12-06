@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,15 +27,16 @@ class NewsFragment : Fragment() {
     private val adapter = NewsAdapter(onItemClick())
     private lateinit var loading: ProgressBar
     private lateinit var viewModel: NewsViewModel
+    private val vm: NewsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewModel = ViewModelProvider(
+        /*viewModel = ViewModelProvider(
             this,
-            NewsViewModelFactory(NewsStoreImpl())
-        )[NewsViewModel::class.java]
+            NewsViewModelFactory(*//*NewsStoreImpl()*//*)
+        )[NewsViewModel::class.java]*/
         return inflater.inflate(R.layout.fragment_news, container, false)
     }
 
@@ -45,7 +47,6 @@ class NewsFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(ItemMarginDecoration())
-
 
         val imageFilter: ImageView = view.findViewById(R.id.iconFilter)
         imageFilter.setOnClickListener {
@@ -58,17 +59,14 @@ class NewsFragment : Fragment() {
 
         lifecycleScope.launch {
             val storeImpl = NewsStoreImpl()
-            storeImpl.getNews()
-            viewModel.newsFlow.collect {
+            storeImpl.getNews(vm)
+            vm.newsFlow.collect {
                 if (it.isNotEmpty()) {
                     loading.visibility = View.GONE
                 }
                 adapter.differ.submitList(it)
             }
         }
-
-        /*loading.visibility = View.GONE
-        adapter.differ.submitList(viewModel.listNews)*/
 
         activity?.supportFragmentManager?.setFragmentResultListener(
             REQUEST_KEY_FILTER,
@@ -93,11 +91,11 @@ class NewsFragment : Fragment() {
 
     private fun filterByCategories(): List<NewsUIModel> {
         return if (category.isEmpty()) {
-            viewModel.newsFlow.value
+            vm.newsFlow.value
         } else {
             val filterNews = arrayListOf<NewsUIModel>()
             for (i in category) {
-                filterNews.addAll(viewModel.newsFlow.value.filter { it.categories.contains(i) })
+                filterNews.addAll(vm.newsFlow.value.filter { it.categories.contains(i) })
             }
             filterNews.toList()
         }
