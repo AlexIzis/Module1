@@ -10,11 +10,9 @@ import com.example.module1.JsonParser
 import com.example.module1.R
 import com.example.module1.VMNewsFlow
 import com.example.module1.categories.CategoriesFragment
-import com.example.module1.news.NewsFlow
 import com.example.module1.news.NewsFragment
 import com.example.module1.news.NewsUIModel
 import com.example.module1.profile.ProfileFragment
-import com.example.module1.retrofit.Request
 import com.example.module1.search.MainSearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -23,7 +21,6 @@ import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
 class CategoriesActivity : AppCompatActivity() {
@@ -43,8 +40,6 @@ class CategoriesActivity : AppCompatActivity() {
                 CategoriesFragment()
             )
         }
-
-        Request().startRequest()
 
         navigation = findViewById(R.id.btnNavHelp)
         disposable = Observable.fromCallable {

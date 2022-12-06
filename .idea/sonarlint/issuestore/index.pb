@@ -11,8 +11,6 @@ h
 8app/src/test/java/com/example/module1/ExampleUnitTest.kt,b\9\b979231dfa768da8d02d94a29c1b21cc19504bd1
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
-e
-5app/src/main/java/com/example/module1/news/NewsBus.kt,2\8\2881aeaeb7b23ca4cfd17e5a21d0d6fb28874c75
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
@@ -22,24 +20,12 @@ k
 ;app/src/main/java/com/example/module1/FragmentNavigation.kt,b\2\b207fa74369cf513683fcbbd29be8929936bc607
 c
 3app/src/main/java/com/example/module1/JsonParser.kt,b\1\b1d54747964bc0388264e4b757570132a2182323
-k
-;app/src/main/java/com/example/module1/news/NewsViewModel.kt,b\8\b818dd3ddc0dd91218555dfda791a942fdd67ec9
-g
-7app/src/main/java/com/example/module1/news/NewsStore.kt,e\9\e9aebeb2c2ef704268a8ac7d7a190a002dc2d598
-r
-Bapp/src/main/java/com/example/module1/news/NewsViewModelFactory.kt,9\d\9d51c27efa458a04a26e9643e4790a83bda9d6bf
 i
 9app/src/main/java/com/example/module1/search/SearchBus.kt,a\1\a1fb7c352b167e418573649ec9b4dc9fedf18128
-f
-6app/src/main/java/com/example/module1/news/NewsFlow.kt,3\3\33485fac8fc0b59e1d2d74fbb717780bf1671f74
-i
-9app/src/main/java/com/example/module1/news/NewsUIModel.kt,4\0\40e8b31b1195c903dd87dcaacb35c1b4c764e06c
 j
 :app/src/main/java/com/example/module1/search/SearchFlow.kt,7\b\7b8942beff8586ae6889aa6463aabab12f5248cd
 t
 Dapp/src/main/java/com/example/module1/search/SearchFragmentEvents.kt,6\e\6e9f186807d618cece75c32ca8f39cc29cc6bad0
-c
-3app/src/main/java/com/example/module1/VMNewsFlow.kt,b\e\be017df7e2943389d868ee27b6c97e745e1cb33b
 o
 ?app/src/main/java/com/example/module1/activity/LoginActivity.kt,3\2\320fcc2d36b3ac220f73c520c448d7b24c4b8de5
 u
@@ -62,8 +48,6 @@ p
 @app/src/main/java/com/example/module1/profile/ProfileFragment.kt,1\f\1f796cd5d959574fc4347403aff77c730d7e71a3
 t
 Dapp/src/main/java/com/example/module1/profile/EditProfileFragment.kt,9\e\9e324c5c7b30caf79df1bea8128651d32826e5b0
-j
-:app/src/main/java/com/example/module1/news/NewsFragment.kt,7\a\7aa65720e0e4776438263d7710844ce75eb25488
 n
 >app/src/main/java/com/example/module1/filter/FilterFragment.kt,9\2\924489c6e9803a20983d9e222f3419f0697028a6
 i
@@ -86,5 +70,3 @@ m
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
-k
-;app/src/main/java/com/example/module1/news/NewsStoreImpl.kt,0\c\0cde9465d23863b02e27472710c354e8c19389c6
