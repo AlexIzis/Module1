@@ -26,7 +26,7 @@ class Request {
 
             override fun onFailure(call: Call<MutableList<NewsUIModel>>, t: Throwable) {
                 Log.d("errorNetwork", t.toString())
-                list = NewsStoreImpl().getNews()
+                /*list = NewsStoreImpl().getNews()*/
             }
 
         })

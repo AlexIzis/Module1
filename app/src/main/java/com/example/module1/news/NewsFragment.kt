@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.module1.FragmentNavigation
@@ -18,6 +19,7 @@ import com.example.module1.event.EventFragment.Companion.KEY_NEW
 import com.example.module1.filter.FilterFragment
 import com.example.module1.filter.FilterFragment.Companion.KEY_FROM_FILTER
 import com.example.module1.filter.FilterFragment.Companion.REQUEST_KEY_FILTER
+import kotlinx.coroutines.launch
 
 class NewsFragment : Fragment() {
     private var category = arrayListOf<String>()
@@ -54,8 +56,18 @@ class NewsFragment : Fragment() {
             )
         }
 
-        loading.visibility = View.GONE
-        adapter.differ.submitList(viewModel.listNews)
+        lifecycleScope.launch {
+            NewsStoreImpl().getNews()
+            viewModel.newsFlow.collect {
+                if (it.isNotEmpty()) {
+                    loading.visibility = View.GONE
+                }
+                adapter.differ.submitList(it)
+            }
+        }
+
+        /*loading.visibility = View.GONE
+        adapter.differ.submitList(viewModel.listNews)*/
 
         activity?.supportFragmentManager?.setFragmentResultListener(
             REQUEST_KEY_FILTER,
@@ -80,11 +92,11 @@ class NewsFragment : Fragment() {
 
     private fun filterByCategories(): List<NewsUIModel> {
         return if (category.isEmpty()) {
-            viewModel.listNews
+            viewModel.newsFlow.value
         } else {
             val filterNews = arrayListOf<NewsUIModel>()
             for (i in category) {
-                filterNews.addAll(viewModel.listNews.filter { it.categories.contains(i) })
+                filterNews.addAll(viewModel.newsFlow.value.filter { it.categories.contains(i) })
             }
             filterNews.toList()
         }

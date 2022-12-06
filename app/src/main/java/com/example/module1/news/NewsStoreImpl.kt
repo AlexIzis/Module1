@@ -1,5 +1,15 @@
 package com.example.module1.news
 
+import android.util.Log
+import com.example.module1.retrofit.Common
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 class NewsStoreImpl : NewsStore {
     private var listNews = arrayListOf(
         NewsUIModel(
@@ -32,5 +42,26 @@ class NewsStoreImpl : NewsStore {
         )
     )
 
-    override fun getNews(): List<NewsUIModel> = listNews
+    override fun getNews()/*: List<NewsUIModel>*/ {
+        lateinit var list: List<NewsUIModel>
+        Common.retrofitServices.getNewsList().enqueue(object : Callback<MutableList<NewsUIModel>> {
+            override fun onResponse(
+                call: Call<MutableList<NewsUIModel>>,
+                response: Response<MutableList<NewsUIModel>>
+            ) {
+                list = if (response.body() == null) {
+                    Log.d("errorNetwork", response.toString())
+                    listNews
+                } else {
+                    response.body() as List<NewsUIModel>
+                }
+            }
+
+            override fun onFailure(call: Call<MutableList<NewsUIModel>>, t: Throwable) {
+                Log.d("errorNetwork", t.toString())
+            }
+
+        })
+        NewsViewModel(this@NewsStoreImpl).emitNewsList(list)
+    }
 }
