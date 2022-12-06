@@ -12,8 +12,12 @@ class NewsViewModel(store: NewsStore) : ViewModel() {
     val listNews: ArrayList<NewsUIModel>
         get() = _listNews*/
 
-    private var _newsFlow = MutableStateFlow<List<NewsUIModel>>(emptyList())
+    companion object {
+        private var _newsFlow = MutableStateFlow<List<NewsUIModel>>(emptyList())
+    }
+
     val newsFlow: StateFlow<List<NewsUIModel>> = _newsFlow.asStateFlow()
+
 
     fun emitNewsList(listNews: List<NewsUIModel>) {
         viewModelScope.launch {

@@ -57,7 +57,8 @@ class NewsFragment : Fragment() {
         }
 
         lifecycleScope.launch {
-            NewsStoreImpl().getNews()
+            val storeImpl = NewsStoreImpl()
+            storeImpl.getNews()
             viewModel.newsFlow.collect {
                 if (it.isNotEmpty()) {
                     loading.visibility = View.GONE

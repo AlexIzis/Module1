@@ -42,8 +42,9 @@ class NewsStoreImpl : NewsStore {
         )
     )
 
+    private var list = emptyList<NewsUIModel>()
+
     override fun getNews()/*: List<NewsUIModel>*/ {
-        lateinit var list: List<NewsUIModel>
         Common.retrofitServices.getNewsList().enqueue(object : Callback<MutableList<NewsUIModel>> {
             override fun onResponse(
                 call: Call<MutableList<NewsUIModel>>,
@@ -55,6 +56,7 @@ class NewsStoreImpl : NewsStore {
                 } else {
                     response.body() as List<NewsUIModel>
                 }
+                NewsViewModel(this@NewsStoreImpl).emitNewsList(list)
             }
 
             override fun onFailure(call: Call<MutableList<NewsUIModel>>, t: Throwable) {
@@ -62,6 +64,5 @@ class NewsStoreImpl : NewsStore {
             }
 
         })
-        NewsViewModel(this@NewsStoreImpl).emitNewsList(list)
     }
 }
