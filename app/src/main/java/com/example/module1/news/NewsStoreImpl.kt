@@ -2,11 +2,18 @@ package com.example.module1.news
 
 import android.util.Log
 import com.example.module1.retrofit.Common
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class NewsStoreImpl : NewsStore {
+    private val newsStoreFlow = MutableStateFlow<List<NewsUIModel>>(emptyList())
     private var listNews = arrayListOf(
         NewsUIModel(
             0,
@@ -38,21 +45,21 @@ class NewsStoreImpl : NewsStore {
         )
     )
 
-    private var list = emptyList<NewsUIModel>()
-
-    override fun getNews(viewModel: NewsViewModel){
+    override fun getNews() {
         Common.retrofitServices.getNewsList().enqueue(object : Callback<MutableList<NewsUIModel>> {
             override fun onResponse(
                 call: Call<MutableList<NewsUIModel>>,
                 response: Response<MutableList<NewsUIModel>>
             ) {
-                list = if (response.body() == null) {
+                val list = if (response.body() == null) {
                     Log.d("errorNetwork", response.toString())
                     listNews
                 } else {
                     response.body() as List<NewsUIModel>
                 }
-               viewModel.emitNewsList(list)
+                CoroutineScope(SupervisorJob() + Dispatchers.IO).launch {
+                    newsStoreFlow.emit(list)
+                }
             }
 
             override fun onFailure(call: Call<MutableList<NewsUIModel>>, t: Throwable) {
@@ -60,5 +67,9 @@ class NewsStoreImpl : NewsStore {
             }
 
         })
+    }
+
+    override fun getFlow(): Flow<List<NewsUIModel>> {
+        return newsStoreFlow
     }
 }

@@ -7,13 +7,16 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class NewsViewModel(store: NewsStore) : ViewModel() {
+class NewsViewModel(private val store: NewsStore) : ViewModel() {
     private var _newsFlow = MutableStateFlow<List<NewsUIModel>>(emptyList())
     val newsFlow: StateFlow<List<NewsUIModel>> = _newsFlow.asStateFlow()
 
-    fun emitNewsList(listNews: List<NewsUIModel>) {
+    fun emitNewsList() {
         viewModelScope.launch {
-            _newsFlow.emit(listNews)
+            store.getNews()
+            store.getFlow().collect {
+                _newsFlow.emit(it)
+            }
         }
     }
 }

@@ -27,6 +27,7 @@ class NewsFragment : Fragment() {
     private val adapter = NewsAdapter(onItemClick())
     private lateinit var loading: ProgressBar
     private lateinit var viewModel: NewsViewModel
+    /*private val viewModel: NewsViewModel by viewModels()*/
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,7 +58,7 @@ class NewsFragment : Fragment() {
         }
 
         lifecycleScope.launch {
-            NewsStoreImpl().getNews(viewModel)
+            viewModel.emitNewsList()
             viewModel.newsFlow.collect {
                 if (it.isNotEmpty()) {
                     loading.visibility = View.GONE
