@@ -27,16 +27,15 @@ class NewsFragment : Fragment() {
     private val adapter = NewsAdapter(onItemClick())
     private lateinit var loading: ProgressBar
     private lateinit var viewModel: NewsViewModel
-    private val vm: NewsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        /*viewModel = ViewModelProvider(
+        viewModel = ViewModelProvider(
             this,
-            NewsViewModelFactory(*//*NewsStoreImpl()*//*)
-        )[NewsViewModel::class.java]*/
+            NewsViewModelFactory(NewsStoreImpl())
+        )[NewsViewModel::class.java]
         return inflater.inflate(R.layout.fragment_news, container, false)
     }
 
@@ -58,9 +57,8 @@ class NewsFragment : Fragment() {
         }
 
         lifecycleScope.launch {
-            val storeImpl = NewsStoreImpl()
-            storeImpl.getNews(vm)
-            vm.newsFlow.collect {
+            NewsStoreImpl().getNews(viewModel)
+            viewModel.newsFlow.collect {
                 if (it.isNotEmpty()) {
                     loading.visibility = View.GONE
                 }
@@ -91,11 +89,11 @@ class NewsFragment : Fragment() {
 
     private fun filterByCategories(): List<NewsUIModel> {
         return if (category.isEmpty()) {
-            vm.newsFlow.value
+            viewModel.newsFlow.value
         } else {
             val filterNews = arrayListOf<NewsUIModel>()
             for (i in category) {
-                filterNews.addAll(vm.newsFlow.value.filter { it.categories.contains(i) })
+                filterNews.addAll(viewModel.newsFlow.value.filter { it.categories.contains(i) })
             }
             filterNews.toList()
         }

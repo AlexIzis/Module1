@@ -6,7 +6,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class NewsStoreImpl/* : NewsStore*/ {
+class NewsStoreImpl : NewsStore {
     private var listNews = arrayListOf(
         NewsUIModel(
             0,
@@ -40,7 +40,7 @@ class NewsStoreImpl/* : NewsStore*/ {
 
     private var list = emptyList<NewsUIModel>()
 
-    fun getNews(viewModel: NewsViewModel){
+    override fun getNews(viewModel: NewsViewModel){
         Common.retrofitServices.getNewsList().enqueue(object : Callback<MutableList<NewsUIModel>> {
             override fun onResponse(
                 call: Call<MutableList<NewsUIModel>>,

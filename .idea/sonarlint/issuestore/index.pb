@@ -82,3 +82,7 @@ h
 8app/src/main/java/com/example/module1/retrofit/Common.kt,e\9\e95224ed2649f0450007c20bd714460fc6dea569
 i
 9app/src/main/java/com/example/module1/retrofit/Request.kt,a\c\ac217ad2864acd415d98b5b7f2cd42d9b2f783c4
+i
+9app/src/main/java/com/example/module1/news/NewsUIModel.kt,4\0\40e8b31b1195c903dd87dcaacb35c1b4c764e06c
+t
+Dapp/src/main/java/com/example/module1/activity/CategoriesActivity.kt,d\1\d16fa4555fdd4a2cf822dc1dbd286307775b67f1
