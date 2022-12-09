@@ -2,13 +2,15 @@ package com.example.module1.event
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
 import android.text.method.ScrollingMovementMethod
+import android.text.style.UnderlineSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.module1.R
@@ -23,9 +25,7 @@ class EventFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            new = requireNotNull(it.getParcelable(KEY_NEW))
-        }
+        new = requireNotNull(arguments?.getParcelable(KEY_NEW))
     }
 
     override fun onCreateView(
@@ -70,17 +70,10 @@ class EventFragment : Fragment() {
         numEvent.text = "${new.numberList[0]}\n${new.numberList[1]}"
 
         val emailView: TextView = view.findViewById(R.id.emailEvent)
-        val underlineTextEmail = "<u>${new.email}</u>"
-        /*val underlineTextEmail = SpannableString(new.email).apply {
-            setSpan(
-                UnderlineSpan(), 0, new.email.length - 1, Spannable.SPAN_EXCLUSIVE_INCLUSIVE
-            )
-        }*/
-        emailView.text = HtmlCompat.fromHtml(underlineTextEmail, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        emailView.text = makeUnderlineString(new.email)
 
         val siteView: TextView = view.findViewById(R.id.siteEvent)
-        val underlineTextSite = "<u>${new.site}</u>"
-        siteView.text = HtmlCompat.fromHtml(underlineTextSite, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        siteView.text = makeUnderlineString(new.site)
 
         viewModel.emitData(new.id)
 
@@ -92,6 +85,14 @@ class EventFragment : Fragment() {
 
     private fun findImageID(name: String): Int {
         return requireContext().resources.getIdentifier(name, "img", requireContext().packageName)
+    }
+
+    private fun makeUnderlineString(inputString: String): SpannableString {
+        return SpannableString(inputString).apply {
+            setSpan(
+                UnderlineSpan(), 0, inputString.length, Spannable.SPAN_EXCLUSIVE_INCLUSIVE
+            )
+        }
     }
 
     companion object {
