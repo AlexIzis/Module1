@@ -5,7 +5,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object RetrofitClient {
+object NewsService {
 
     fun getClient(baseUrl: String): Retrofit {
         val logging = HttpLoggingInterceptor()

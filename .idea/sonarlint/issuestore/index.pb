@@ -42,8 +42,6 @@ s
 Capp/src/main/java/com/example/module1/categories/CategoryUiModel.kt,6\0\606da234925028f5d0bbb33fbf3c9764c4ae0418
 v
 Fapp/src/main/java/com/example/module1/categories/CategoriesFragment.kt,7\c\7cfd52e40ab03d62971f68bbdd8cf6cf8078ac12
-l
-<app/src/main/java/com/example/module1/event/EventFragment.kt,a\9\a94911751e121629765c131c494a6e59f4a04658
 p
 @app/src/main/java/com/example/module1/profile/ProfileFragment.kt,1\f\1f796cd5d959574fc4347403aff77c730d7e71a3
 t
@@ -76,3 +74,13 @@ i
 9app/src/main/java/com/example/module1/news/NewsUIModel.kt,4\0\40e8b31b1195c903dd87dcaacb35c1b4c764e06c
 t
 Dapp/src/main/java/com/example/module1/activity/CategoriesActivity.kt,d\1\d16fa4555fdd4a2cf822dc1dbd286307775b67f1
+@
+app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+k
+;app/src/main/java/com/example/module1/news/NewsViewModel.kt,b\8\b818dd3ddc0dd91218555dfda791a942fdd67ec9
+g
+7app/src/main/java/com/example/module1/news/NewsStore.kt,e\9\e9aebeb2c2ef704268a8ac7d7a190a002dc2d598
+r
+Bapp/src/main/java/com/example/module1/news/NewsViewModelFactory.kt,9\d\9d51c27efa458a04a26e9643e4790a83bda9d6bf
+j
+:app/src/main/java/com/example/module1/news/NewsFragment.kt,7\a\7aa65720e0e4776438263d7710844ce75eb25488

@@ -73,7 +73,7 @@ class EventFragment : Fragment() {
         val underlineTextEmail = "<u>${new.email}</u>"
         /*val underlineTextEmail = SpannableString(new.email).apply {
             setSpan(
-                UnderlineSpan(), 1, new.email.length - 1, Spannable.SPAN_EXCLUSIVE_INCLUSIVE
+                UnderlineSpan(), 0, new.email.length - 1, Spannable.SPAN_EXCLUSIVE_INCLUSIVE
             )
         }*/
         emailView.text = HtmlCompat.fromHtml(underlineTextEmail, HtmlCompat.FROM_HTML_MODE_LEGACY)
