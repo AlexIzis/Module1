@@ -45,7 +45,7 @@ class NewsStoreImpl : NewsStore {
         )
     )
 
-    override fun getNews() {
+    override fun getNews(vmScope: CoroutineScope) {
         Common.retrofitServices.getNewsList().enqueue(object : Callback<MutableList<NewsUIModel>> {
             override fun onResponse(
                 call: Call<MutableList<NewsUIModel>>,
@@ -57,7 +57,7 @@ class NewsStoreImpl : NewsStore {
                 } else {
                     response.body() as List<NewsUIModel>
                 }
-                CoroutineScope(SupervisorJob() + Dispatchers.IO).launch {
+                vmScope.launch {
                     newsStoreFlow.emit(list)
                 }
             }

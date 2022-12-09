@@ -66,8 +66,6 @@ m
 =app/src/main/java/com/example/module1/ItemMarginDecoration.kt,0\6\0658fbaaa54a2b385cd741e9e1a2ee798c854525
 P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
-e
-5app/src/main/java/com/example/module1/news/NewsBus.kt,2\8\2881aeaeb7b23ca4cfd17e5a21d0d6fb28874c75
 c
 3app/src/main/java/com/example/module1/VMNewsFlow.kt,b\e\be017df7e2943389d868ee27b6c97e745e1cb33b
 i
@@ -76,11 +74,5 @@ t
 Dapp/src/main/java/com/example/module1/activity/CategoriesActivity.kt,d\1\d16fa4555fdd4a2cf822dc1dbd286307775b67f1
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
-k
-;app/src/main/java/com/example/module1/news/NewsViewModel.kt,b\8\b818dd3ddc0dd91218555dfda791a942fdd67ec9
-g
-7app/src/main/java/com/example/module1/news/NewsStore.kt,e\9\e9aebeb2c2ef704268a8ac7d7a190a002dc2d598
 r
 Bapp/src/main/java/com/example/module1/news/NewsViewModelFactory.kt,9\d\9d51c27efa458a04a26e9643e4790a83bda9d6bf
-j
-:app/src/main/java/com/example/module1/news/NewsFragment.kt,7\a\7aa65720e0e4776438263d7710844ce75eb25488

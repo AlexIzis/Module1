@@ -13,7 +13,7 @@ class NewsViewModel(private val store: NewsStore) : ViewModel() {
 
     fun emitNewsList() {
         viewModelScope.launch {
-            store.getNews()
+            store.getNews(viewModelScope)
             store.getFlow().collect {
                 _newsFlow.emit(it)
             }

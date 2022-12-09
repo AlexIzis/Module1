@@ -96,5 +96,13 @@ class EventFragment : Fragment() {
 
     companion object {
         const val KEY_NEW = "new"
+
+        fun getInst(new: NewsUIModel): Fragment {
+            val bundle = Bundle()
+            bundle.putParcelable(KEY_NEW, new)
+            val fragment = EventFragment()
+            fragment.arguments = bundle
+            return fragment
+        }
     }
 }
