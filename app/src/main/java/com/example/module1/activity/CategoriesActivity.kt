@@ -5,10 +5,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.module1.FragmentNavigation
-import com.example.module1.JsonParser
-import com.example.module1.R
-import com.example.module1.VMNewsFlow
+import com.example.module1.*
 import com.example.module1.categories.CategoriesFragment
 import com.example.module1.news.NewsFragment
 import com.example.module1.news.NewsUIModel
