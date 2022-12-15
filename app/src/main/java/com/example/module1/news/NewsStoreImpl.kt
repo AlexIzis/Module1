@@ -44,13 +44,13 @@ class NewsStoreImpl : NewsStore {
     )
 
     override fun getNews(vmScope: CoroutineScope) {
-        Common.retrofitServices.getNewsList().enqueue(object : Callback<MutableList<NewsUIModel>> {
+        Common().retrofitServicesNews.getNewsList().enqueue(object : Callback<MutableList<NewsUIModel>> {
             override fun onResponse(
                 call: Call<MutableList<NewsUIModel>>,
                 response: Response<MutableList<NewsUIModel>>
             ) {
                 val list = if (response.body() == null) {
-                    Log.d("errorNetwork", response.toString())
+                    Log.d("errorNetworkNews", response.toString())
                     listNews
                 } else {
                     response.body() as List<NewsUIModel>
@@ -61,7 +61,7 @@ class NewsStoreImpl : NewsStore {
             }
 
             override fun onFailure(call: Call<MutableList<NewsUIModel>>, t: Throwable) {
-                Log.d("errorNetwork", t.toString())
+                Log.d("errorNetworkNews", t.toString())
             }
 
         })

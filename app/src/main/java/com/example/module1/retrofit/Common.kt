@@ -1,7 +1,10 @@
 package com.example.module1.retrofit
 
-object Common {
-    private const val BASE_URL = "https://mobile-study.simbirsoft1.com/"
-    val retrofitServices: NewsAPI
-        get() = NewsService.getClient(BASE_URL).create(NewsAPI::class.java)
+class Common {
+    private val baseUrl = "https://mobile-study.simbirsoft1.com/"
+    val retrofitServicesNews: NewsAPI
+        get() = Service.getClient(baseUrl).create(NewsAPI::class.java)
+
+    val retrofitServiceCategories: CategoriesAPI
+        get() = Service.getClient(baseUrl).create(CategoriesAPI::class.java)
 }
