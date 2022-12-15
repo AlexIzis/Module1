@@ -26,18 +26,12 @@ o
 ?app/src/main/java/com/example/module1/activity/LoginActivity.kt,3\2\320fcc2d36b3ac220f73c520c448d7b24c4b8de5
 u
 Eapp/src/main/java/com/example/module1/categories/CategoriesAdapter.kt,7\7\77d708c8a8b582b0978b62d096e36b61c5b29f86
-q
-Aapp/src/main/java/com/example/module1/categories/CategoryStore.kt,c\a\cabcfe90b0bc39203daa04867ccb845db53d64f8
 ~
 Napp/src/main/java/com/example/module1/categories/CategoriesViewModelFactory.kt,a\1\a1abc32ae6c631e75669e9e522bab5b49779ed1f
-v
-Fapp/src/main/java/com/example/module1/categories/CategoriesFragment.kt,7\c\7cfd52e40ab03d62971f68bbdd8cf6cf8078ac12
 p
 @app/src/main/java/com/example/module1/profile/ProfileFragment.kt,1\f\1f796cd5d959574fc4347403aff77c730d7e71a3
 t
 Dapp/src/main/java/com/example/module1/profile/EditProfileFragment.kt,9\e\9e324c5c7b30caf79df1bea8128651d32826e5b0
-i
-9app/src/main/java/com/example/module1/news/NewsAdapter.kt,8\4\84eb91cf1ab7a8cdd71e57fd612d7ef66fa4ea7f
 s
 Capp/src/main/java/com/example/module1/search/SearchEventsAdapter.kt,7\c\7c10e8a1aad660523a50487d64fc0ae640e882cc
 q
@@ -50,8 +44,6 @@ P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 c
 3app/src/main/java/com/example/module1/VMNewsFlow.kt,b\e\be017df7e2943389d868ee27b6c97e745e1cb33b
-g
-7app/src/main/java/com/example/module1/news/NewsStore.kt,e\9\e9aebeb2c2ef704268a8ac7d7a190a002dc2d598
 l
 <app/src/main/java/com/example/module1/event/EventFragment.kt,a\9\a94911751e121629765c131c494a6e59f4a04658
 n
@@ -66,7 +58,3 @@ r
 Bapp/src/main/java/com/example/module1/news/NewsViewModelFactory.kt,9\d\9d51c27efa458a04a26e9643e4790a83bda9d6bf
 i
 9app/src/main/java/com/example/module1/news/NewsUIModel.kt,4\0\40e8b31b1195c903dd87dcaacb35c1b4c764e06c
-j
-:app/src/main/java/com/example/module1/news/NewsFragment.kt,7\a\7aa65720e0e4776438263d7710844ce75eb25488
-k
-;app/src/main/java/com/example/module1/news/NewsViewModel.kt,b\8\b818dd3ddc0dd91218555dfda791a942fdd67ec9

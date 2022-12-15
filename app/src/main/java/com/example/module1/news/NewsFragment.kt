@@ -23,7 +23,6 @@ import kotlinx.coroutines.launch
 class NewsFragment : Fragment() {
     private var category = arrayListOf<String>()
     private val adapter = NewsAdapter(onItemClick())
-    private lateinit var loading: ProgressBar
     private lateinit var viewModel: NewsViewModel
 
     override fun onCreateView(
@@ -38,7 +37,7 @@ class NewsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        loading = view.findViewById(R.id.progressBarNews)
+        val loading: ProgressBar = view.findViewById(R.id.progressBarNews)
 
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewNews)
         recyclerView.layoutManager = LinearLayoutManager(context)

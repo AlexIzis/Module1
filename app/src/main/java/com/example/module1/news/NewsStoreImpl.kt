@@ -67,7 +67,5 @@ class NewsStoreImpl : NewsStore {
         })
     }
 
-    override fun getFlow(): Flow<List<NewsUIModel>> {
-        return newsStoreFlow
-    }
+    override fun getFlow(): Flow<List<NewsUIModel>> = newsStoreFlow
 }
