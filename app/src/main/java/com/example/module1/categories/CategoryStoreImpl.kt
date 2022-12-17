@@ -4,8 +4,8 @@ import android.content.Context
 import android.util.Log
 import com.example.module1.retrofit.Common
 import com.example.module1.room.AppDatabase
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -24,19 +24,19 @@ class CategoryStoreImpl(private val context: Context) : CategoryStore {
         CategoryUiModel("@drawable/event", "События", "events")
     )
 
-    override fun getDataFromDB(vmScope: CoroutineScope) {
+    override fun getDataFromDB(vmScope: CoroutineScope, dispatcher: CoroutineDispatcher) {
         database = AppDatabase.getDataBase(context)
-        vmScope.launch(Dispatchers.IO) {
+        vmScope.launch(dispatcher) {
             val categories = database.categoryDao().getCategories()
             if (categories.isEmpty()) {
-                getList(vmScope)
+                getDataFromServer(vmScope)
             } else {
                 categoriesStoreFlow.emit(categories)
             }
         }
     }
 
-    override fun getList(vmScope: CoroutineScope) {
+    override fun getDataFromServer(vmScope: CoroutineScope) {
         Common().retrofitServiceCategories.getCategoriesList()
             .enqueue(object : Callback<MutableList<CategoryUiModel>> {
                 override fun onResponse(

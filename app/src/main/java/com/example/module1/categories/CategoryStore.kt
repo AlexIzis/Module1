@@ -1,10 +1,11 @@
 package com.example.module1.categories
 
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 
 interface CategoryStore {
-    fun getList(vmScope: CoroutineScope)
+    fun getDataFromServer(vmScope: CoroutineScope)
     fun getFlow(): Flow<List<CategoryUiModel>>
-    fun getDataFromDB(vmScope: CoroutineScope)
+    fun getDataFromDB(vmScope: CoroutineScope, dispatcher: CoroutineDispatcher)
 }
