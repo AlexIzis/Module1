@@ -25,7 +25,7 @@ class CategoriesFragment : Fragment() {
     ): View {
         viewModel = ViewModelProvider(
             this,
-            CategoriesViewModelFactory(CategoryStoreImpl(), requireContext())
+            CategoriesViewModelFactory(CategoryStoreImpl(requireContext()))
         )[CategoriesViewModel::class.java]
         return inflater.inflate(R.layout.fragment_categories, container, false)
     }

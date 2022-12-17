@@ -9,12 +9,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CategoryStoreImpl : CategoryStore {
+class CategoryStoreImpl(private val context: Context) : CategoryStore {
     private val categoriesStoreFlow = MutableStateFlow<List<CategoryUiModel>>(emptyList())
     private lateinit var database: AppDatabase
     private var listCategories = arrayListOf(
@@ -25,16 +24,14 @@ class CategoryStoreImpl : CategoryStore {
         CategoryUiModel("@drawable/event", "События", "events")
     )
 
-    override fun getDataFromDB(context: Context, vmScope: CoroutineScope) {
+    override fun getDataFromDB(vmScope: CoroutineScope) {
         database = AppDatabase.getDataBase(context)
-        vmScope.launch {
-            withContext(Dispatchers.IO) {
-                val categories = database.categoryDao().getCategories()
-                if (categories.isEmpty()) {
-                    getList(vmScope)
-                } else {
-                    categoriesStoreFlow.emit(categories)
-                }
+        vmScope.launch(Dispatchers.IO) {
+            val categories = database.categoryDao().getCategories()
+            if (categories.isEmpty()) {
+                getList(vmScope)
+            } else {
+                categoriesStoreFlow.emit(categories)
             }
         }
     }
