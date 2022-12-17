@@ -5,9 +5,11 @@ import android.util.Log
 import com.example.module1.retrofit.Common
 import com.example.module1.room.AppDatabase
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,12 +27,14 @@ class CategoryStoreImpl : CategoryStore {
 
     override fun getDataFromDB(context: Context, vmScope: CoroutineScope) {
         database = AppDatabase.getDataBase(context)
-        val categories = database.categoryDao().getCategories()
-        if (categories.isEmpty()) {
-            getList(vmScope)
-        } else {
-            vmScope.launch {
-                categoriesStoreFlow.emit(categories)
+        vmScope.launch {
+            withContext(Dispatchers.IO) {
+                val categories = database.categoryDao().getCategories()
+                if (categories.isEmpty()) {
+                    getList(vmScope)
+                } else {
+                    categoriesStoreFlow.emit(categories)
+                }
             }
         }
     }

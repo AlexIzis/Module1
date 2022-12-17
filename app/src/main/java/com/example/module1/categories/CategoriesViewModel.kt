@@ -1,5 +1,6 @@
 package com.example.module1.categories
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,15 +9,17 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class CategoriesViewModel(private val store: CategoryStore, private val context: Context) :
+class CategoriesViewModel(
+    private val store: CategoryStore,
+    @SuppressLint("StaticFieldLeak") private val context: Context
+) :
     ViewModel() {
     private var _categoriesFlow = MutableStateFlow<List<CategoryUiModel>>(emptyList())
     val categoriesFlow: StateFlow<List<CategoryUiModel>> = _categoriesFlow.asStateFlow()
 
     fun emitCategoriesList() {
         viewModelScope.launch {
-            store.getDataFromDB(context)
-            store.getList(viewModelScope)
+            store.getDataFromDB(context, viewModelScope)
             store.getFlow().collect {
                 _categoriesFlow.emit(it)
             }
