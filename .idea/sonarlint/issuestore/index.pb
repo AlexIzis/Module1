@@ -55,8 +55,6 @@ i
 t
 Dapp/src/main/java/com/example/module1/activity/CategoriesActivity.kt,d\1\d16fa4555fdd4a2cf822dc1dbd286307775b67f1
 i
-9app/src/main/java/com/example/module1/retrofit/NewsAPI.kt,5\9\59603be51357b001c96aed3b6d22afb72d644425
-i
 9app/src/main/java/com/example/module1/news/NewsAdapter.kt,8\4\84eb91cf1ab7a8cdd71e57fd612d7ef66fa4ea7f
 k
 ;app/src/main/java/com/example/module1/news/NewsViewModel.kt,b\8\b818dd3ddc0dd91218555dfda791a942fdd67ec9
@@ -76,9 +74,5 @@ Capp/src/main/java/com/example/module1/categories/CategoryUiModel.kt,6\0\606da2
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 ~
 Napp/src/main/java/com/example/module1/categories/CategoriesViewModelFactory.kt,a\1\a1abc32ae6c631e75669e9e522bab5b49779ed1f
-v
-Fapp/src/main/java/com/example/module1/categories/CategoriesFragment.kt,7\c\7cfd52e40ab03d62971f68bbdd8cf6cf8078ac12
 ]
 -app/src/main/java/com/example/module1/Tink.kt,1\e\1e38373e7cf0656b185abd69e7ad2f5366629ecf
-i
-9app/src/main/java/com/example/module1/room/AppDatabase.kt,8\c\8c398b5f581633c78e201f737685ea644225abea

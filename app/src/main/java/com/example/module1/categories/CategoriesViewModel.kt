@@ -8,10 +8,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class CategoriesViewModel(
-    private val store: CategoryStore,
-) :
-    ViewModel() {
+class CategoriesViewModel(private val store: CategoryStore) : ViewModel() {
     private var _categoriesFlow = MutableStateFlow<List<CategoryUiModel>>(emptyList())
     val categoriesFlow: StateFlow<List<CategoryUiModel>> = _categoriesFlow.asStateFlow()
 
