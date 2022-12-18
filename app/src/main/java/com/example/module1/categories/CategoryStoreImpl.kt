@@ -9,6 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,14 +30,14 @@ class CategoryStoreImpl(private val context: Context) : CategoryStore {
         vmScope.launch(dispatcher) {
             val categories = database.categoryDao().getCategories()
             if (categories.isEmpty()) {
-                getDataFromServer(vmScope)
+                getDataFromServer(vmScope, dispatcher)
             } else {
                 categoriesStoreFlow.emit(categories)
             }
         }
     }
 
-    override fun getDataFromServer(vmScope: CoroutineScope) {
+    override fun getDataFromServer(vmScope: CoroutineScope, dispatcher: CoroutineDispatcher) {
         Common().retrofitServiceCategories.getCategoriesList()
             .enqueue(object : Callback<MutableList<CategoryUiModel>> {
                 override fun onResponse(
@@ -51,6 +52,11 @@ class CategoryStoreImpl(private val context: Context) : CategoryStore {
                     }
                     vmScope.launch {
                         categoriesStoreFlow.emit(list)
+                        withContext(dispatcher) {
+                            for (cat in list) {
+                                database.categoryDao().insertCategory(cat)
+                            }
+                        }
                     }
                 }
 

@@ -11,7 +11,7 @@ interface CategoriesDao  {
     @Query("SELECT * FROM category_table")
     fun getCategories(): List<CategoryUiModel>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertCategory(cat: CategoryUiModel)
 
     @Query("DELETE FROM category_table")
