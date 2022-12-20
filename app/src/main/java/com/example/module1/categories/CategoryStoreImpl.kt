@@ -2,7 +2,6 @@ package com.example.module1.categories
 
 import android.content.Context
 import android.util.Log
-import com.example.module1.MainApplication
 import com.example.module1.retrofit.Common
 import com.example.module1.room.AppDatabase
 import kotlinx.coroutines.CoroutineDispatcher
