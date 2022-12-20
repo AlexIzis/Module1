@@ -34,8 +34,6 @@ i
 9app/src/main/java/com/example/module1/search/VpAdapter.kt,b\0\b015439b616be79c0797b56dd37b7c32b38ec56b
 m
 =app/src/main/java/com/example/module1/ItemMarginDecoration.kt,0\6\0658fbaaa54a2b385cd741e9e1a2ee798c854525
-P
- app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 c
 3app/src/main/java/com/example/module1/VMNewsFlow.kt,b\e\be017df7e2943389d868ee27b6c97e745e1cb33b
 l
@@ -74,5 +72,19 @@ Capp/src/main/java/com/example/module1/categories/CategoryUiModel.kt,6\0\606da2
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 ~
 Napp/src/main/java/com/example/module1/categories/CategoriesViewModelFactory.kt,a\1\a1abc32ae6c631e75669e9e522bab5b49779ed1f
+q
+Aapp/src/main/java/com/example/module1/categories/CategoryStore.kt,c\a\cabcfe90b0bc39203daa04867ccb845db53d64f8
+h
+8app/src/main/java/com/example/module1/retrofit/Common.kt,e\9\e95224ed2649f0450007c20bd714460fc6dea569
+i
+9app/src/main/java/com/example/module1/retrofit/NewsAPI.kt,5\9\59603be51357b001c96aed3b6d22afb72d644425
+i
+9app/src/main/java/com/example/module1/retrofit/Service.kt,e\3\e3b9c9461b652629c0da9a9ef534de5a2f30644d
+o
+?app/src/main/java/com/example/module1/retrofit/CategoriesAPI.kt,c\b\cb412df8ce498b3e3039daa007967c14d21a304e
+k
+;app/src/main/java/com/example/module1/room/CategoriesDao.kt,c\b\cb695a79d5ba0242247f6f650cc8ac836b2424fc
+v
+Fapp/src/main/java/com/example/module1/categories/CategoriesFragment.kt,7\c\7cfd52e40ab03d62971f68bbdd8cf6cf8078ac12
 ]
 -app/src/main/java/com/example/module1/Tink.kt,1\e\1e38373e7cf0656b185abd69e7ad2f5366629ecf
