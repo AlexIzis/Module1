@@ -1,17 +1,22 @@
 package com.example.module1.news
 
+import android.content.Context
 import android.util.Log
 import com.example.module1.retrofit.Common
+import com.example.module1.room.AppDatabase
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class NewsStoreImpl : NewsStore {
+class NewsStoreImpl(private val context: Context) : NewsStore {
     private val newsStoreFlow = MutableStateFlow<List<NewsUIModel>>(emptyList())
+    private lateinit var database: AppDatabase
     private var listNews = arrayListOf(
         NewsUIModel(
             0,
@@ -43,28 +48,46 @@ class NewsStoreImpl : NewsStore {
         )
     )
 
-    override fun getNews(vmScope: CoroutineScope) {
-        Common().retrofitServicesNews.getNewsList().enqueue(object : Callback<MutableList<NewsUIModel>> {
-            override fun onResponse(
-                call: Call<MutableList<NewsUIModel>>,
-                response: Response<MutableList<NewsUIModel>>
-            ) {
-                val list = if (response.body() == null) {
-                    Log.d("errorNetworkNews", response.toString())
-                    listNews
-                } else {
-                    response.body() as List<NewsUIModel>
-                }
-                vmScope.launch {
-                    newsStoreFlow.emit(list)
-                }
+    override fun getDataFromDB(vmScope: CoroutineScope, dispatcher: CoroutineDispatcher) {
+        database = AppDatabase.getDataBase(context)
+        vmScope.launch(dispatcher) {
+            val news = database.newDao().getNews()
+            if (news.isEmpty()) {
+                getDataFromServer(vmScope, dispatcher)
+            } else {
+                newsStoreFlow.emit(news)
             }
+        }
+    }
 
-            override fun onFailure(call: Call<MutableList<NewsUIModel>>, t: Throwable) {
-                Log.d("errorNetworkNews", t.toString())
-            }
+    override fun getDataFromServer(vmScope: CoroutineScope, dispatcher: CoroutineDispatcher) {
+        Common().retrofitServicesNews.getNewsList()
+            .enqueue(object : Callback<MutableList<NewsUIModel>> {
+                override fun onResponse(
+                    call: Call<MutableList<NewsUIModel>>,
+                    response: Response<MutableList<NewsUIModel>>
+                ) {
+                    val list = if (response.body() == null) {
+                        Log.d("errorNetworkNews", response.toString())
+                        listNews
+                    } else {
+                        response.body() as List<NewsUIModel>
+                    }
+                    vmScope.launch {
+                        newsStoreFlow.emit(list)
+                        withContext(dispatcher) {
+                            for (news in list) {
+                                database.newDao().insertNews(news)
+                            }
+                        }
+                    }
+                }
 
-        })
+                override fun onFailure(call: Call<MutableList<NewsUIModel>>, t: Throwable) {
+                    Log.d("errorNetworkNews", t.toString())
+                }
+
+            })
     }
 
     override fun getFlow(): Flow<List<NewsUIModel>> = newsStoreFlow

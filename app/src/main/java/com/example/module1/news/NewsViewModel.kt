@@ -2,6 +2,7 @@ package com.example.module1.news
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -13,7 +14,7 @@ class NewsViewModel(private val store: NewsStore) : ViewModel() {
 
     fun emitNewsList() {
         viewModelScope.launch {
-            store.getNews(viewModelScope)
+            store.getDataFromDB(viewModelScope, Dispatchers.IO)
             store.getFlow().collect {
                 _newsFlow.emit(it)
             }

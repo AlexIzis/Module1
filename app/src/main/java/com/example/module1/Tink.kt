@@ -8,7 +8,7 @@ import java.nio.charset.Charset
 class Tink {
 
     fun example() {
-        AeadConfig.register()
+        //AeadConfig.register()
         val keySetHandle: KeysetHandle = KeysetHandle.generateNew(
             KeyTemplates.get("AES128_GCM")
         )

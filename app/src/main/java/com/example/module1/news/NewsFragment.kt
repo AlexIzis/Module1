@@ -31,7 +31,7 @@ class NewsFragment : Fragment() {
     ): View {
         viewModel = ViewModelProvider(
             this,
-            NewsViewModelFactory(NewsStoreImpl())
+            NewsViewModelFactory(NewsStoreImpl(requireContext()))
         )[NewsViewModel::class.java]
         return inflater.inflate(R.layout.fragment_news, container, false)
     }
