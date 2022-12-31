@@ -48,19 +48,19 @@ class NewsStoreImpl(private val context: Context) : NewsStore {
         )
     )
 
-    override fun getDataFromDB(vmScope: CoroutineScope, dispatcher: CoroutineDispatcher) {
+    override fun getDataFromDB(scope: CoroutineScope, dispatcher: CoroutineDispatcher) {
         database = AppDatabase.getDataBase(context)
-        vmScope.launch(dispatcher) {
+        scope.launch(dispatcher) {
             val news = database.newDao().getNews()
             if (news.isEmpty()) {
-                getDataFromServer(vmScope, dispatcher)
+                getDataFromServer(scope, dispatcher)
             } else {
                 newsStoreFlow.emit(news)
             }
         }
     }
 
-    override fun getDataFromServer(vmScope: CoroutineScope, dispatcher: CoroutineDispatcher) {
+    override fun getDataFromServer(scope: CoroutineScope, dispatcher: CoroutineDispatcher) {
         Common().retrofitServicesNews.getNewsList()
             .enqueue(object : Callback<MutableList<NewsUIModel>> {
                 override fun onResponse(
@@ -73,7 +73,7 @@ class NewsStoreImpl(private val context: Context) : NewsStore {
                     } else {
                         response.body() as List<NewsUIModel>
                     }
-                    vmScope.launch {
+                    scope.launch {
                         newsStoreFlow.emit(list)
                         withContext(dispatcher) {
                             for (news in list) {

@@ -64,12 +64,6 @@ i
 9app/src/main/java/com/example/module1/retrofit/Service.kt,e\3\e3b9c9461b652629c0da9a9ef534de5a2f30644d
 h
 8app/src/main/java/com/example/module1/retrofit/Common.kt,e\9\e95224ed2649f0450007c20bd714460fc6dea569
-g
-7app/src/main/java/com/example/module1/news/NewsStore.kt,e\9\e9aebeb2c2ef704268a8ac7d7a190a002dc2d598
-j
-:app/src/main/java/com/example/module1/news/NewsFragment.kt,7\a\7aa65720e0e4776438263d7710844ce75eb25488
-k
-;app/src/main/java/com/example/module1/news/NewsViewModel.kt,b\8\b818dd3ddc0dd91218555dfda791a942fdd67ec9
 s
 Capp/src/main/java/com/example/module1/categories/CategoryUiModel.kt,6\0\606da234925028f5d0bbb33fbf3c9764c4ae0418
 n

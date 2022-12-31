@@ -25,19 +25,19 @@ class CategoryStoreImpl(private val context: Context) : CategoryStore {
         CategoryUiModel("@drawable/event", "События", "events")
     )
 
-    override fun getDataFromDB(vmScope: CoroutineScope, dispatcher: CoroutineDispatcher) {
+    override fun getDataFromDB(scope: CoroutineScope, dispatcher: CoroutineDispatcher) {
         database = AppDatabase.getDataBase(context)
-        vmScope.launch(dispatcher) {
+        scope.launch(dispatcher) {
             val categories = database.categoryDao().getCategories()
             if (categories.isEmpty()) {
-                getDataFromServer(vmScope, dispatcher)
+                getDataFromServer(scope, dispatcher)
             } else {
                 categoriesStoreFlow.emit(categories)
             }
         }
     }
 
-    override fun getDataFromServer(vmScope: CoroutineScope, dispatcher: CoroutineDispatcher) {
+    override fun getDataFromServer(scope: CoroutineScope, dispatcher: CoroutineDispatcher) {
         Common().retrofitServiceCategories.getCategoriesList()
             .enqueue(object : Callback<MutableList<CategoryUiModel>> {
                 override fun onResponse(
@@ -50,7 +50,7 @@ class CategoryStoreImpl(private val context: Context) : CategoryStore {
                     } else {
                         response.body() as List<CategoryUiModel>
                     }
-                    vmScope.launch {
+                    scope.launch {
                         categoriesStoreFlow.emit(list)
                         withContext(dispatcher) {
                             for (cat in list) {

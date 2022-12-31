@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.module1.FragmentNavigation
 import com.example.module1.ItemMarginDecoration
 import com.example.module1.R
+import com.example.module1.categories.CategoryStoreImpl
 import com.example.module1.event.EventFragment
 import com.example.module1.filter.FilterFragment
 import com.example.module1.filter.FilterFragment.Companion.KEY_FROM_FILTER
@@ -24,14 +25,16 @@ class NewsFragment : Fragment() {
     private var category = arrayListOf<String>()
     private val adapter = NewsAdapter(onItemClick())
     private lateinit var viewModel: NewsViewModel
+    private lateinit var storeImplInst: NewsStoreImpl
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        storeImplInst = NewsStoreImpl(requireContext())
         viewModel = ViewModelProvider(
             this,
-            NewsViewModelFactory(NewsStoreImpl(requireContext()))
+            NewsViewModelFactory(storeImplInst)
         )[NewsViewModel::class.java]
         return inflater.inflate(R.layout.fragment_news, container, false)
     }
@@ -58,6 +61,8 @@ class NewsFragment : Fragment() {
             viewModel.newsFlow.collect {
                 if (it.isNotEmpty()) {
                     loading.visibility = View.GONE
+                } else {
+                    NewsIntent(storeImplInst).actionDataBase(lifecycleScope)
                 }
                 adapter.differ.submitList(it)
             }
@@ -84,7 +89,13 @@ class NewsFragment : Fragment() {
         return if (category.isEmpty()) {
             viewModel.newsFlow.value
         } else {
-            category.flatMap { cat -> viewModel.newsFlow.value.filter { news -> news.categories.contains(cat)} }
+            category.flatMap { cat ->
+                viewModel.newsFlow.value.filter { news ->
+                    news.categories.contains(
+                        cat
+                    )
+                }
+            }
         }
     }
 }
