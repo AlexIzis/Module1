@@ -17,15 +17,17 @@ import kotlinx.coroutines.launch
 class CategoriesFragment : Fragment() {
     private val adapter = CategoriesAdapter()
     private lateinit var viewModel: CategoriesViewModel
+    private lateinit var storeImplInst: CategoryStoreImpl
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        storeImplInst = CategoryStoreImpl(requireContext())
         viewModel = ViewModelProvider(
             this,
-            CategoriesViewModelFactory(CategoryStoreImpl(requireContext()))
+            CategoriesViewModelFactory(storeImplInst)
         )[CategoriesViewModel::class.java]
         return inflater.inflate(R.layout.fragment_categories, container, false)
     }
@@ -43,6 +45,8 @@ class CategoriesFragment : Fragment() {
             viewModel.categoriesFlow.collect {
                 if (it.isNotEmpty()) {
                     loading.visibility = View.GONE
+                } else {
+                    CategoriesIntent(storeImplInst).actionDataBase(lifecycleScope)
                 }
                 adapter.setCategories(it)
             }

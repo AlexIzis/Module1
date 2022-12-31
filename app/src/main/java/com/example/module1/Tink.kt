@@ -3,12 +3,13 @@ package com.example.module1
 import android.util.Log
 import com.google.crypto.tink.*
 import com.google.crypto.tink.aead.AeadConfig
+import com.google.crypto.tink.hybrid.HybridConfig
 import java.nio.charset.Charset
 
 class Tink {
 
     fun example() {
-        //AeadConfig.register()
+        AeadConfig.register()
         val keySetHandle: KeysetHandle = KeysetHandle.generateNew(
             KeyTemplates.get("AES128_GCM")
         )
@@ -25,7 +26,7 @@ class Tink {
     fun test() {
         var plaintext = "qwerty"
         val contextInfo = ""
-        AeadConfig.register()
+        HybridConfig.register()
         val privateKeySetHandle: KeysetHandle = KeysetHandle.generateNew(
             KeyTemplates.get("ECIES_P256_COMPRESSED_HKDF_HMAC_SHA256_AES128_GCM")
         )

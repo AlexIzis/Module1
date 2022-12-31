@@ -14,7 +14,7 @@ class CategoriesViewModel(private val store: CategoryStore) : ViewModel() {
 
     fun emitCategoriesList() {
         viewModelScope.launch {
-            store.getDataFromDB(viewModelScope, Dispatchers.IO)
+            //store.getDataFromDB(viewModelScope, Dispatchers.IO)
             store.getFlow().collect {
                 _categoriesFlow.emit(it)
             }
