@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.module1.ItemMarginDecoration
 import com.example.module1.R
+import com.example.module1.di.ContextModule
+import com.example.module1.di.DaggerCategoriesComponent
 import kotlinx.coroutines.launch
 
 class CategoriesFragment : Fragment() {
@@ -24,7 +26,11 @@ class CategoriesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        storeImplInst = CategoryStoreImpl(requireContext())
+        val dagger = DaggerCategoriesComponent.builder()
+            .contextModule(ContextModule(requireContext()))
+            .build()
+
+        storeImplInst = dagger.getCatStore()
         viewModel = ViewModelProvider(
             this,
             CategoriesViewModelFactory(storeImplInst)
