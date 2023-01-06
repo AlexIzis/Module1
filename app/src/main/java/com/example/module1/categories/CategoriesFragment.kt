@@ -10,30 +10,31 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.module1.AppInst
 import com.example.module1.ItemMarginDecoration
 import com.example.module1.R
-import com.example.module1.di.ContextModule
-import com.example.module1.di.DaggerCategoriesComponent
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class CategoriesFragment : Fragment() {
     private val adapter = CategoriesAdapter()
     private lateinit var viewModel: CategoriesViewModel
-    private lateinit var storeImplInst: CategoryStoreImpl
+
+    @Inject
+    lateinit var vmFactory: CategoriesViewModelFactory
+
+    @Inject
+    lateinit var storeImplInst: CategoryStore
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dagger = DaggerCategoriesComponent.builder()
-            .contextModule(ContextModule(requireContext()))
-            .build()
+        (context?.applicationContext as AppInst).categoriesComponent.inject(this)
 
-        storeImplInst = dagger.getCatStore()
         viewModel = ViewModelProvider(
-            this,
-            CategoriesViewModelFactory(storeImplInst)
+            this, vmFactory
         )[CategoriesViewModel::class.java]
         return inflater.inflate(R.layout.fragment_categories, container, false)
     }

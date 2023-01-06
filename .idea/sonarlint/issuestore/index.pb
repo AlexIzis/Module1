@@ -46,14 +46,10 @@ Bapp/src/main/java/com/example/module1/news/NewsViewModelFactory.kt,9\d\9d51c27
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 ?
 settings.gradle,0\5\05efc8b1657769a27696d478ded1e95f38737233
-~
-Napp/src/main/java/com/example/module1/categories/CategoriesViewModelFactory.kt,a\1\a1abc32ae6c631e75669e9e522bab5b49779ed1f
 i
 9app/src/main/java/com/example/module1/retrofit/NewsAPI.kt,5\9\59603be51357b001c96aed3b6d22afb72d644425
 o
 ?app/src/main/java/com/example/module1/retrofit/CategoriesAPI.kt,c\b\cb412df8ce498b3e3039daa007967c14d21a304e
-P
- app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 i
 9app/src/main/java/com/example/module1/retrofit/Service.kt,e\3\e3b9c9461b652629c0da9a9ef534de5a2f30644d
 h
@@ -78,10 +74,6 @@ i
 -app/src/main/java/com/example/module1/Tink.kt,1\e\1e38373e7cf0656b185abd69e7ad2f5366629ecf
 t
 Dapp/src/main/java/com/example/module1/activity/CategoriesActivity.kt,d\1\d16fa4555fdd4a2cf822dc1dbd286307775b67f1
-w
-Gapp/src/main/java/com/example/module1/categories/CategoriesViewModel.kt,b\7\b7b03fd3486832aa1e1218c962d59e15290f9eca
-u
-Eapp/src/main/java/com/example/module1/categories/CategoryStoreImpl.kt,5\2\52b112aa4e78c17ae440ca198bf6885debeb7d04
 q
 Aapp/src/main/java/com/example/module1/categories/CategoryStore.kt,c\a\cabcfe90b0bc39203daa04867ccb845db53d64f8
 t
@@ -96,3 +88,9 @@ h
 8app/src/main/java/com/example/module1/news/NewsIntent.kt,b\3\b354153464ff156b342f779be665983128da9d84
 j
 :app/src/main/java/com/example/module1/news/NewsFragment.kt,7\a\7aa65720e0e4776438263d7710844ce75eb25488
+u
+Eapp/src/main/java/com/example/module1/categories/CategoriesAdapter.kt,7\7\77d708c8a8b582b0978b62d096e36b61c5b29f86
+i
+9app/src/main/java/com/example/module1/news/NewsAdapter.kt,8\4\84eb91cf1ab7a8cdd71e57fd612d7ef66fa4ea7f
+@
+app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164

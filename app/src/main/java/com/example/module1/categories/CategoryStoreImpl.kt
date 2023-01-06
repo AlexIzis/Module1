@@ -13,8 +13,9 @@ import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class CategoryStoreImpl(private val context: Context) : CategoryStore {
+class CategoryStoreImpl @Inject constructor(val context: Context) : CategoryStore {
     private val categoriesStoreFlow = MutableStateFlow<List<CategoryUiModel>>(emptyList())
     private lateinit var database: AppDatabase
     private var listCategories = arrayListOf(
