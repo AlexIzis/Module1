@@ -19,10 +19,8 @@ import javax.inject.Inject
 class CategoriesFragment : Fragment() {
     private val adapter = CategoriesAdapter()
     private lateinit var viewModel: CategoriesViewModel
-
     @Inject
     lateinit var vmFactory: CategoriesViewModelFactory
-
     @Inject
     lateinit var storeImplInst: CategoryStore
 

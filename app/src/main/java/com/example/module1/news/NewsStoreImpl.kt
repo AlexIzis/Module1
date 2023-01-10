@@ -13,8 +13,9 @@ import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class NewsStoreImpl(private val context: Context) : NewsStore {
+class NewsStoreImpl @Inject constructor(val context: Context) : NewsStore {
     private val newsStoreFlow = MutableStateFlow<List<NewsUIModel>>(emptyList())
     private lateinit var database: AppDatabase
     private var listNews = arrayListOf(

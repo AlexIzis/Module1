@@ -11,30 +11,34 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.module1.AppClass
 import com.example.module1.FragmentNavigation
 import com.example.module1.ItemMarginDecoration
 import com.example.module1.R
-import com.example.module1.categories.CategoryStoreImpl
 import com.example.module1.event.EventFragment
 import com.example.module1.filter.FilterFragment
 import com.example.module1.filter.FilterFragment.Companion.KEY_FROM_FILTER
 import com.example.module1.filter.FilterFragment.Companion.REQUEST_KEY_FILTER
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class NewsFragment : Fragment() {
     private var category = arrayListOf<String>()
     private val adapter = NewsAdapter(onItemClick())
     private lateinit var viewModel: NewsViewModel
-    private lateinit var storeImplInst: NewsStoreImpl
+    @Inject
+    lateinit var vmFactory: NewsViewModelFactory
+    @Inject
+    lateinit var storeImplInst: NewsStore
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        storeImplInst = NewsStoreImpl(requireContext())
+        (context?.applicationContext as AppClass).mainComponent.injectNewsFragment(this)
         viewModel = ViewModelProvider(
             this,
-            NewsViewModelFactory(storeImplInst)
+            vmFactory
         )[NewsViewModel::class.java]
         return inflater.inflate(R.layout.fragment_news, container, false)
     }
