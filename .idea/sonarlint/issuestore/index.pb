@@ -36,8 +36,6 @@ m
 =app/src/main/java/com/example/module1/search/SearchAdapter.kt,8\e\8e56fd0ca6b0bd0180dca14bda734cfaa83bd582
 h
 8app/src/main/java/com/example/module1/search/VMSearch.kt,5\3\53a16232ea2ba884828817c7aa921fbc4116d2e0
-r
-Bapp/src/main/java/com/example/module1/news/NewsViewModelFactory.kt,9\d\9d51c27efa458a04a26e9643e4790a83bda9d6bf
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 ?
@@ -60,29 +58,17 @@ t
 Dapp/src/main/java/com/example/module1/activity/CategoriesActivity.kt,d\1\d16fa4555fdd4a2cf822dc1dbd286307775b67f1
 q
 Aapp/src/main/java/com/example/module1/categories/CategoryStore.kt,c\a\cabcfe90b0bc39203daa04867ccb845db53d64f8
-k
-;app/src/main/java/com/example/module1/news/NewsViewModel.kt,b\8\b818dd3ddc0dd91218555dfda791a942fdd67ec9
-k
-;app/src/main/java/com/example/module1/news/NewsStoreImpl.kt,0\c\0cde9465d23863b02e27472710c354e8c19389c6
 g
 7app/src/main/java/com/example/module1/news/NewsStore.kt,e\9\e9aebeb2c2ef704268a8ac7d7a190a002dc2d598
-h
-8app/src/main/java/com/example/module1/news/NewsIntent.kt,b\3\b354153464ff156b342f779be665983128da9d84
-j
-:app/src/main/java/com/example/module1/news/NewsFragment.kt,7\a\7aa65720e0e4776438263d7710844ce75eb25488
 u
 Eapp/src/main/java/com/example/module1/categories/CategoriesAdapter.kt,7\7\77d708c8a8b582b0978b62d096e36b61c5b29f86
 i
 9app/src/main/java/com/example/module1/news/NewsAdapter.kt,8\4\84eb91cf1ab7a8cdd71e57fd612d7ef66fa4ea7f
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
-P
- app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 l
 <app/src/main/java/com/example/module1/event/EventFragment.kt,a\9\a94911751e121629765c131c494a6e59f4a04658
 t
 Dapp/src/main/java/com/example/module1/profile/EditProfileFragment.kt,9\e\9e324c5c7b30caf79df1bea8128651d32826e5b0
 e
 5app/src/main/java/com/example/module1/room/NewsDao.kt,e\5\e5c89f658e1ac4cd10b489258c34e1bc84aec0ae
-~
-Napp/src/main/java/com/example/module1/categories/CategoriesViewModelFactory.kt,a\1\a1abc32ae6c631e75669e9e522bab5b49779ed1f

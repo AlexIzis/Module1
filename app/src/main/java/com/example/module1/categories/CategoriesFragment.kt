@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.module1.AppInst
+import com.example.module1.AppClass
 import com.example.module1.ItemMarginDecoration
 import com.example.module1.R
 import kotlinx.coroutines.launch
@@ -31,7 +31,7 @@ class CategoriesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        (context?.applicationContext as AppInst).categoriesComponent.inject(this)
+        (context?.applicationContext as AppClass).mainComponent.inject(this)
 
         viewModel = ViewModelProvider(
             this, vmFactory
