@@ -51,12 +51,16 @@ class CategoriesFragment : Fragment() {
             viewModel.emitCategoriesList()
             viewModel.categoriesFlow.collect {
                 if (it.isNotEmpty()) {
-                    loading.visibility = View.GONE
+                    hideProgressBar(loading)
                 } else {
-                    CategoriesIntent(storeImplInst).actionDataBase(lifecycleScope)
+                    viewModel.handleIntent(CategoriesIntent.StartScreen)
                 }
                 adapter.setCategories(it)
             }
         }
+    }
+
+    private fun hideProgressBar(loading: ProgressBar) {
+        loading.visibility = View.GONE
     }
 }

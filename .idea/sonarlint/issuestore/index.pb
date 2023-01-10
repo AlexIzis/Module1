@@ -20,8 +20,6 @@ o
 ?app/src/main/java/com/example/module1/activity/LoginActivity.kt,3\2\320fcc2d36b3ac220f73c520c448d7b24c4b8de5
 p
 @app/src/main/java/com/example/module1/profile/ProfileFragment.kt,1\f\1f796cd5d959574fc4347403aff77c730d7e71a3
-t
-Dapp/src/main/java/com/example/module1/profile/EditProfileFragment.kt,9\e\9e324c5c7b30caf79df1bea8128651d32826e5b0
 s
 Capp/src/main/java/com/example/module1/search/SearchEventsAdapter.kt,7\c\7c10e8a1aad660523a50487d64fc0ae640e882cc
 q
@@ -32,8 +30,6 @@ m
 =app/src/main/java/com/example/module1/ItemMarginDecoration.kt,0\6\0658fbaaa54a2b385cd741e9e1a2ee798c854525
 c
 3app/src/main/java/com/example/module1/VMNewsFlow.kt,b\e\be017df7e2943389d868ee27b6c97e745e1cb33b
-l
-<app/src/main/java/com/example/module1/event/EventFragment.kt,a\9\a94911751e121629765c131c494a6e59f4a04658
 r
 Bapp/src/main/java/com/example/module1/search/MainSearchFragment.kt,a\d\adcab0b1992f49db49c40069501c5290ca888a50
 m
@@ -46,28 +42,16 @@ Bapp/src/main/java/com/example/module1/news/NewsViewModelFactory.kt,9\d\9d51c27
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 ?
 settings.gradle,0\5\05efc8b1657769a27696d478ded1e95f38737233
-i
-9app/src/main/java/com/example/module1/retrofit/NewsAPI.kt,5\9\59603be51357b001c96aed3b6d22afb72d644425
-o
-?app/src/main/java/com/example/module1/retrofit/CategoriesAPI.kt,c\b\cb412df8ce498b3e3039daa007967c14d21a304e
-i
-9app/src/main/java/com/example/module1/retrofit/Service.kt,e\3\e3b9c9461b652629c0da9a9ef534de5a2f30644d
-h
-8app/src/main/java/com/example/module1/retrofit/Common.kt,e\9\e95224ed2649f0450007c20bd714460fc6dea569
 s
 Capp/src/main/java/com/example/module1/categories/CategoryUiModel.kt,6\0\606da234925028f5d0bbb33fbf3c9764c4ae0418
 n
 >app/src/main/java/com/example/module1/filter/FilterFragment.kt,9\2\924489c6e9803a20983d9e222f3419f0697028a6
 c
 3app/src/main/java/com/example/module1/JsonParser.kt,b\1\b1d54747964bc0388264e4b757570132a2182323
-k
-;app/src/main/java/com/example/module1/room/CategoriesDao.kt,c\b\cb695a79d5ba0242247f6f650cc8ac836b2424fc
 i
 9app/src/main/java/com/example/module1/room/AppDatabase.kt,8\c\8c398b5f581633c78e201f737685ea644225abea
 u
 Eapp/src/main/java/com/example/module1/news/ListStringTypeConverter.kt,d\0\d053f8c57d719b51498b75468f7c30bed40b6488
-e
-5app/src/main/java/com/example/module1/room/NewsDao.kt,e\5\e5c89f658e1ac4cd10b489258c34e1bc84aec0ae
 i
 9app/src/main/java/com/example/module1/news/NewsUIModel.kt,4\0\40e8b31b1195c903dd87dcaacb35c1b4c764e06c
 ]
@@ -76,8 +60,6 @@ t
 Dapp/src/main/java/com/example/module1/activity/CategoriesActivity.kt,d\1\d16fa4555fdd4a2cf822dc1dbd286307775b67f1
 q
 Aapp/src/main/java/com/example/module1/categories/CategoryStore.kt,c\a\cabcfe90b0bc39203daa04867ccb845db53d64f8
-t
-Dapp/src/main/java/com/example/module1/categories/CategoriesIntent.kt,9\1\919f63a00b0049b9eb531d9672750c10f928f0ca
 k
 ;app/src/main/java/com/example/module1/news/NewsViewModel.kt,b\8\b818dd3ddc0dd91218555dfda791a942fdd67ec9
 k
@@ -94,3 +76,13 @@ i
 9app/src/main/java/com/example/module1/news/NewsAdapter.kt,8\4\84eb91cf1ab7a8cdd71e57fd612d7ef66fa4ea7f
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+l
+<app/src/main/java/com/example/module1/event/EventFragment.kt,a\9\a94911751e121629765c131c494a6e59f4a04658
+t
+Dapp/src/main/java/com/example/module1/profile/EditProfileFragment.kt,9\e\9e324c5c7b30caf79df1bea8128651d32826e5b0
+e
+5app/src/main/java/com/example/module1/room/NewsDao.kt,e\5\e5c89f658e1ac4cd10b489258c34e1bc84aec0ae
+~
+Napp/src/main/java/com/example/module1/categories/CategoriesViewModelFactory.kt,a\1\a1abc32ae6c631e75669e9e522bab5b49779ed1f
