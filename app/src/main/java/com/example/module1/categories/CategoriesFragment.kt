@@ -31,7 +31,7 @@ class CategoriesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        (context?.applicationContext as AppClass).mainComponent.inject(this)
+        (context?.applicationContext as AppClass).mainComponent.injectCategoriesFragment(this)
 
         viewModel = ViewModelProvider(
             this, vmFactory

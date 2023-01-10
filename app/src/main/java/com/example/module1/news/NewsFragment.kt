@@ -60,9 +60,9 @@ class NewsFragment : Fragment() {
             viewModel.emitNewsList()
             viewModel.newsFlow.collect {
                 if (it.isNotEmpty()) {
-                    loading.visibility = View.GONE
+                    hideProgressBar(loading)
                 } else {
-                    NewsIntent(storeImplInst).actionDataBase(lifecycleScope)
+                    viewModel.handleIntent(NewsIntent.StartScreen)
                 }
                 adapter.differ.submitList(it)
             }
@@ -83,6 +83,10 @@ class NewsFragment : Fragment() {
             R.id.fragmentContainerView,
             EventFragment.getInst(news)
         )
+    }
+
+    private fun hideProgressBar(loading: ProgressBar) {
+        loading.visibility = View.GONE
     }
 
     private fun filterByCategories(): List<NewsUIModel> {
