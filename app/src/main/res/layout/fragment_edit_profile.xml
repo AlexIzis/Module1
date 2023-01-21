@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".profile.EditProfileFragment"
+    tools:context="com.example.profile.profile.EditProfileFragment"
     android:background="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout

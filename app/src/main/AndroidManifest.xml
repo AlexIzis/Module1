@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Module1">
         <activity
-            android:name=".activity.LoginActivity"
+            android:name=".auth.LoginActivity"
             android:exported="false" />
 
         <activity
