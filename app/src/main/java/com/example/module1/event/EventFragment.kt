@@ -25,7 +25,12 @@ class EventFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        new = requireNotNull(arguments?.getParcelable(KEY_NEW))
+        if (viewModel.new == null) {
+            new = requireNotNull(arguments?.getParcelable(KEY_NEW))
+            viewModel.updateNew(new)
+        } else {
+            new = viewModel.new!!
+        }
     }
 
     override fun onCreateView(
