@@ -1,13 +1,13 @@
 package com.example.module1.filter
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageView
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import com.example.module1.JsonParser
 import com.example.module1.R
 import com.example.module1.categories.CategoryUiModel
@@ -24,6 +24,7 @@ class FilterFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         val listFromJson =
             JsonParser(
                 getString(R.string.path_to_categories),

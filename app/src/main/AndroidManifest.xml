@@ -3,6 +3,7 @@
     package="com.example.module1">
 
     <uses-feature android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -14,9 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Module1">
         <activity
+            android:name=".auth.ComposeLoginActivity"
+            android:exported="false"
+            android:label="@string/title_activity_compose_login"
+            android:theme="@style/Theme.Module1" />
+        <activity
             android:name=".auth.LoginActivity"
             android:exported="false" />
-
         <activity
             android:name=".activity.CategoriesActivity"
             android:exported="false" />
