@@ -7,6 +7,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.example.module1.R
+import com.example.module1.auth.ComposeLoginActivity
 import com.example.module1.auth.LoginActivity
 
 @SuppressLint("CustomSplashScreen")
@@ -16,7 +17,8 @@ class SplashScreenActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash_screen)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, LoginActivity::class.java)
+            //val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, ComposeLoginActivity::class.java)
             startActivity(intent)
             finish()
         }, 1000)

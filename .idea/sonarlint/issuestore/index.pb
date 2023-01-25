@@ -68,8 +68,6 @@ P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 p
 @app/src/main/java/com/example/module1/profile/ProfileFragment.kt,1\f\1f796cd5d959574fc4347403aff77c730d7e71a3
-v
-Fapp/src/main/java/com/example/module1/activity/SplashScreenActivity.kt,a\6\a6816d7055f39376ebbecd2d9b6386071e51a7b4
 r
 Bapp/src/main/java/com/example/module1/search/MainSearchFragment.kt,a\d\adcab0b1992f49db49c40069501c5290ca888a50
 t
