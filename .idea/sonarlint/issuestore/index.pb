@@ -74,8 +74,6 @@ t
 Dapp/src/main/java/com/example/module1/activity/CategoriesActivity.kt,d\1\d16fa4555fdd4a2cf822dc1dbd286307775b67f1
 A
 gradle.properties,2\a\2afbb999f001938c88fa43fc2ef52abf0f8213e4
-k
-;app/src/main/java/com/example/module1/auth/LoginActivity.kt,8\7\872798a27480ddee356ba5836c467b0d49d213a5
 l
 <app/src/main/java/com/example/module1/auth/LoginViewModel.kt,c\e\ce7e2112de52c9bb8f6fcb0c27bef95d22685955
 k
@@ -114,3 +112,11 @@ o
 ?app/src/main/java/com/example/module1/filter/FilterViewModel.kt,b\1\b13380d3db42187e43307ee92fe1ced72cf18abe
 n
 >app/src/main/java/com/example/module1/filter/FilterFragment.kt,9\2\924489c6e9803a20983d9e222f3419f0697028a6
+?
+settings.gradle,0\5\05efc8b1657769a27696d478ded1e95f38737233
+<
+build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
+@
+app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+v
+Fapp/src/main/java/com/example/module1/activity/SplashScreenActivity.kt,a\6\a6816d7055f39376ebbecd2d9b6386071e51a7b4
