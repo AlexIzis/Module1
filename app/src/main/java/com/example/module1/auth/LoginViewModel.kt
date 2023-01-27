@@ -1,16 +1,20 @@
 package com.example.module1.auth
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 
 class LoginViewModel : ViewModel() {
-    private var _email: String = ""
-    val email = _email
+    var email: String by mutableStateOf("")
 
-    private var _password: String = ""
-    val password = _password
+    var password: String by mutableStateOf("")
 
-    fun updateValues(email: String, password: String) {
-        _email = email
-        _password = password
+    fun updateEmail(email: String) {
+        this.email = email
+    }
+
+    fun updatePassword(password: String) {
+        this.password = password
     }
 }

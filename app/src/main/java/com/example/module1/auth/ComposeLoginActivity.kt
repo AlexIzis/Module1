@@ -4,13 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,24 +20,25 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.module1.R
 import com.example.module1.activity.CategoriesActivity
 
 class ComposeLoginActivity : ComponentActivity() {
+
+    private val viewModel by viewModels<LoginViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MainScreen()
+            MainScreen(viewModel)
         }
     }
 }
 
-@Preview
 @Composable
-fun MainScreen() {
+fun MainScreen(viewModel: LoginViewModel) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
@@ -58,7 +58,7 @@ fun MainScreen() {
             modifier = Modifier.padding(start = 56.dp, end = 56.dp, top = 40.dp),
             fontSize = 14.sp
         )
-        UserTextInput()
+        UserTextInput(viewModel)
     }
 }
 
@@ -101,13 +101,7 @@ fun Socials() {
 }
 
 @Composable
-fun UserTextInput() {
-    val email = remember {
-        mutableStateOf("")
-    }
-    val password = remember {
-        mutableStateOf("")
-    }
+fun UserTextInput(viewModel: LoginViewModel) {
     val context = LocalContext.current
 
     Column(
@@ -115,7 +109,7 @@ fun UserTextInput() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         TextField(
-            value = email.value,
+            value = viewModel.email,
             modifier = Modifier
                 .padding(top = 32.dp)
                 .background(color = Color.White),
@@ -126,15 +120,16 @@ fun UserTextInput() {
                 )
                     },
             onValueChange = {
-                email.value = it
+                viewModel.updateEmail(it)
             },
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = Color.White,
-                focusedIndicatorColor = colorResource(id = R.color.leaf)
+                focusedIndicatorColor = colorResource(id = R.color.leaf),
+                cursorColor = colorResource(id = R.color.leaf)
             )
         )
         TextField(
-            value = password.value,
+            value = viewModel.password,
             modifier = Modifier
                 .padding(top = 10.dp)
                 .background(color = Color.White),
@@ -145,11 +140,12 @@ fun UserTextInput() {
                 )
                     },
             onValueChange = {
-                password.value = it
+                viewModel.updatePassword(it)
             },
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = Color.White,
-                focusedIndicatorColor = colorResource(id = R.color.leaf)
+                focusedIndicatorColor = colorResource(id = R.color.leaf),
+                cursorColor = colorResource(id = R.color.leaf)
             )
         )
         Button(
@@ -157,7 +153,7 @@ fun UserTextInput() {
                 context.startActivity(Intent(context, CategoriesActivity::class.java))
             },
             colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.leaf)),
-            enabled = (email.value.length >= 5) && (password.value.length >= 5)
+            enabled = (viewModel.email.length >= 5) && (viewModel.password.length >= 5)
         ) {
             Text(
                 text = stringResource(id = R.string.button_login),
