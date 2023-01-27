@@ -120,3 +120,5 @@ n
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 v
 Fapp/src/main/java/com/example/module1/activity/SplashScreenActivity.kt,a\6\a6816d7055f39376ebbecd2d9b6386071e51a7b4
+k
+;app/src/main/java/com/example/module1/auth/LoginActivity.kt,8\7\872798a27480ddee356ba5836c467b0d49d213a5

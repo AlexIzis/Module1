@@ -108,9 +108,6 @@ fun UserTextInput() {
     val password = remember {
         mutableStateOf("")
     }
-    val buttonEnable = remember {
-        mutableStateOf(false)
-    }
     val context = LocalContext.current
 
     Column(
@@ -122,19 +119,39 @@ fun UserTextInput() {
             modifier = Modifier
                 .padding(top = 32.dp)
                 .background(color = Color.White),
-            label = { Text(text = stringResource(id = R.string.e_mail)) },
+            label = {
+                Text(
+                    text = stringResource(id = R.string.e_mail),
+                    color = colorResource(id = R.color.leaf)
+                )
+                    },
             onValueChange = {
                 email.value = it
-            })
+            },
+            colors = TextFieldDefaults.textFieldColors(
+                backgroundColor = Color.White,
+                focusedIndicatorColor = colorResource(id = R.color.leaf)
+            )
+        )
         TextField(
             value = password.value,
             modifier = Modifier
                 .padding(top = 10.dp)
                 .background(color = Color.White),
-            label = { Text(text = stringResource(id = R.string.password)) },
+            label = {
+                Text(
+                    text = stringResource(id = R.string.password),
+                    color = colorResource(id = R.color.leaf)
+                )
+                    },
             onValueChange = {
                 password.value = it
-            })
+            },
+            colors = TextFieldDefaults.textFieldColors(
+                backgroundColor = Color.White,
+                focusedIndicatorColor = colorResource(id = R.color.leaf)
+            )
+        )
         Button(
             onClick = {
                 context.startActivity(Intent(context, CategoriesActivity::class.java))
