@@ -27,8 +27,6 @@ g
 7app/src/main/java/com/example/module1/news/NewsStore.kt,e\9\e9aebeb2c2ef704268a8ac7d7a190a002dc2d598
 u
 Eapp/src/main/java/com/example/module1/categories/CategoriesAdapter.kt,7\7\77d708c8a8b582b0978b62d096e36b61c5b29f86
-i
-9app/src/main/java/com/example/module1/news/NewsAdapter.kt,8\4\84eb91cf1ab7a8cdd71e57fd612d7ef66fa4ea7f
 e
 5app/src/main/java/com/example/module1/room/NewsDao.kt,e\5\e5c89f658e1ac4cd10b489258c34e1bc84aec0ae
 k
@@ -53,8 +51,6 @@ t
 Dapp/src/main/java/com/example/module1/categories/CategoriesIntent.kt,9\1\919f63a00b0049b9eb531d9672750c10f928f0ca
 q
 Aapp/src/main/java/com/example/module1/categories/CategoryStore.kt,c\a\cabcfe90b0bc39203daa04867ccb845db53d64f8
-j
-:app/src/main/java/com/example/module1/news/NewsFragment.kt,7\a\7aa65720e0e4776438263d7710844ce75eb25488
 r
 Bapp/src/main/java/com/example/module1/news/NewsViewModelFactory.kt,9\d\9d51c27efa458a04a26e9643e4790a83bda9d6bf
 >
@@ -114,3 +110,5 @@ n
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+t
+Dapp/src/main/java/com/example/module1/activity/CategoriesActivity.kt,d\1\d16fa4555fdd4a2cf822dc1dbd286307775b67f1

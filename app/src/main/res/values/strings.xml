@@ -80,4 +80,5 @@
     <string name="string_with_social">Для участия в мероприятиях войдите в приложение через социальые сети</string>
     <string name="string_with_app">Или авторизуйтесь через приложение</string>
     <string name="title_activity_compose_login">ComposeLoginActivity</string>
+    <string name="title_activity_news_compose">NewsComposeActivity</string>
 </resources>
