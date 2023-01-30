@@ -1,5 +1,6 @@
 package com.example.module1.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -7,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.module1.*
 import com.example.module1.categories.CategoriesFragment
+import com.example.module1.news.NewsComposeActivity
 import com.example.module1.news.NewsFragment
 import com.example.module1.news.NewsUIModel
 import com.example.module1.profile.ProfileFragment
@@ -93,6 +95,7 @@ class CategoriesActivity : AppCompatActivity() {
                 }
                 R.id.history -> {
                     Toast.makeText(this, "History", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(applicationContext, NewsComposeActivity::class.java))
                     true
                 }
                 R.id.profile -> {

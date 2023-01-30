@@ -10,8 +10,6 @@ Capp/src/main/java/com/example/module1/search/SearchEventsAdapter.kt,7\c\7c10e8
 i
 9app/src/main/java/com/example/module1/search/VpAdapter.kt,b\0\b015439b616be79c0797b56dd37b7c32b38ec56b
 m
-=app/src/main/java/com/example/module1/ItemMarginDecoration.kt,0\6\0658fbaaa54a2b385cd741e9e1a2ee798c854525
-m
 =app/src/main/java/com/example/module1/search/SearchAdapter.kt,8\e\8e56fd0ca6b0bd0180dca14bda734cfaa83bd582
 s
 Capp/src/main/java/com/example/module1/categories/CategoryUiModel.kt,6\0\606da234925028f5d0bbb33fbf3c9764c4ae0418
@@ -68,8 +66,6 @@ r
 Bapp/src/main/java/com/example/module1/search/MainSearchFragment.kt,a\d\adcab0b1992f49db49c40069501c5290ca888a50
 A
 gradle.properties,2\a\2afbb999f001938c88fa43fc2ef52abf0f8213e4
-k
-;app/src/main/java/com/example/module1/news/NewsStoreImpl.kt,0\c\0cde9465d23863b02e27472710c354e8c19389c6
 t
 Dapp/src/main/java/com/example/module1/profile/EditProfileFragment.kt,9\e\9e324c5c7b30caf79df1bea8128651d32826e5b0
 l
@@ -110,5 +106,15 @@ n
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
-t
-Dapp/src/main/java/com/example/module1/activity/CategoriesActivity.kt,d\1\d16fa4555fdd4a2cf822dc1dbd286307775b67f1
+v
+Fapp/src/main/java/com/example/module1/activity/SplashScreenActivity.kt,a\6\a6816d7055f39376ebbecd2d9b6386071e51a7b4
+l
+<app/src/main/java/com/example/module1/auth/LoginViewModel.kt,c\e\ce7e2112de52c9bb8f6fcb0c27bef95d22685955
+l
+<app/src/main/java/com/example/module1/news/ui/theme/Color.kt,d\3\d3d6e0751b22b041174cba85d0b3f303d270b7d6
+l
+<app/src/main/java/com/example/module1/news/ui/theme/Shape.kt,7\7\779efcf6205f64a54811f8a0270bdcfed59be0f7
+l
+<app/src/main/java/com/example/module1/news/ui/theme/Theme.kt,e\3\e3e59ada9e72b40610ba357e0141f89c986fd992
+k
+;app/src/main/java/com/example/module1/news/ui/theme/Type.kt,2\5\25aba9a7e2d224fc5b7de2babc5561180d175a78
