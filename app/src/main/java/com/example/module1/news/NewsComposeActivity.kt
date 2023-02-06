@@ -1,11 +1,15 @@
 package com.example.module1.news
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -27,41 +31,47 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.fragment.app.FragmentActivity
+import androidx.room.ColumnInfo
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import com.example.module1.FragmentNavigation
 import com.example.module1.R
+import com.example.module1.event.EventComposeActivity
+import com.example.module1.event.EventFragment
 import com.example.module1.filter.FilterFragment
 import com.example.module1.news.ui.theme.Module1Theme
+import kotlinx.parcelize.Parcelize
 import java.text.SimpleDateFormat
 import java.util.*
 
 class NewsComposeActivity : ComponentActivity() {
 
     private var listNews = arrayListOf(
-        NewsUIModel(
+        UpdateNews(
             0,
             "Спонсоры отремонтируют школу-интернат",
-            "R.drawable.avatar_1",
+            R.drawable.avatar_1,
             "Дубовская школа-интернат для детей с ограниченными возможностями здоровья стала первой в области …",
             1699999999002,
             "Благотворительный Фонд «Счастливый Мир»",
             "Санкт-Петербург, Кирочная улица, д. 50А, каб. 208",
             listOf("+7 (937) 037 37-73", "+7 (937) 016 16-16"),
             "Напишите нам",
-            listOf("R.drawable.avatar_2", "R.drawable.avatar_3"),
+            listOf(R.drawable.avatar_2, R.drawable.avatar_3),
             "Перейти на сайт организаии",
             listOf("children")
         ),
-        NewsUIModel(
+        UpdateNews(
             1,
             "Конкурс по вокальному пению в детском доме №6",
-            "R.drawable.avatar_2",
+            R.drawable.avatar_2,
             "Дубовская школа-интернат для детей с ограниченными возможностями здоровья стала первой в области …",
             1699999999002,
             "Благотворительный Фонд «Счастливый Мир»",
             "Санкт-Петербург, Кирочная улица, д. 50А, каб. 208",
             listOf("+7 (937) 037 37-73", "+7 (937) 016 16-16"),
             "Напишите нам",
-            listOf("R.drawable.avatar_1", "R.drawable.avatar_3"),
+            listOf(R.drawable.avatar_1, R.drawable.avatar_3),
             "Перейти на сайт организаии",
             listOf("adults", "elderly")
         )
@@ -85,15 +95,6 @@ class NewsComposeActivity : ComponentActivity() {
                 .fillMaxSize()
         ) {
             CustomToolbar()
-            /*CircularProgressIndicator(
-                color = Color.Blue,
-                modifier = Modifier
-                    .size(50.dp)
-                    .padding(top = 10.dp)
-                    .alpha(
-                        if (newsList.isEmpty()) 1f else 0f
-                    ),
-            )*/
             ListOfNews()
         }
     }
@@ -117,11 +118,11 @@ class NewsComposeActivity : ComponentActivity() {
             )
             IconButton(
                 onClick = {
-                    FragmentNavigation().addFragment(
+                    /*FragmentNavigation().addFragment(
                         fragmentManager = FragmentActivity().supportFragmentManager,
                         fragmentContainer = R.id.fragmentContainerView,
                         fragment = FilterFragment()
-                    )
+                    )*/
                 },
                 modifier = Modifier.padding(end = 14.dp, top = 8.dp, bottom = 8.dp)
             ) {
@@ -151,24 +152,33 @@ class NewsComposeActivity : ComponentActivity() {
 
     @SuppressLint("SimpleDateFormat")
     @Composable
-    fun New(newsUIModel: NewsUIModel) {
+    fun New(newsUIModel: UpdateNews) {
         Column(
-            modifier = Modifier.fillMaxSize().padding(top = 12.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = Color.White)
+                .padding(top = 12.dp)
+                .clickable {
+                    val intent = Intent(this, EventComposeActivity::class.java)
+                    intent.putExtra("new", newsUIModel)
+                    startActivity(intent)
+                },
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            /*Image(
+            Image(
                 painter = painterResource(
-                    id = resources.getIdentifier(
-                        newsUIModel.img, "img",
-                        applicationContext.packageName
-                    )
+                    id = newsUIModel.img
                 ),
-                contentDescription = "img"
-            )*/
+                contentDescription = "img",
+                modifier = Modifier
+                    .height(200.dp)
+                    .fillMaxWidth()
+            )
             Text(
                 text = newsUIModel.label,
                 fontSize = 23.sp,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(start = 38.dp, end = 38.dp)
             )
             Image(
                 painter = painterResource(
@@ -178,13 +188,14 @@ class NewsComposeActivity : ComponentActivity() {
             )
             Text(
                 text = newsUIModel.description,
-                modifier = Modifier.padding(4.dp),
+                modifier = Modifier.padding(top = 10.dp, start = 26.dp, end = 26.dp),
                 textAlign = TextAlign.Center
             )
 
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .padding(top = 16.dp)
                     .background(color = colorResource(id = R.color.leaf)),
                 horizontalArrangement = Arrangement.Center
             ) {
@@ -205,5 +216,21 @@ class NewsComposeActivity : ComponentActivity() {
         }
     }
 }
+
+@Parcelize
+data class UpdateNews(
+    val id: Int,
+    val label: String,
+    val img: Int,
+    val description: String,
+    val time: Long,
+    val organization: String,
+    val address: String,
+    val numberList: List<String>,
+    val email: String,
+    val imgOptionally: List<Int>,
+    val site: String,
+    val categories: List<String>
+) : Parcelable
 
 

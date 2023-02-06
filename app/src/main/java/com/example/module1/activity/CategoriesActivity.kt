@@ -1,6 +1,7 @@
 package com.example.module1.activity
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -94,7 +95,7 @@ class CategoriesActivity : AppCompatActivity() {
                     true
                 }
                 R.id.history -> {
-                    Toast.makeText(this, "History", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, Build.VERSION.SDK_INT.toString(), Toast.LENGTH_SHORT).show()
                     startActivity(Intent(applicationContext, NewsComposeActivity::class.java))
                     true
                 }
