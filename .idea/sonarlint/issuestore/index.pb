@@ -120,3 +120,9 @@ i
 9app/src/main/java/com/example/module1/news/NewsAdapter.kt,8\4\84eb91cf1ab7a8cdd71e57fd612d7ef66fa4ea7f
 i
 9app/src/main/java/com/example/module1/news/NewsUIModel.kt,4\0\40e8b31b1195c903dd87dcaacb35c1b4c764e06c
+r
+Bapp/src/main/java/com/example/module1/auth/ComposeLoginActivity.kt,7\5\7524036cb2755da2c8587e3f9e0c426827bf719b
+@
+app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+t
+Dapp/src/main/java/com/example/module1/activity/CategoriesActivity.kt,d\1\d16fa4555fdd4a2cf822dc1dbd286307775b67f1

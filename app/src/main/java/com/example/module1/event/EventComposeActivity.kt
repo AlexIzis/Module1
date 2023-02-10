@@ -1,11 +1,13 @@
 package com.example.module1.event
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.os.Parcelable
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
@@ -18,36 +20,27 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.module1.R
 import com.example.module1.event.ui.theme.Module1Theme
 import com.example.module1.news.UpdateNews
+import java.text.SimpleDateFormat
+import java.util.*
 
 class EventComposeActivity : ComponentActivity() {
 
-    private /*lateinit*/ var news: UpdateNews = UpdateNews(
-        0,
-        "Спонсоры отремонтируют школу-интернат",
-        R.drawable.avatar_1,
-        "Дубовская школа-интернат для детей с ограниченными возможностями здоровья стала первой в области …",
-        1699999999002,
-        "Благотворительный Фонд «Счастливый Мир»",
-        "Санкт-Петербург, Кирочная улица, д. 50А, каб. 208",
-        listOf("+7 (937) 037 37-73", "+7 (937) 016 16-16"),
-        "Напишите нам",
-        listOf(R.drawable.avatar_2, R.drawable.avatar_3),
-        "Перейти на сайт организаии",
-        listOf("children")
-    )
+    private lateinit var news: UpdateNews
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        /*news = intent.parcelable("new")!!*/
+        news = intent.parcelable("new")!!
         setContent {
             Module1Theme {
                 MainScreen()
@@ -110,12 +103,164 @@ class EventComposeActivity : ComponentActivity() {
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     @Composable
     fun DetailNew() {
         Column(
-            modifier = Modifier.fillMaxSize().background(color = Color.White)
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = Color.White)
         ) {
-
+            Text(
+                text = news.label,
+                color = Color.Black,
+                modifier = Modifier.padding(top = 16.dp, start = 20.dp, end = 20.dp),
+                fontSize = 21.sp
+            )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 15.dp, start = 20.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_calendar_today),
+                    contentDescription = "img",
+                )
+                Text(
+                    text = SimpleDateFormat("MMMM dd, yyyy").format(Date(news.time)),
+                    modifier = Modifier.padding(start = 10.dp)
+                )
+            }
+            Text(
+                text = news.organization,
+                color = Color.Black,
+                modifier = Modifier.padding(start = 20.dp, top = 12.dp)
+            )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 15.dp, start = 20.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_nav),
+                    contentDescription = "img"
+                )
+                Text(
+                    text = news.address,
+                    color = Color.Black,
+                    modifier = Modifier.padding(start = 10.dp)
+                )
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 15.dp, start = 20.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_phone),
+                    contentDescription = "img"
+                )
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = news.numberList[0],
+                        color = Color.Black,
+                        modifier = Modifier.padding(start = 10.dp)
+                    )
+                    Text(
+                        text = news.numberList[1],
+                        color = Color.Black,
+                        modifier = Modifier.padding(start = 10.dp, top = 10.dp)
+                    )
+                }
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 15.dp, start = 20.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_mail),
+                    contentDescription = "img"
+                )
+                Text(
+                    text = stringResource(id = R.string.any_questions),
+                    color = Color.Black,
+                    modifier = Modifier.padding(start = 10.dp)
+                )
+                Text(
+                    text = news.email,
+                    color = colorResource(id = R.color.leaf),
+                    modifier = Modifier.padding(start = 10.dp),
+                    textDecoration = TextDecoration.Underline
+                )
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 20.dp, top = 26.dp),
+                verticalAlignment = Alignment.Top
+            ) {
+                Image(
+                    painter = painterResource(id = news.img),
+                    contentDescription = "img"
+                )
+                Column(
+                    modifier = Modifier.padding(start = 10.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = news.imgOptionally[0]),
+                        contentDescription = "img"
+                    )
+                    Image(
+                        painter = painterResource(id = news.imgOptionally[1]),
+                        contentDescription = "img",
+                        modifier = Modifier.padding(top = 10.dp)
+                    )
+                }
+            }
+            Text(
+                text = news.description,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 20.dp, top = 20.dp, end = 20.dp),
+                textAlign = TextAlign.Left
+            )
+            Text(
+                text = news.site,
+                color = colorResource(id = R.color.leaf),
+                modifier = Modifier.padding(start = 20.dp, top = 10.dp, end = 10.dp),
+                textDecoration = TextDecoration.Underline
+            )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(color = Color.Gray)
+                    .padding(10.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.avatar_1),
+                    contentDescription = "img"
+                )
+                Image(
+                    painter = painterResource(id = R.drawable.avatar_2),
+                    contentDescription = "img"
+                )
+                Image(
+                    painter = painterResource(id = R.drawable.avatar_3),
+                    contentDescription = "img"
+                )
+                Text(
+                    text = stringResource(id = R.string._102),
+                    modifier = Modifier.padding(start = 5.dp)
+                )
+            }
         }
     }
 }
