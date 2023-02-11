@@ -13,6 +13,7 @@ import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -75,12 +76,19 @@ class EventComposeActivity : ComponentActivity() {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_arrow_back),
-                contentDescription = "img",
-                tint = Color.White,
-                modifier = Modifier.padding(10.dp)
-            )
+            IconButton(
+                onClick = {
+                    this@EventComposeActivity.finish()
+                }
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_arrow_back),
+                    contentDescription = "img",
+                    tint = Color.White,
+                    modifier = Modifier.padding(10.dp)
+                )
+            }
+
             Text(
                 text = news.label,
                 color = Color.White,

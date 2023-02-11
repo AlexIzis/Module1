@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -30,15 +29,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.fragment.app.FragmentActivity
-import androidx.room.ColumnInfo
-import androidx.room.PrimaryKey
-import androidx.room.TypeConverters
-import com.example.module1.FragmentNavigation
 import com.example.module1.R
 import com.example.module1.event.EventComposeActivity
-import com.example.module1.event.EventFragment
-import com.example.module1.filter.FilterFragment
 import com.example.module1.news.ui.theme.Module1Theme
 import kotlinx.parcelize.Parcelize
 import java.text.SimpleDateFormat
