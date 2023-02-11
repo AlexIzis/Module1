@@ -82,4 +82,5 @@
     <string name="title_activity_compose_login">ComposeLoginActivity</string>
     <string name="title_activity_news_compose">NewsComposeActivity</string>
     <string name="title_activity_event_compose">EventComposeActivity</string>
+    <string name="title_activity_filter_compose">FilterComposeActivity</string>
 </resources>

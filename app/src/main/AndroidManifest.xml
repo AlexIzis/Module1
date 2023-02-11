@@ -15,6 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Module1">
         <activity
+            android:name=".filter.FilterComposeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_filter_compose"
+            android:theme="@style/Theme.Module1" />
+        <activity
             android:name=".event.EventComposeActivity"
             android:exported="false"
             android:label="@string/title_activity_event_compose"

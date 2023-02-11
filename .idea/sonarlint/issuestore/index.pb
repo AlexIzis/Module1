@@ -94,8 +94,6 @@ v
 Fapp/src/main/java/com/example/module1/categories/CategoriesFragment.kt,7\c\7cfd52e40ab03d62971f68bbdd8cf6cf8078ac12
 o
 ?app/src/main/java/com/example/module1/filter/FilterViewModel.kt,b\1\b13380d3db42187e43307ee92fe1ced72cf18abe
-n
->app/src/main/java/com/example/module1/filter/FilterFragment.kt,9\2\924489c6e9803a20983d9e222f3419f0697028a6
 ?
 settings.gradle,0\5\05efc8b1657769a27696d478ded1e95f38737233
 <
@@ -124,5 +122,7 @@ r
 Bapp/src/main/java/com/example/module1/auth/ComposeLoginActivity.kt,7\5\7524036cb2755da2c8587e3f9e0c426827bf719b
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
-t
-Dapp/src/main/java/com/example/module1/activity/CategoriesActivity.kt,d\1\d16fa4555fdd4a2cf822dc1dbd286307775b67f1
+l
+<app/src/main/java/com/example/module1/event/EventFragment.kt,a\9\a94911751e121629765c131c494a6e59f4a04658
+s
+Capp/src/main/java/com/example/module1/event/EventComposeActivity.kt,d\3\d3904a4da004cc6525666e4111c9bd86efce2b16

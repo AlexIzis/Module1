@@ -95,7 +95,6 @@ class CategoriesActivity : AppCompatActivity() {
                     true
                 }
                 R.id.history -> {
-                    Toast.makeText(this, Build.VERSION.SDK_INT.toString(), Toast.LENGTH_SHORT).show()
                     startActivity(Intent(applicationContext, NewsComposeActivity::class.java))
                     true
                 }

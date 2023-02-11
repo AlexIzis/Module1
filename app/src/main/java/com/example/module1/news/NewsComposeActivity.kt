@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.module1.R
 import com.example.module1.event.EventComposeActivity
+import com.example.module1.filter.FilterComposeActivity
 import com.example.module1.news.ui.theme.Module1Theme
 import kotlinx.parcelize.Parcelize
 import java.text.SimpleDateFormat
@@ -110,11 +111,12 @@ class NewsComposeActivity : ComponentActivity() {
             )
             IconButton(
                 onClick = {
-                    /*FragmentNavigation().addFragment(
-                        fragmentManager = FragmentActivity().supportFragmentManager,
-                        fragmentContainer = R.id.fragmentContainerView,
-                        fragment = FilterFragment()
-                    )*/
+                    startActivity(
+                        Intent(
+                            this@NewsComposeActivity,
+                            FilterComposeActivity::class.java
+                        )
+                    )
                 },
                 modifier = Modifier.padding(end = 14.dp, top = 8.dp, bottom = 8.dp)
             ) {
@@ -148,7 +150,6 @@ class NewsComposeActivity : ComponentActivity() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(color = Color.White)
                 .padding(top = 12.dp)
                 .clickable {
                     val intent = Intent(this, EventComposeActivity::class.java)
