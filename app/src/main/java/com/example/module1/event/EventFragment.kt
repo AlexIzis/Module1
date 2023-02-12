@@ -53,14 +53,14 @@ class EventFragment : Fragment() {
         val textTime: TextView = view.findViewById(R.id.timeEvent)
         textTime.text = SimpleDateFormat("MMMM dd, yyyy").format(Date(new.time))
 
-        val imgEvent: ImageView = view.findViewById(R.id.imgEvent)
+        /*val imgEvent: ImageView = view.findViewById(R.id.imgEvent)
         imgEvent.setImageResource(findImageID(new.img))
 
         val imgOptEventUp: ImageView = view.findViewById(R.id.imgOpt_1)
         imgOptEventUp.setImageResource(findImageID(new.imgOptionally[0]))
 
         val imgOptEventDown: ImageView = view.findViewById(R.id.imgOpt_2)
-        imgOptEventDown.setImageResource(findImageID(new.imgOptionally[1]))
+        imgOptEventDown.setImageResource(findImageID(new.imgOptionally[1]))*/
 
         val descEvent: TextView = view.findViewById(R.id.descEvent)
         descEvent.text = new.description

@@ -1,5 +1,6 @@
 package com.example.module1.filter
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -21,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.example.module1.R
 import com.example.module1.filter.ui.theme.Module1Theme
+import com.example.module1.news.NewsComposeActivity
 
 class FilterComposeActivity : ComponentActivity() {
 
@@ -72,7 +74,12 @@ class FilterComposeActivity : ComponentActivity() {
                 fontFamily = FontFamily(Font(R.font.officinasansextraboldscc))
             )
             IconButton(onClick = {
-                /*TODO*/
+                val intent = Intent(
+                    this@FilterComposeActivity, NewsComposeActivity::class.java
+                )
+                intent.putExtra("cat", categories)
+                setResult(RESULT_OK, intent)
+                this@FilterComposeActivity.finish()
             }) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_check),

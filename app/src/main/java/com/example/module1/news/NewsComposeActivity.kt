@@ -1,11 +1,12 @@
 package com.example.module1.news
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.os.Parcelable
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -29,49 +30,36 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModelProvider
+import com.example.module1.AppClass
 import com.example.module1.R
 import com.example.module1.event.EventComposeActivity
 import com.example.module1.filter.FilterComposeActivity
 import com.example.module1.news.ui.theme.Module1Theme
-import kotlinx.parcelize.Parcelize
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
 class NewsComposeActivity : ComponentActivity() {
 
-    private var listNews = arrayListOf(
-        UpdateNews(
-            0,
-            "Спонсоры отремонтируют школу-интернат",
-            R.drawable.avatar_1,
-            "Дубовская школа-интернат для детей с ограниченными возможностями здоровья стала первой в области …",
-            1699999999002,
-            "Благотворительный Фонд «Счастливый Мир»",
-            "Санкт-Петербург, Кирочная улица, д. 50А, каб. 208",
-            listOf("+7 (937) 037 37-73", "+7 (937) 016 16-16"),
-            "Напишите нам",
-            listOf(R.drawable.avatar_2, R.drawable.avatar_3),
-            "Перейти на сайт организаии",
-            listOf("children")
-        ),
-        UpdateNews(
-            1,
-            "Конкурс по вокальному пению в детском доме №6",
-            R.drawable.avatar_2,
-            "Дубовская школа-интернат для детей с ограниченными возможностями здоровья стала первой в области …",
-            1699999999002,
-            "Благотворительный Фонд «Счастливый Мир»",
-            "Санкт-Петербург, Кирочная улица, д. 50А, каб. 208",
-            listOf("+7 (937) 037 37-73", "+7 (937) 016 16-16"),
-            "Напишите нам",
-            listOf(R.drawable.avatar_1, R.drawable.avatar_3),
-            "Перейти на сайт организаии",
-            listOf("adults", "elderly")
-        )
-    )
+    @Inject
+    lateinit var vmFactory: NewsViewModelFactory
+    private lateinit var viewModel: NewsViewModel
+
+    @Inject
+    lateinit var storeImplInst: NewsStore
+
+    private var listNews = arrayListOf<NewsUIModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        (applicationContext as AppClass).mainComponent.injectNewsComposeActivity(this)
+        viewModel = ViewModelProvider(
+            this,
+            vmFactory
+        )[NewsViewModel::class.java]
+
         setContent {
             Module1Theme {
                 MainScreen()
@@ -111,7 +99,7 @@ class NewsComposeActivity : ComponentActivity() {
             )
             IconButton(
                 onClick = {
-                    startActivity(
+                    getResult.launch(
                         Intent(
                             this@NewsComposeActivity,
                             FilterComposeActivity::class.java
@@ -146,7 +134,7 @@ class NewsComposeActivity : ComponentActivity() {
 
     @SuppressLint("SimpleDateFormat")
     @Composable
-    fun New(newsUIModel: UpdateNews) {
+    fun New(newsUIModel: NewsUIModel) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -208,22 +196,11 @@ class NewsComposeActivity : ComponentActivity() {
             }
         }
     }
+
+    private val getResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                it.data?.getStringArrayListExtra("cat")
+            }
+        }
 }
-
-@Parcelize
-data class UpdateNews(
-    val id: Int,
-    val label: String,
-    val img: Int,
-    val description: String,
-    val time: Long,
-    val organization: String,
-    val address: String,
-    val numberList: List<String>,
-    val email: String,
-    val imgOptionally: List<Int>,
-    val site: String,
-    val categories: List<String>
-) : Parcelable
-
-

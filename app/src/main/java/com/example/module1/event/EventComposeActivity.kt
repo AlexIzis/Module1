@@ -31,13 +31,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.module1.R
 import com.example.module1.event.ui.theme.Module1Theme
-import com.example.module1.news.UpdateNews
+import com.example.module1.news.NewsUIModel
 import java.text.SimpleDateFormat
 import java.util.*
 
 class EventComposeActivity : ComponentActivity() {
 
-    private lateinit var news: UpdateNews
+    private lateinit var news: NewsUIModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -37,13 +37,13 @@ class NewsAdapter(private val onItemClick: ((NewsUIModel) -> Unit)) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val news = differ.currentList[position]
         val context = holder.imgView.context
-        holder.imgView.setImageResource(
+        /*holder.imgView.setImageResource(
             context.resources.getIdentifier(
                 news.img,
                 "img",
                 context.packageName
             )
-        )
+        )*/
         holder.labelText.text = news.label
         holder.descText.text = news.description
         holder.time.text = SimpleDateFormat("MMMM dd, yyyy").format(Date(news.time))
