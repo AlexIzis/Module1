@@ -215,18 +215,36 @@ class EventComposeActivity : ComponentActivity() {
                 verticalAlignment = Alignment.Top
             ) {
                 Image(
-                    painter = painterResource(id = news.img),
+                    painter = painterResource(
+                        id = resources.getIdentifier(
+                            news.img,
+                            "drawable",
+                            applicationContext.packageName
+                        )
+                    ),
                     contentDescription = "img"
                 )
                 Column(
                     modifier = Modifier.padding(start = 10.dp)
                 ) {
                     Image(
-                        painter = painterResource(id = news.imgOptionally[0]),
+                        painter = painterResource(
+                            id = resources.getIdentifier(
+                                news.imgOptionally[0],
+                                "drawable",
+                                applicationContext.packageName
+                            )
+                        ),
                         contentDescription = "img"
                     )
                     Image(
-                        painter = painterResource(id = news.imgOptionally[1]),
+                        painter = painterResource(
+                            id = resources.getIdentifier(
+                                news.imgOptionally[1],
+                                "drawable",
+                                applicationContext.packageName
+                            )
+                        ),
                         contentDescription = "img",
                         modifier = Modifier.padding(top = 10.dp)
                     )

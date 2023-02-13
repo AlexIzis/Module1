@@ -2,7 +2,6 @@ package com.example.module1.news
 
 import android.content.Context
 import android.util.Log
-import com.example.module1.R
 import com.example.module1.retrofit.Common
 import com.example.module1.room.AppDatabase
 import kotlinx.coroutines.CoroutineDispatcher
@@ -23,28 +22,28 @@ class NewsStoreImpl @Inject constructor(val context: Context) : NewsStore {
         NewsUIModel(
             0,
             "Спонсоры отремонтируют школу-интернат",
-            R.drawable.avatar_1,
+            "avatar_1",
             "Дубовская школа-интернат для детей с ограниченными возможностями здоровья стала первой в области …",
             1699999999002,
             "Благотворительный Фонд «Счастливый Мир»",
             "Санкт-Петербург, Кирочная улица, д. 50А, каб. 208",
             listOf("+7 (937) 037 37-73", "+7 (937) 016 16-16"),
             "Напишите нам",
-            listOf(R.drawable.avatar_2, R.drawable.avatar_3),
+            listOf("@drawable/avatar_2", "@drawable/avatar_3"),
             "Перейти на сайт организаии",
             listOf("children")
         ),
         NewsUIModel(
             1,
             "Конкурс по вокальному пению в детском доме №6",
-            R.drawable.avatar_2,
+            "avatar_2",
             "Дубовская школа-интернат для детей с ограниченными возможностями здоровья стала первой в области …",
             1699999999002,
             "Благотворительный Фонд «Счастливый Мир»",
             "Санкт-Петербург, Кирочная улица, д. 50А, каб. 208",
             listOf("+7 (937) 037 37-73", "+7 (937) 016 16-16"),
             "Напишите нам",
-            listOf(R.drawable.avatar_2, R.drawable.avatar_3),
+            listOf("@drawable/avatar_2", "@drawable/avatar_3"),
             "Перейти на сайт организаии",
             listOf("adults", "elderly")
         )

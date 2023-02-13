@@ -17,6 +17,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,11 +32,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.module1.AppClass
 import com.example.module1.R
 import com.example.module1.event.EventComposeActivity
 import com.example.module1.filter.FilterComposeActivity
 import com.example.module1.news.ui.theme.Module1Theme
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -49,16 +52,42 @@ class NewsComposeActivity : ComponentActivity() {
     @Inject
     lateinit var storeImplInst: NewsStore
 
-    private var listNews = arrayListOf<NewsUIModel>()
+    private var listNews = mutableStateListOf<NewsUIModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        /*listNews.add(
+            NewsUIModel(
+                0,
+                "Спонсоры отремонтируют школу-интернат",
+                "avatar_1",
+                "Дубовская школа-интернат для детей с ограниченными возможностями здоровья стала первой в области …",
+                1699999999002,
+                "Благотворительный Фонд «Счастливый Мир»",
+                "Санкт-Петербург, Кирочная улица, д. 50А, каб. 208",
+                listOf("+7 (937) 037 37-73", "+7 (937) 016 16-16"),
+                "Напишите нам",
+                listOf("@drawable/avatar_2", "@drawable/avatar_3"),
+                "Перейти на сайт организаии",
+                listOf("children")
+            )
+        )*/
         (applicationContext as AppClass).mainComponent.injectNewsComposeActivity(this)
         viewModel = ViewModelProvider(
             this,
             vmFactory
         )[NewsViewModel::class.java]
+
+        lifecycleScope.launch {
+            viewModel.emitNewsList()
+            viewModel.newsFlow.collect {
+                if (it.isEmpty()) {
+                    viewModel.handleIntent(NewsIntent.StartScreen)
+                }
+                listNews.clear()
+                listNews.addAll(it)
+            }
+        }
 
         setContent {
             Module1Theme {
@@ -143,12 +172,17 @@ class NewsComposeActivity : ComponentActivity() {
                     val intent = Intent(this, EventComposeActivity::class.java)
                     intent.putExtra("new", newsUIModel)
                     startActivity(intent)
-                },
+                }
+                .background(color = Color.White),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
                 painter = painterResource(
-                    id = newsUIModel.img
+                    id = resources.getIdentifier(
+                        newsUIModel.img,
+                        "drawable",
+                        applicationContext.packageName
+                    )
                 ),
                 contentDescription = "img",
                 modifier = Modifier

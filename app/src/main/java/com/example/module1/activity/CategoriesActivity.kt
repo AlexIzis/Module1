@@ -1,13 +1,14 @@
 package com.example.module1.activity
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.module1.*
+import com.example.module1.FragmentNavigation
+import com.example.module1.JsonParser
+import com.example.module1.R
+import com.example.module1.VMNewsFlow
 import com.example.module1.categories.CategoriesFragment
 import com.example.module1.news.NewsComposeActivity
 import com.example.module1.news.NewsFragment
@@ -25,7 +26,7 @@ import kotlinx.coroutines.launch
 
 class CategoriesActivity : AppCompatActivity() {
     private var countAllNews = 0
-    private lateinit var disposable: Disposable
+    /*private lateinit var disposable: Disposable*/
     private lateinit var navigation: BottomNavigationView
     private val viewModel: VMNewsFlow by viewModels()
 
@@ -42,7 +43,7 @@ class CategoriesActivity : AppCompatActivity() {
         }
 
         navigation = findViewById(R.id.btnNavHelp)
-        disposable = Observable.fromCallable {
+        /*disposable = Observable.fromCallable {
             JsonParser(
                 getString(R.string.path_to_news),
                 NewsUIModel::class.java,
@@ -54,9 +55,9 @@ class CategoriesActivity : AppCompatActivity() {
             .subscribe {
                 countAllNews = it
                 navigation.getOrCreateBadge(R.id.news).number = countAllNews
-            }
+            }*/
 
-        CoroutineScope(Dispatchers.Main).launch {
+        /*CoroutineScope(Dispatchers.Main).launch {
             try {
                 viewModel.flow.collect{
                     navigation.getOrCreateBadge(R.id.news).number = countAllNews - it
@@ -65,7 +66,7 @@ class CategoriesActivity : AppCompatActivity() {
                 Log.d("tag", e.toString())
                 Log.d("tag", "Программка, не болей")
             }
-        }
+        }*/
 
         navigation.selectedItemId = R.id.heart
         navigation.setOnItemSelectedListener { item ->
@@ -123,6 +124,6 @@ class CategoriesActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        disposable.dispose()
+        /*disposable.dispose()*/
     }
 }
