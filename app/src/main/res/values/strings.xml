@@ -83,4 +83,6 @@
     <string name="title_activity_news_compose">NewsComposeActivity</string>
     <string name="title_activity_event_compose">EventComposeActivity</string>
     <string name="title_activity_filter_compose">FilterComposeActivity</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="registration">Регистрация</string>
 </resources>

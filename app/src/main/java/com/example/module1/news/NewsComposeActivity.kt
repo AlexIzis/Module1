@@ -42,6 +42,7 @@ import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 class NewsComposeActivity : ComponentActivity() {
 
@@ -56,22 +57,7 @@ class NewsComposeActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        /*listNews.add(
-            NewsUIModel(
-                0,
-                "Спонсоры отремонтируют школу-интернат",
-                "avatar_1",
-                "Дубовская школа-интернат для детей с ограниченными возможностями здоровья стала первой в области …",
-                1699999999002,
-                "Благотворительный Фонд «Счастливый Мир»",
-                "Санкт-Петербург, Кирочная улица, д. 50А, каб. 208",
-                listOf("+7 (937) 037 37-73", "+7 (937) 016 16-16"),
-                "Напишите нам",
-                listOf("@drawable/avatar_2", "@drawable/avatar_3"),
-                "Перейти на сайт организаии",
-                listOf("children")
-            )
-        )*/
+
         (applicationContext as AppClass).mainComponent.injectNewsComposeActivity(this)
         viewModel = ViewModelProvider(
             this,
@@ -234,7 +220,9 @@ class NewsComposeActivity : ComponentActivity() {
     private val getResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == Activity.RESULT_OK) {
-                it.data?.getStringArrayListExtra("cat")
+                viewModel.filterByCategories(
+                    it.data?.getStringArrayListExtra("cat") as ArrayList<String>
+                )
             }
         }
 }

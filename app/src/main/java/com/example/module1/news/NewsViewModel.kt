@@ -27,4 +27,20 @@ class NewsViewModel(private val store: NewsStore) : ViewModel() {
             }
         }
     }
+
+    fun filterByCategories(categories: ArrayList<String>) {
+        if (categories.isNotEmpty()) {
+            viewModelScope.launch {
+                _newsFlow.emit(
+                    categories.flatMap { cat ->
+                        newsFlow.value.filter { new ->
+                            new.categories.contains(
+                                cat
+                            )
+                        }
+                    }
+                )
+            }
+        }
+    }
 }

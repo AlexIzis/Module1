@@ -6,7 +6,6 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.module1.categories.CategoryUiModel
-import com.example.module1.news.ListIntTypeConverter
 import com.example.module1.news.ListStringTypeConverter
 import com.example.module1.news.NewsUIModel
 
