@@ -5,8 +5,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.foundation.layout.* // ktlint-disable no-wildcard-imports
+import androidx.compose.material.* // ktlint-disable no-wildcard-imports
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,7 +21,6 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.example.module1.R
-import com.example.module1.filter.ui.theme.Module1Theme
 import com.example.module1.news.NewsComposeActivity
 
 class FilterComposeActivity : ComponentActivity() {
@@ -31,9 +30,7 @@ class FilterComposeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Module1Theme {
-                MainScreen()
-            }
+            MainScreen()
         }
     }
 
@@ -63,7 +60,7 @@ class FilterComposeActivity : ComponentActivity() {
             }) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_arrow_back),
-                    contentDescription = "img",
+                    contentDescription = contDescImg,
                     tint = Color.White
                 )
             }
@@ -75,7 +72,8 @@ class FilterComposeActivity : ComponentActivity() {
             )
             IconButton(onClick = {
                 val intent = Intent(
-                    this@FilterComposeActivity, NewsComposeActivity::class.java
+                    this@FilterComposeActivity,
+                    NewsComposeActivity::class.java
                 )
                 intent.putExtra("cat", categories)
                 setResult(RESULT_OK, intent)
@@ -83,7 +81,7 @@ class FilterComposeActivity : ComponentActivity() {
             }) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_check),
-                    contentDescription = "img",
+                    contentDescription = contDescImg,
                     tint = Color.White
                 )
             }
@@ -92,7 +90,6 @@ class FilterComposeActivity : ComponentActivity() {
 
     @Composable
     fun ListOfCheckBox() {
-
         val checkedStateChildren = remember {
             mutableStateOf(false)
         }
@@ -108,6 +105,8 @@ class FilterComposeActivity : ComponentActivity() {
         val checkedStateEvents = remember {
             mutableStateOf(false)
         }
+
+        val fontSizeCheckBox = 16.sp
 
         Column(
             modifier = Modifier
@@ -130,7 +129,7 @@ class FilterComposeActivity : ComponentActivity() {
                 )
                 Text(
                     text = "Дети",
-                    fontSize = 16.sp
+                    fontSize = fontSizeCheckBox
                 )
             }
 
@@ -150,7 +149,7 @@ class FilterComposeActivity : ComponentActivity() {
                 )
                 Text(
                     text = "Взрослые",
-                    fontSize = 16.sp
+                    fontSize = fontSizeCheckBox
                 )
             }
 
@@ -170,7 +169,7 @@ class FilterComposeActivity : ComponentActivity() {
                 )
                 Text(
                     text = "Пожилые",
-                    fontSize = 16.sp
+                    fontSize = fontSizeCheckBox
                 )
             }
 
@@ -190,7 +189,7 @@ class FilterComposeActivity : ComponentActivity() {
                 )
                 Text(
                     text = "Животные",
-                    fontSize = 16.sp
+                    fontSize = fontSizeCheckBox
                 )
             }
 
@@ -210,10 +209,13 @@ class FilterComposeActivity : ComponentActivity() {
                 )
                 Text(
                     text = "События",
-                    fontSize = 16.sp
+                    fontSize = fontSizeCheckBox
                 )
             }
         }
     }
-}
 
+    companion object {
+        private const val contDescImg = "img"
+    }
+}

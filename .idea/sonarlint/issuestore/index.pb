@@ -110,7 +110,5 @@ c
 3app/src/main/java/com/example/module1/JsonParser.kt,b\1\b1d54747964bc0388264e4b757570132a2182323
 t
 Dapp/src/main/java/com/example/module1/profile/EditProfileFragment.kt,9\e\9e324c5c7b30caf79df1bea8128651d32826e5b0
-u
-Eapp/src/main/java/com/example/module1/filter/FilterComposeActivity.kt,1\0\10e49ed4f3e228b9ece15edbbdfb4b870b2302d7
 q
 Aapp/src/main/java/com/example/module1/news/NewsComposeActivity.kt,f\1\f18458ef38a0c83596d4645cf29f6086df1ca742
