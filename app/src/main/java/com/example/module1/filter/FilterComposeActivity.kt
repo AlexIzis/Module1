@@ -75,7 +75,7 @@ class FilterComposeActivity : ComponentActivity() {
                     this@FilterComposeActivity,
                     NewsComposeActivity::class.java
                 )
-                intent.putExtra("cat", categories)
+                intent.putExtra(filterKey, categories)
                 setResult(RESULT_OK, intent)
                 this@FilterComposeActivity.finish()
             }) {
@@ -217,5 +217,6 @@ class FilterComposeActivity : ComponentActivity() {
 
     companion object {
         private const val contDescImg = "img"
+        const val filterKey = "cat"
     }
 }

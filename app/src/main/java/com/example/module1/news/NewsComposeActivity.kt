@@ -10,7 +10,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.* // ktlint-disable no-wildcard-imports
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Icon
@@ -36,7 +36,9 @@ import androidx.lifecycle.lifecycleScope
 import com.example.module1.AppClass
 import com.example.module1.R
 import com.example.module1.event.EventComposeActivity
+import com.example.module1.event.EventComposeActivity.Companion.intentKey
 import com.example.module1.filter.FilterComposeActivity
+import com.example.module1.filter.FilterComposeActivity.Companion.filterKey
 import com.example.module1.news.ui.theme.Module1Theme
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -125,7 +127,7 @@ class NewsComposeActivity : ComponentActivity() {
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_filter),
-                    contentDescription = "img",
+                    contentDescription = contDescImg,
                     tint = Color.White
                 )
             }
@@ -156,7 +158,7 @@ class NewsComposeActivity : ComponentActivity() {
                 .padding(top = 12.dp)
                 .clickable {
                     val intent = Intent(this, EventComposeActivity::class.java)
-                    intent.putExtra("new", newsUIModel)
+                    intent.putExtra(intentKey, newsUIModel)
                     startActivity(intent)
                 }
                 .background(color = Color.White),
@@ -166,11 +168,11 @@ class NewsComposeActivity : ComponentActivity() {
                 painter = painterResource(
                     id = resources.getIdentifier(
                         newsUIModel.img,
-                        "drawable",
+                        defType,
                         applicationContext.packageName
                     )
                 ),
-                contentDescription = "img",
+                contentDescription = contDescImg,
                 modifier = Modifier
                     .height(200.dp)
                     .fillMaxWidth()
@@ -185,7 +187,7 @@ class NewsComposeActivity : ComponentActivity() {
                 painter = painterResource(
                     id = R.drawable.ic_decor
                 ),
-                contentDescription = "img"
+                contentDescription = contDescImg
             )
             Text(
                 text = newsUIModel.description,
@@ -204,7 +206,7 @@ class NewsComposeActivity : ComponentActivity() {
                     painter = painterResource(
                         id = R.drawable.ic_calendar_today
                     ),
-                    contentDescription = "img",
+                    contentDescription = contDescImg,
                     modifier = Modifier.padding(top = 4.dp, bottom = 4.dp),
                     colorFilter = ColorFilter.tint(color = Color.White)
                 )
@@ -221,8 +223,13 @@ class NewsComposeActivity : ComponentActivity() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == Activity.RESULT_OK) {
                 viewModel.filterByCategories(
-                    it.data?.getStringArrayListExtra("cat") as ArrayList<String>
+                    it.data?.getStringArrayListExtra(filterKey) as ArrayList<String>
                 )
             }
         }
+
+    companion object {
+        private const val contDescImg = "img"
+        private const val defType = "drawable"
+    }
 }
