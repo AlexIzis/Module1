@@ -9,7 +9,7 @@ import com.example.module1.categories.CategoryUiModel
 import com.example.module1.news.ListStringTypeConverter
 import com.example.module1.news.NewsUIModel
 
-@Database(entities = [CategoryUiModel::class, NewsUIModel::class], version = 5, exportSchema = false)
+@Database(entities = [CategoryUiModel::class, NewsUIModel::class], version = 6, exportSchema = false)
 @TypeConverters(ListStringTypeConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun categoryDao(): CategoriesDao

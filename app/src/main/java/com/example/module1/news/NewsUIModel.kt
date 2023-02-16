@@ -19,7 +19,7 @@ data class NewsUIModel(
     @ColumnInfo(name = "address") val address: String,
     @TypeConverters(ListStringTypeConverter::class)
     @ColumnInfo(name = "numberList") val numberList: List<String>,
-    @ColumnInfo(name = "email") val email: String,
+    @ColumnInfo(name = "_email") val email: String,
     @TypeConverters(ListStringTypeConverter::class)
     @ColumnInfo(name = "imgOptionally") val imgOptionally: List<String>,
     @ColumnInfo(name = "site") val site: String,

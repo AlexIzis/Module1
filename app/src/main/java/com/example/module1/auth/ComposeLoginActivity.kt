@@ -112,7 +112,7 @@ class ComposeLoginActivity : ComponentActivity() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             TextField(
-                value = viewModel.email,
+                value = viewModel.email.value,
                 modifier = Modifier
                     .padding(top = 32.dp)
                     .background(color = Color.White),
@@ -132,7 +132,7 @@ class ComposeLoginActivity : ComponentActivity() {
                 )
             )
             TextField(
-                value = viewModel.password,
+                value = viewModel.password.value,
                 modifier = Modifier
                     .padding(top = 10.dp)
                     .background(color = Color.White),
@@ -156,7 +156,7 @@ class ComposeLoginActivity : ComponentActivity() {
                     context.startActivity(Intent(context, CategoriesActivity::class.java))
                 },
                 colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.leaf)),
-                enabled = (viewModel.email.length >= 5) && (viewModel.password.length >= 5)
+                enabled = viewModel.enabledButton()
             ) {
                 Text(
                     text = stringResource(id = R.string.button_login),
