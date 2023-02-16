@@ -10,7 +10,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.* // ktlint-disable no-wildcard-imports
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -30,7 +30,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.module1.R
-import com.example.module1.event.ui.theme.Module1Theme
 import com.example.module1.news.NewsUIModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -41,11 +40,9 @@ class EventComposeActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        news = intent.parcelable("new")!!
+        news = intent.parcelable(intentKey)!!
         setContent {
-            Module1Theme {
-                MainScreen()
-            }
+            MainScreen()
         }
     }
 
@@ -83,7 +80,7 @@ class EventComposeActivity : ComponentActivity() {
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_arrow_back),
-                    contentDescription = "img",
+                    contentDescription = contDescImg,
                     tint = Color.White,
                     modifier = Modifier.padding(10.dp)
                 )
@@ -104,7 +101,7 @@ class EventComposeActivity : ComponentActivity() {
             )
             Icon(
                 painter = painterResource(id = R.drawable.ic_share),
-                contentDescription = "img",
+                contentDescription = contDescImg,
                 tint = Color.White,
                 modifier = Modifier.padding(10.dp)
             )
@@ -133,7 +130,7 @@ class EventComposeActivity : ComponentActivity() {
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_calendar_today),
-                    contentDescription = "img",
+                    contentDescription = contDescImg
                 )
                 Text(
                     text = SimpleDateFormat("MMMM dd, yyyy").format(Date(news.time)),
@@ -153,7 +150,7 @@ class EventComposeActivity : ComponentActivity() {
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_nav),
-                    contentDescription = "img"
+                    contentDescription = contDescImg
                 )
                 Text(
                     text = news.address,
@@ -169,7 +166,7 @@ class EventComposeActivity : ComponentActivity() {
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_phone),
-                    contentDescription = "img"
+                    contentDescription = contDescImg
                 )
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally
@@ -194,7 +191,7 @@ class EventComposeActivity : ComponentActivity() {
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_mail),
-                    contentDescription = "img"
+                    contentDescription = contDescImg
                 )
                 Text(
                     text = stringResource(id = R.string.any_questions),
@@ -218,11 +215,11 @@ class EventComposeActivity : ComponentActivity() {
                     painter = painterResource(
                         id = resources.getIdentifier(
                             news.img,
-                            "drawable",
+                            defType,
                             applicationContext.packageName
                         )
                     ),
-                    contentDescription = "img"
+                    contentDescription = contDescImg
                 )
                 Column(
                     modifier = Modifier.padding(start = 10.dp)
@@ -231,21 +228,21 @@ class EventComposeActivity : ComponentActivity() {
                         painter = painterResource(
                             id = resources.getIdentifier(
                                 news.imgOptionally[0],
-                                "drawable",
+                                defType,
                                 applicationContext.packageName
                             )
                         ),
-                        contentDescription = "img"
+                        contentDescription = contDescImg
                     )
                     Image(
                         painter = painterResource(
                             id = resources.getIdentifier(
                                 news.imgOptionally[1],
-                                "drawable",
+                                defType,
                                 applicationContext.packageName
                             )
                         ),
-                        contentDescription = "img",
+                        contentDescription = contDescImg,
                         modifier = Modifier.padding(top = 10.dp)
                     )
                 }
@@ -272,15 +269,15 @@ class EventComposeActivity : ComponentActivity() {
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.avatar_1),
-                    contentDescription = "img"
+                    contentDescription = contDescImg
                 )
                 Image(
                     painter = painterResource(id = R.drawable.avatar_2),
-                    contentDescription = "img"
+                    contentDescription = contDescImg
                 )
                 Image(
                     painter = painterResource(id = R.drawable.avatar_3),
-                    contentDescription = "img"
+                    contentDescription = contDescImg
                 )
                 Text(
                     text = stringResource(id = R.string._102),
@@ -288,5 +285,11 @@ class EventComposeActivity : ComponentActivity() {
                 )
             }
         }
+    }
+
+    companion object {
+        private const val contDescImg = "img"
+        private const val defType = "drawable"
+        const val intentKey = "new"
     }
 }
