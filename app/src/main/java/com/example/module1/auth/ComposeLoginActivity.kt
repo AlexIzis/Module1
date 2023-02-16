@@ -7,8 +7,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.foundation.layout.* // ktlint-disable no-wildcard-imports
+import androidx.compose.material.* // ktlint-disable no-wildcard-imports
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,6 +27,10 @@ import androidx.compose.ui.unit.sp
 import com.example.module1.R
 import com.example.module1.activity.CategoriesActivity
 
+/**
+ * Класс ComposeLoginActivity
+ * Служит для отображения экрана авторизации
+ */
 class ComposeLoginActivity : ComponentActivity() {
 
     private val viewModel by viewModels<LoginViewModel>()
@@ -41,6 +45,9 @@ class ComposeLoginActivity : ComponentActivity() {
     @Preview
     @Composable
     fun MainScreen() {
+        val horizontalPadding = 56.dp
+        val verticalPadding = 40.dp
+
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
@@ -50,14 +57,22 @@ class ComposeLoginActivity : ComponentActivity() {
             CustomToolbar()
             Text(
                 text = stringResource(id = R.string.string_with_social),
-                modifier = Modifier.padding(start = 56.dp, end = 56.dp, top = 40.dp),
+                modifier = Modifier.padding(
+                    start = horizontalPadding,
+                    end = horizontalPadding,
+                    top = verticalPadding
+                ),
                 fontSize = 14.sp,
-                textAlign = TextAlign.Center,
+                textAlign = TextAlign.Center
             )
             Socials()
             Text(
                 text = stringResource(id = R.string.string_with_app),
-                modifier = Modifier.padding(start = 56.dp, end = 56.dp, top = 40.dp),
+                modifier = Modifier.padding(
+                    start = horizontalPadding,
+                    end = horizontalPadding,
+                    top = verticalPadding
+                ),
                 fontSize = 14.sp
             )
             UserTextInput()
@@ -69,43 +84,57 @@ class ComposeLoginActivity : ComponentActivity() {
     fun CustomToolbar() {
         Row(
             modifier = Modifier
-                .background(color = colorResource(id = R.color.leaf))
+                .background(color = colorResource(id = mainColor))
                 .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_arrow_back),
-                contentDescription = "img",
+                contentDescription = contDescImg,
                 tint = Color.White,
-                modifier = Modifier.padding(start = 14.dp, top = 14.dp, bottom = 14.dp),
+                modifier = Modifier.padding(14.dp)
             )
 
             Text(
                 text = stringResource(id = R.string.login),
                 color = Color.White,
                 fontSize = 21.sp,
-                fontFamily = FontFamily(Font(R.font.officinasansextraboldscc)),
+                fontFamily = FontFamily(Font(R.font.officinasansextraboldscc))
             )
         }
     }
 
     @Composable
     fun Socials() {
+        val horizontalPadding = 60.dp
+        val verticalPadding = 20.dp
+
         Row(
             modifier = Modifier
-                .padding(start = 60.dp, end = 60.dp, top = 20.dp)
+                .padding(start = horizontalPadding, end = horizontalPadding, top = verticalPadding)
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Image(painter = painterResource(id = R.drawable.ic_vk), contentDescription = "img")
-            Image(painter = painterResource(id = R.drawable.ic_fb), contentDescription = "img")
-            Image(painter = painterResource(id = R.drawable.ic_ok), contentDescription = "img")
+            Image(
+                painter = painterResource(id = R.drawable.ic_vk),
+                contentDescription = contDescImg
+            )
+            Image(
+                painter = painterResource(id = R.drawable.ic_fb),
+                contentDescription = contDescImg
+            )
+            Image(
+                painter = painterResource(id = R.drawable.ic_ok),
+                contentDescription = contDescImg
+            )
         }
     }
 
     @Composable
     fun UserTextInput() {
         val context = LocalContext.current
+        val mainVerticalPadding = 32.dp
+        val sideVerticalPadding = 10.dp
 
         Column(
             modifier = Modifier.fillMaxWidth(),
@@ -114,12 +143,12 @@ class ComposeLoginActivity : ComponentActivity() {
             TextField(
                 value = viewModel.email.value,
                 modifier = Modifier
-                    .padding(top = 32.dp)
+                    .padding(top = mainVerticalPadding)
                     .background(color = Color.White),
                 label = {
                     Text(
                         text = stringResource(id = R.string.e_mail),
-                        color = colorResource(id = R.color.leaf)
+                        color = colorResource(id = mainColor)
                     )
                 },
                 onValueChange = {
@@ -127,19 +156,19 @@ class ComposeLoginActivity : ComponentActivity() {
                 },
                 colors = TextFieldDefaults.textFieldColors(
                     backgroundColor = Color.White,
-                    focusedIndicatorColor = colorResource(id = R.color.leaf),
-                    cursorColor = colorResource(id = R.color.leaf)
+                    focusedIndicatorColor = colorResource(id = mainColor),
+                    cursorColor = colorResource(id = mainColor)
                 )
             )
             TextField(
                 value = viewModel.password.value,
                 modifier = Modifier
-                    .padding(top = 10.dp)
+                    .padding(top = sideVerticalPadding)
                     .background(color = Color.White),
                 label = {
                     Text(
                         text = stringResource(id = R.string.password),
-                        color = colorResource(id = R.color.leaf)
+                        color = colorResource(id = mainColor)
                     )
                 },
                 onValueChange = {
@@ -147,15 +176,16 @@ class ComposeLoginActivity : ComponentActivity() {
                 },
                 colors = TextFieldDefaults.textFieldColors(
                     backgroundColor = Color.White,
-                    focusedIndicatorColor = colorResource(id = R.color.leaf),
-                    cursorColor = colorResource(id = R.color.leaf)
+                    focusedIndicatorColor = colorResource(id = mainColor),
+                    cursorColor = colorResource(id = mainColor)
                 )
             )
             Button(
                 onClick = {
-                    context.startActivity(Intent(context, CategoriesActivity::class.java))
+                    val intent = Intent(context, CategoriesActivity::class.java)
+                    startActivity(intent)
                 },
-                colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.leaf)),
+                colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = mainColor)),
                 enabled = viewModel.enabledButton()
             ) {
                 Text(
@@ -177,14 +207,19 @@ class ComposeLoginActivity : ComponentActivity() {
         ) {
             Text(
                 text = stringResource(id = R.string.forgot_password),
-                color = colorResource(id = R.color.leaf),
+                color = colorResource(id = mainColor),
                 textDecoration = TextDecoration.Underline
             )
             Text(
                 text = stringResource(id = R.string.registration),
-                color = colorResource(id = R.color.leaf),
+                color = colorResource(id = mainColor),
                 textDecoration = TextDecoration.Underline
             )
         }
+    }
+
+    companion object {
+        private const val contDescImg = "img"
+        private const val mainColor = R.color.leaf
     }
 }
