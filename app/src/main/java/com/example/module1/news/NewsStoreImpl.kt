@@ -87,7 +87,6 @@ class NewsStoreImpl @Inject constructor(val context: Context) : NewsStore {
                 override fun onFailure(call: Call<MutableList<NewsUIModel>>, t: Throwable) {
                     Log.d("errorNetworkNews", t.toString())
                 }
-
             })
     }
 

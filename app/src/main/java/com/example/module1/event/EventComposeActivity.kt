@@ -36,7 +36,20 @@ import java.util.*
 
 class EventComposeActivity : ComponentActivity() {
 
-    private lateinit var news: NewsUIModel
+    private lateinit var news: NewsUIModel /*= NewsUIModel(
+        0,
+        "Спонсоры отремонтируют школу-интернат",
+        "avatar_1",
+        "Дубовская школа-интернат для детей с ограниченными возможностями здоровья стала первой в области …",
+        1699999999002,
+        "Благотворительный Фонд «Счастливый Мир»",
+        "Санкт-Петербург, Кирочная улица, д. 50А, каб. 208",
+        listOf("+7 (937) 037 37-73", "+7 (937) 016 16-16"),
+        "Напишите нам",
+        listOf("@drawable/avatar_2", "@drawable/avatar_3"),
+        "Перейти на сайт организаии",
+        listOf("children")
+    )*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -284,6 +297,15 @@ class EventComposeActivity : ComponentActivity() {
                     modifier = Modifier.padding(start = 5.dp)
                 )
             }
+            Text(
+                text = "Помочь деньгами",
+                color = colorResource(id = R.color.leaf),
+                modifier = Modifier
+                    .padding(top = 10.dp)
+                    .fillMaxWidth(),
+                textAlign = TextAlign.Center,
+                fontSize = 18.sp
+            )
         }
     }
 

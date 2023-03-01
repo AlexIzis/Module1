@@ -78,8 +78,6 @@ i
 9app/src/main/java/com/example/module1/news/NewsUIModel.kt,4\0\40e8b31b1195c903dd87dcaacb35c1b4c764e06c
 g
 7app/src/main/java/com/example/module1/news/NewsStore.kt,e\9\e9aebeb2c2ef704268a8ac7d7a190a002dc2d598
-k
-;app/src/main/java/com/example/module1/news/NewsStoreImpl.kt,0\c\0cde9465d23863b02e27472710c354e8c19389c6
 h
 8app/src/main/java/com/example/module1/search/VMSearch.kt,5\3\53a16232ea2ba884828817c7aa921fbc4116d2e0
 i
@@ -114,8 +112,6 @@ l
 <app/src/main/java/com/example/module1/auth/LoginViewModel.kt,c\e\ce7e2112de52c9bb8f6fcb0c27bef95d22685955
 r
 Bapp/src/main/java/com/example/module1/auth/ComposeLoginActivity.kt,7\5\7524036cb2755da2c8587e3f9e0c426827bf719b
-s
-Capp/src/main/java/com/example/module1/event/EventComposeActivity.kt,d\3\d3904a4da004cc6525666e4111c9bd86efce2b16
 q
 Aapp/src/main/java/com/example/module1/news/NewsComposeActivity.kt,f\1\f18458ef38a0c83596d4645cf29f6086df1ca742
 u
