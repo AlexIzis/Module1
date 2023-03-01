@@ -2,6 +2,7 @@ package com.example.module1.event
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.os.Parcelable
@@ -35,13 +36,23 @@ import java.util.*
 class EventComposeActivity : ComponentActivity() {
 
     private lateinit var news: NewsUIModel
+    private val myReceiver = PowerReceiver()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         news = intent.parcelable(intentKey)!!
+        val intentFilter = IntentFilter()
+
+        intentFilter.addAction(Intent.ACTION_POWER_CONNECTED)
+        this.registerReceiver(myReceiver, intentFilter)
         setContent {
             MainScreen()
         }
+    }
+
+    override fun onDestroy() {
+        this.unregisterReceiver(myReceiver)
+        super.onDestroy()
     }
 
     private inline fun <reified T : Parcelable> Intent.parcelable(key: String): T? = when {
@@ -377,10 +388,6 @@ class EventComposeActivity : ComponentActivity() {
                 )
             }
         }
-    }
-
-    private fun enableButton(sum: Int): Boolean {
-        return (sum > 0) && (sum < 9999999)
     }
 
     companion object {

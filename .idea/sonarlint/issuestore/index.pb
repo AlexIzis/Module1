@@ -82,8 +82,6 @@ h
 8app/src/main/java/com/example/module1/search/VMSearch.kt,5\3\53a16232ea2ba884828817c7aa921fbc4116d2e0
 i
 9app/src/main/java/com/example/module1/search/VpAdapter.kt,b\0\b015439b616be79c0797b56dd37b7c32b38ec56b
-k
-;app/src/main/java/com/example/module1/news/NewsViewModel.kt,b\8\b818dd3ddc0dd91218555dfda791a942fdd67ec9
 m
 =app/src/main/java/com/example/module1/ItemMarginDecoration.kt,0\6\0658fbaaa54a2b385cd741e9e1a2ee798c854525
 t
