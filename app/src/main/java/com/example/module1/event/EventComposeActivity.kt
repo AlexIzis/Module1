@@ -5,17 +5,15 @@ import android.content.Intent
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.os.Parcelable
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.* // ktlint-disable no-wildcard-imports
 import androidx.compose.foundation.layout.* // ktlint-disable no-wildcard-imports
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
+import androidx.compose.material.* // ktlint-disable no-wildcard-imports
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -36,20 +34,7 @@ import java.util.*
 
 class EventComposeActivity : ComponentActivity() {
 
-    private lateinit var news: NewsUIModel /*= NewsUIModel(
-        0,
-        "Спонсоры отремонтируют школу-интернат",
-        "avatar_1",
-        "Дубовская школа-интернат для детей с ограниченными возможностями здоровья стала первой в области …",
-        1699999999002,
-        "Благотворительный Фонд «Счастливый Мир»",
-        "Санкт-Петербург, Кирочная улица, д. 50А, каб. 208",
-        listOf("+7 (937) 037 37-73", "+7 (937) 016 16-16"),
-        "Напишите нам",
-        listOf("@drawable/avatar_2", "@drawable/avatar_3"),
-        "Перейти на сайт организаии",
-        listOf("children")
-    )*/
+    private lateinit var news: NewsUIModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -297,16 +282,105 @@ class EventComposeActivity : ComponentActivity() {
                     modifier = Modifier.padding(start = 5.dp)
                 )
             }
+
+            val openDialog = remember {
+                mutableStateOf(false)
+            }
+            val sum = remember {
+                mutableStateOf("")
+            }
             Text(
                 text = "Помочь деньгами",
                 color = colorResource(id = R.color.leaf),
                 modifier = Modifier
                     .padding(top = 10.dp)
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
+                    .clickable {
+                        openDialog.value = true
+                    },
                 textAlign = TextAlign.Center,
                 fontSize = 18.sp
             )
+
+            if (openDialog.value) {
+                AlertDialog(
+                    onDismissRequest = {
+                        openDialog.value = false
+                    },
+                    title = {
+                        Text(
+                            text = "Спасибо за решение помочь!"
+                        )
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                    text = {
+                        Column(
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Text(text = "Введите сумму пожертвования")
+                            TextField(
+                                value = sum.value,
+                                onValueChange = {
+                                    sum.value = it
+                                },
+                                colors = TextFieldDefaults.textFieldColors(
+                                    backgroundColor = Color.White,
+                                    focusedIndicatorColor = colorResource(id = R.color.leaf),
+                                    cursorColor = colorResource(id = R.color.leaf)
+                                ),
+                                label = {
+                                    Text(
+                                        text = "Сумма",
+                                        color = colorResource(id = R.color.leaf)
+                                    )
+                                }
+                            )
+                        }
+                    },
+                    buttons = {
+                        Row(
+                            modifier = Modifier
+                                .padding(8.dp)
+                                .fillMaxWidth(),
+                            horizontalArrangement = Arrangement.End
+                        ) {
+                            Button(
+                                onClick = {
+                                    openDialog.value = false
+                                },
+                                colors = ButtonDefaults.buttonColors(Color.White),
+                                modifier = Modifier.padding(5.dp)
+                            ) {
+                                Text(
+                                    text = "Отмена",
+                                    color = colorResource(id = R.color.leaf)
+                                )
+                            }
+                            Button(
+                                onClick = {
+                                    Toast.makeText(
+                                        this@EventComposeActivity,
+                                        "Money",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                },
+                                colors = ButtonDefaults.buttonColors(Color.White),
+                                modifier = Modifier.padding(5.dp)
+                            ) {
+                                Text(
+                                    text = "Перевести",
+                                    color = colorResource(id = R.color.leaf)
+                                )
+                            }
+                        }
+                    }
+                )
+            }
         }
+    }
+
+    private fun enableButton(sum: Int): Boolean {
+        return (sum > 0) && (sum < 9999999)
     }
 
     companion object {
