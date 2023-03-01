@@ -35,9 +35,6 @@
             android:label="@string/title_activity_compose_login"
             android:theme="@style/Theme.Module1" />
         <activity
-            android:name=".auth.LoginActivity"
-            android:exported="false" />
-        <activity
             android:name=".activity.CategoriesActivity"
             android:exported="false" />
         <activity
