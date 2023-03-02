@@ -62,8 +62,6 @@ l
 <app/src/main/java/com/example/module1/news/ui/theme/Theme.kt,e\3\e3e59ada9e72b40610ba357e0141f89c986fd992
 k
 ;app/src/main/java/com/example/module1/news/ui/theme/Type.kt,2\5\25aba9a7e2d224fc5b7de2babc5561180d175a78
-@
-app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 i
 9app/src/main/java/com/example/module1/di/ContextModule.kt,f\6\f6e4b0bb64f5d41ebf26584c7484fabd0deea671
 k
@@ -84,8 +82,6 @@ i
 9app/src/main/java/com/example/module1/search/VpAdapter.kt,b\0\b015439b616be79c0797b56dd37b7c32b38ec56b
 m
 =app/src/main/java/com/example/module1/ItemMarginDecoration.kt,0\6\0658fbaaa54a2b385cd741e9e1a2ee798c854525
-t
-Dapp/src/main/java/com/example/module1/activity/CategoriesActivity.kt,d\1\d16fa4555fdd4a2cf822dc1dbd286307775b67f1
 v
 Fapp/src/main/java/com/example/module1/activity/SplashScreenActivity.kt,a\6\a6816d7055f39376ebbecd2d9b6386071e51a7b4
 g
@@ -96,12 +92,8 @@ k
 ;app/src/main/java/com/example/module1/di/VMFactoryModule.kt,d\0\d0ac60cec15cda8d204ae85232a2676e761b939b
 a
 1app/src/main/java/com/example/module1/AppClass.kt,6\d\6d450ed6d281ea83aebfae4449dee9ba4eace95a
-k
-;app/src/main/java/com/example/module1/FragmentNavigation.kt,b\2\b207fa74369cf513683fcbbd29be8929936bc607
 t
 Dapp/src/main/java/com/example/module1/search/SearchFragmentEvents.kt,6\e\6e9f186807d618cece75c32ca8f39cc29cc6bad0
-c
-3app/src/main/java/com/example/module1/JsonParser.kt,b\1\b1d54747964bc0388264e4b757570132a2182323
 t
 Dapp/src/main/java/com/example/module1/profile/EditProfileFragment.kt,9\e\9e324c5c7b30caf79df1bea8128651d32826e5b0
 i
@@ -112,3 +104,11 @@ P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 q
 Aapp/src/main/java/com/example/module1/news/NewsComposeActivity.kt,f\1\f18458ef38a0c83596d4645cf29f6086df1ca742
+k
+;app/src/main/java/com/example/module1/news/NewsStoreImpl.kt,0\c\0cde9465d23863b02e27472710c354e8c19389c6
+k
+;app/src/main/java/com/example/module1/news/NewsViewModel.kt,b\8\b818dd3ddc0dd91218555dfda791a942fdd67ec9
+l
+<app/src/main/java/com/example/module1/auth/LoginViewModel.kt,c\e\ce7e2112de52c9bb8f6fcb0c27bef95d22685955
+r
+Bapp/src/main/java/com/example/module1/auth/ComposeLoginActivity.kt,7\5\7524036cb2755da2c8587e3f9e0c426827bf719b
