@@ -17,9 +17,15 @@ class NotificationWorker(
         createChannel()
         val builder = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.avatar_1)
-            .setContentTitle("Hello World")
-            .setContentText("This is your test notification")
+            .setContentTitle(inputData.getString("name"))
+            .setContentText("Спасибо!!! ")
             .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setStyle(
+                NotificationCompat.BigTextStyle().bigText(
+                    "Спасибо, что пожертвовали ${inputData.getString("sum")} ₽! " +
+                        "Будем очень признательны, если вы сможете пожертвовать еще больше."
+                )
+            )
             .build()
         val notificationManager = NotificationManagerCompat.from(context)
         notificationManager.notify(NOTIFICATION_ID, builder)
