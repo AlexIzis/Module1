@@ -51,7 +51,6 @@
     <string name="old">Пожилые</string>
     <string name="animals">Животные</string>
     <string name="events">Мероприятия</string>
-    <string name="nothing">Ничего не происходит</string>
     <string name="enter_name_organization">Введите название организации</string>
     <string name="test_password">1234567</string>
     <string name="January">январь</string>
@@ -66,4 +65,14 @@
     <string name="October">октябрь</string>
     <string name="November">ноябрь</string>
     <string name="December">декабрь</string>
+    <string name="any_questions">У вас есть вопросы?</string>
+    <string name="_102">+102</string>
+    <string name="filter">Фильтр</string>
+    <string name="money">Деньгами</string>
+    <string name="clothes">Вещами</string>
+    <string name="pro_help">Проф помощью</string>
+    <string name="volunteer">Волонтерством</string>
+    <string name="news">Новости</string>
+    <string name="path_to_categories">categories.json</string>
+    <string name="path_to_news">news.json</string>
 </resources>

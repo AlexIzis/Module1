@@ -1,4 +1,4 @@
-package com.example.module1
+package com.example.module1.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import com.example.module1.FragmentNavigation
+import com.example.module1.R
 
 class ProfileFragment : Fragment() {
 
@@ -18,12 +20,13 @@ class ProfileFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val pencilButton: ImageView = view.findViewById(R.id.imageView4) ?: return
+        val pencilButton: ImageView = view.findViewById(R.id.imageView4)
         pencilButton.setOnClickListener {
-            val fragmentManager = parentFragmentManager
-            val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.fragmentContainerView, EditProfileFragment())
-            fragmentTransaction.commit()
+            FragmentNavigation().addFragment(
+                parentFragmentManager,
+                R.id.fragmentContainerView,
+                EditProfileFragment()
+            )
         }
     }
 }

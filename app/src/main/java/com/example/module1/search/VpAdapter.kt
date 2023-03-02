@@ -1,4 +1,4 @@
-package com.example.module1
+package com.example.module1.search
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter

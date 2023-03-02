@@ -1,4 +1,4 @@
-package com.example.module1
+package com.example.module1.profile
 
 import android.Manifest
 import android.app.Activity
@@ -13,7 +13,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
@@ -21,14 +20,18 @@ import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
+import com.example.module1.FragmentNavigation
+import com.example.module1.R
 import java.util.*
 
 const val REQUEST_CODE = 1
+private const val TAKE_PHOTO_FROM_GALLERY = 0
+private const val TAKE_PHOTO_FROM_CAMERA = 1
+private const val DELETE_PHOTO = 2
 
 class EditProfileFragment : Fragment() {
-    private lateinit var getResult: ActivityResultLauncher<Intent>
+    private lateinit var getResultFromCamera: ActivityResultLauncher<Intent>
+    private lateinit var getResultFromGallery: ActivityResultLauncher<Intent>
     private lateinit var image: ImageView
 
     override fun onCreateView(
@@ -37,39 +40,6 @@ class EditProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         return inflater.inflate(R.layout.fragment_edit_profile, container, false)
-    }
-
-    private fun doPhoto() {
-        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        getResult.launch(cameraIntent)
-    }
-
-    private fun deletePhoto() {
-        image.setImageResource(R.drawable.ic_photo_camera)
-    }
-
-    private fun showDialog() {
-        AlertDialog.Builder(requireContext())
-            .apply {
-                setItems(
-                    R.array.values
-                ) { _, i ->
-                    when (i) {
-                        0 -> {
-                            Toast.makeText(context, getString(R.string.nothing), Toast.LENGTH_SHORT)
-                                .show()
-                        }
-                        1 -> {
-                            doPhoto()
-                        }
-                        2 -> {
-                            deletePhoto()
-                        }
-                    }
-                }
-            }
-            .create()
-            .show()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -86,13 +56,33 @@ class EditProfileFragment : Fragment() {
                 REQUEST_CODE
             )
         }
-
-        getResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            if (it.resultCode == Activity.RESULT_OK) {
-                val newImage = it.data?.extras?.get("data") as Bitmap
-                image.setImageBitmap(newImage)
-            }
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                REQUEST_CODE
+            )
         }
+
+        getResultFromCamera =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                if (it.resultCode == Activity.RESULT_OK) {
+                    val newImage = it.data?.extras?.get("data") as Bitmap
+                    image.setImageBitmap(newImage)
+                }
+            }
+
+        getResultFromGallery =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                if (it.resultCode == Activity.RESULT_OK ) {
+                    val n = it.data?.data
+                    image.setImageURI(n)
+                }
+            }
 
         val changeImage: CardView = view.findViewById(R.id.cardView)
         changeImage.setOnClickListener {
@@ -126,12 +116,52 @@ class EditProfileFragment : Fragment() {
             ).show()
         }
 
-        val backArrow: ImageView = view.findViewById(R.id.back_arrow)
+        val backArrow: ImageView = view.findViewById(R.id.backArrow)
         backArrow.setOnClickListener {
-            val fragmentManager = parentFragmentManager
-            val fragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.fragmentContainerView, ProfileFragment())
-            fragmentTransaction.commit()
+            FragmentNavigation().addFragment(
+                parentFragmentManager,
+                R.id.fragmentContainerView,
+                ProfileFragment()
+            )
         }
+    }
+
+
+    private fun takePhoto() {
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "image/*"
+        getResultFromGallery.launch(intent)
+    }
+
+    private fun doPhoto() {
+        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        getResultFromCamera.launch(cameraIntent)
+    }
+
+    private fun deletePhoto() {
+        image.setImageResource(R.drawable.ic_photo_camera)
+    }
+
+    private fun showDialog() {
+        AlertDialog.Builder(requireContext())
+            .apply {
+                setItems(
+                    R.array.values
+                ) { _, i ->
+                    when (i) {
+                        TAKE_PHOTO_FROM_GALLERY -> {
+                            takePhoto()
+                        }
+                        TAKE_PHOTO_FROM_CAMERA -> {
+                            doPhoto()
+                        }
+                        DELETE_PHOTO -> {
+                            deletePhoto()
+                        }
+                    }
+                }
+            }
+            .create()
+            .show()
     }
 }
