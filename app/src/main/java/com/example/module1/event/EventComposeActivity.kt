@@ -6,7 +6,6 @@ import android.content.IntentFilter
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.os.Parcelable
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.* // ktlint-disable no-wildcard-imports
@@ -369,11 +368,6 @@ class EventComposeActivity : ComponentActivity() {
                             }
                             Button(
                                 onClick = {
-                                    Toast.makeText(
-                                        this@EventComposeActivity,
-                                        "Money",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
                                 },
                                 colors = ButtonDefaults.buttonColors(Color.White),
                                 modifier = Modifier.padding(5.dp)
