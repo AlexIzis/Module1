@@ -1,14 +1,10 @@
 package com.example.module1.event
 
 import android.annotation.SuppressLint
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
+import android.content.* // ktlint-disable no-wildcard-imports
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.os.Parcelable
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.* // ktlint-disable no-wildcard-imports
@@ -48,7 +44,6 @@ class EventComposeActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         news = intent.parcelable(intentKey)!!
         val intentFilter = IntentFilter()
-
         intentFilter.addAction(Intent.ACTION_POWER_CONNECTED)
         this.registerReceiver(myReceiver, intentFilter)
         setContent {
@@ -404,7 +399,6 @@ class EventComposeActivity : ComponentActivity() {
         } else {
             val int = sum.toInt()
             val flag = ((int > 10) && (int < 999999))
-            Log.i("flag", flag.toString())
             flag
         }
     }

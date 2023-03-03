@@ -26,6 +26,7 @@ class NotificationWorker(
             .setContentTitle(inputData.getString("name"))
             .setContentText("Спасибо!!! ")
             .addAction(R.drawable.ic_access_time, "Напомнить позже", pendingIntent)
+            .setContentIntent(pendingIntent)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setStyle(
                 NotificationCompat.BigTextStyle().bigText(
