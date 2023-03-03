@@ -100,8 +100,6 @@ i
 9app/src/main/java/com/example/module1/room/AppDatabase.kt,8\c\8c398b5f581633c78e201f737685ea644225abea
 u
 Eapp/src/main/java/com/example/module1/filter/FilterComposeActivity.kt,1\0\10e49ed4f3e228b9ece15edbbdfb4b870b2302d7
-P
- app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 q
 Aapp/src/main/java/com/example/module1/news/NewsComposeActivity.kt,f\1\f18458ef38a0c83596d4645cf29f6086df1ca742
 k

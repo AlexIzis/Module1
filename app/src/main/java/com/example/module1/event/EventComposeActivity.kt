@@ -1,6 +1,8 @@
 package com.example.module1.event
 
 import android.annotation.SuppressLint
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build.VERSION.SDK_INT
@@ -27,7 +29,9 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.work.Data
 import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.example.module1.R
 import com.example.module1.news.NewsUIModel
 import java.text.SimpleDateFormat
@@ -36,7 +40,8 @@ import java.util.*
 class EventComposeActivity : ComponentActivity() {
 
     private lateinit var news: NewsUIModel
-    private val myReceiver = PowerReceiver()
+    private val myReceiver = ConnectReceiver()
+    private val workRequest = OneTimeWorkRequestBuilder<NotificationWorker>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -369,6 +374,12 @@ class EventComposeActivity : ComponentActivity() {
                             }
                             Button(
                                 onClick = {
+                                    val data = Data.Builder()
+                                    data.putString("id", news.id.toString())
+                                    data.putString("name", news.label)
+                                    data.putString("sum", sum.value)
+                                    workRequest.setInputData(data.build())
+                                    openDialog.value = false
                                 },
                                 colors = ButtonDefaults.buttonColors(Color.White),
                                 modifier = Modifier.padding(5.dp)
@@ -381,6 +392,16 @@ class EventComposeActivity : ComponentActivity() {
                         }
                     }
                 )
+            }
+        }
+    }
+
+    inner class ConnectReceiver : BroadcastReceiver() {
+        override fun onReceive(p0: Context?, p1: Intent?) {
+            when (p1?.action) {
+                Intent.ACTION_POWER_CONNECTED -> {
+                    WorkManager.getInstance(requireNotNull(p0)).enqueue(workRequest.build())
+                }
             }
         }
     }
