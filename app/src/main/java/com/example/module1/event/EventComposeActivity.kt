@@ -8,6 +8,7 @@ import android.content.IntentFilter
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.* // ktlint-disable no-wildcard-imports
@@ -382,7 +383,8 @@ class EventComposeActivity : ComponentActivity() {
                                     openDialog.value = false
                                 },
                                 colors = ButtonDefaults.buttonColors(Color.White),
-                                modifier = Modifier.padding(5.dp)
+                                modifier = Modifier.padding(5.dp),
+                                enabled = checkSum(sum.value)
                             ) {
                                 Text(
                                     text = "Перевести",
@@ -393,6 +395,17 @@ class EventComposeActivity : ComponentActivity() {
                     }
                 )
             }
+        }
+    }
+
+    private fun checkSum(sum: String): Boolean {
+        return if (sum == "") {
+            false
+        } else {
+            val int = sum.toInt()
+            val flag = ((int > 10) && (int < 999999))
+            Log.i("flag", flag.toString())
+            flag
         }
     }
 

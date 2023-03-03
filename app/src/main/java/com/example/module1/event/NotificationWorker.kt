@@ -29,7 +29,9 @@ class NotificationWorker(
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setStyle(
                 NotificationCompat.BigTextStyle().bigText(
-                    "Спасибо, что пожертвовали ${inputData.getString("sum")} ₽! " +
+                    "Спасибо, что пожертвовали ${
+                    inputData.getString("sum")?.let { checkSum(it) }
+                    } ₽! " +
                         "Будем очень признательны, если вы сможете пожертвовать еще больше."
                 )
             )
@@ -46,6 +48,14 @@ class NotificationWorker(
         val notificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.createNotificationChannel(channel)
+    }
+
+    private fun checkSum(sum: String): String {
+        return if (sum != "null") {
+            sum
+        } else {
+            "99999999"
+        }
     }
 
     companion object {
