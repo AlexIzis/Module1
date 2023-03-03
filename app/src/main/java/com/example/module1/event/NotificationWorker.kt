@@ -29,9 +29,7 @@ class NotificationWorker(
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setStyle(
                 NotificationCompat.BigTextStyle().bigText(
-                    "Спасибо, что пожертвовали ${
-                    inputData.getString("sum")?.let { checkSum(it) }
-                    } ₽! " +
+                    "Спасибо, что пожертвовали ${checkSum(inputData.getString("sum"))} ₽! " +
                         "Будем очень признательны, если вы сможете пожертвовать еще больше."
                 )
             )
@@ -50,12 +48,8 @@ class NotificationWorker(
         notificationManager.createNotificationChannel(channel)
     }
 
-    private fun checkSum(sum: String): String {
-        return if (sum != "null") {
-            sum
-        } else {
-            "99999999"
-        }
+    private fun checkSum(sum: String?): String {
+        return sum ?: "99999999"
     }
 
     companion object {
