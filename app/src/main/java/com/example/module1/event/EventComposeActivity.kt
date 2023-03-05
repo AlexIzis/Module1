@@ -39,6 +39,7 @@ class EventComposeActivity : ComponentActivity() {
     private lateinit var news: NewsUIModel
     private val myReceiver = ConnectReceiver()
     private val workRequest = OneTimeWorkRequestBuilder<NotificationWorker>()
+    private val sum = mutableStateOf("")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -298,9 +299,6 @@ class EventComposeActivity : ComponentActivity() {
             val openDialog = remember {
                 mutableStateOf(false)
             }
-            val sum = remember {
-                mutableStateOf("")
-            }
             Text(
                 text = "Помочь деньгами",
                 color = colorResource(id = R.color.leaf),
@@ -407,7 +405,9 @@ class EventComposeActivity : ComponentActivity() {
         override fun onReceive(p0: Context?, p1: Intent?) {
             when (p1?.action) {
                 Intent.ACTION_POWER_CONNECTED -> {
-                    WorkManager.getInstance(requireNotNull(p0)).enqueue(workRequest.build())
+                    if (sum.value != "") {
+                        WorkManager.getInstance(requireNotNull(p0)).enqueue(workRequest.build())
+                    }
                 }
             }
         }

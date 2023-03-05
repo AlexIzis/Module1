@@ -104,8 +104,6 @@ k
 ;app/src/main/java/com/example/module1/news/NewsStoreImpl.kt,0\c\0cde9465d23863b02e27472710c354e8c19389c6
 k
 ;app/src/main/java/com/example/module1/news/NewsViewModel.kt,b\8\b818dd3ddc0dd91218555dfda791a942fdd67ec9
-l
-<app/src/main/java/com/example/module1/auth/LoginViewModel.kt,c\e\ce7e2112de52c9bb8f6fcb0c27bef95d22685955
 r
 Bapp/src/main/java/com/example/module1/auth/ComposeLoginActivity.kt,7\5\7524036cb2755da2c8587e3f9e0c426827bf719b
 k
@@ -116,3 +114,5 @@ t
 Dapp/src/main/java/com/example/module1/activity/CategoriesActivity.kt,d\1\d16fa4555fdd4a2cf822dc1dbd286307775b67f1
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+q
+Aapp/src/main/java/com/example/module1/news/NewsComposeActivity.kt,f\1\f18458ef38a0c83596d4645cf29f6086df1ca742
