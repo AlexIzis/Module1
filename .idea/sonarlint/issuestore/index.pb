@@ -1,10 +1,4 @@
 
-X
-(gradle/wrapper/gradle-wrapper.properties,f\b\fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
-w
-Gapp/src/androidTest/java/com/example/module1/ExampleInstrumentedTest.kt,a\1\a1d927371058d9359928fa3effec01771a9d83e4
-h
-8app/src/test/java/com/example/module1/ExampleUnitTest.kt,b\9\b979231dfa768da8d02d94a29c1b21cc19504bd1
 s
 Capp/src/main/java/com/example/module1/search/SearchEventsAdapter.kt,7\c\7c10e8a1aad660523a50487d64fc0ae640e882cc
 m
@@ -40,14 +34,10 @@ r
 Bapp/src/main/java/com/example/module1/search/MainSearchFragment.kt,a\d\adcab0b1992f49db49c40069501c5290ca888a50
 A
 gradle.properties,2\a\2afbb999f001938c88fa43fc2ef52abf0f8213e4
-u
-Eapp/src/main/java/com/example/module1/categories/CategoryStoreImpl.kt,5\2\52b112aa4e78c17ae440ca198bf6885debeb7d04
 q
 Aapp/src/main/java/com/example/module1/search/SearchFragmentNKO.kt,b\7\b7ee3f773068d3b4a44022f5fd46dfd3c94f9607
 ~
 Napp/src/main/java/com/example/module1/categories/CategoriesViewModelFactory.kt,a\1\a1abc32ae6c631e75669e9e522bab5b49779ed1f
-w
-Gapp/src/main/java/com/example/module1/categories/CategoriesViewModel.kt,b\7\b7b03fd3486832aa1e1218c962d59e15290f9eca
 v
 Fapp/src/main/java/com/example/module1/categories/CategoriesFragment.kt,7\c\7cfd52e40ab03d62971f68bbdd8cf6cf8078ac12
 ?
@@ -106,8 +96,6 @@ c
 3app/src/main/java/com/example/module1/JsonParser.kt,b\1\b1d54747964bc0388264e4b757570132a2182323
 t
 Dapp/src/main/java/com/example/module1/activity/CategoriesActivity.kt,d\1\d16fa4555fdd4a2cf822dc1dbd286307775b67f1
-@
-app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 q
 Aapp/src/main/java/com/example/module1/news/NewsComposeActivity.kt,f\1\f18458ef38a0c83596d4645cf29f6086df1ca742
 P
