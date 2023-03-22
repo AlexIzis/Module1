@@ -120,3 +120,7 @@ e
 5app/src/main/java/com/example/module1/room/NewsDao.kt,e\5\e5c89f658e1ac4cd10b489258c34e1bc84aec0ae
 k
 ;app/src/main/java/com/example/module1/news/NewsStoreImpl.kt,0\c\0cde9465d23863b02e27472710c354e8c19389c6
+s
+Capp/src/main/java/com/example/module1/event/EventComposeActivity.kt,d\3\d3904a4da004cc6525666e4111c9bd86efce2b16
+q
+Aapp/src/main/java/com/example/module1/event/NotificationWorker.kt,6\d\6d81af04cf9f856bf74a7892a622caf38189bdf2
