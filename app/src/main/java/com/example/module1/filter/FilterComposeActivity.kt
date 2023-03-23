@@ -4,12 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.* // ktlint-disable no-wildcard-imports
 import androidx.compose.material.* // ktlint-disable no-wildcard-imports
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -25,7 +24,7 @@ import com.example.module1.news.NewsComposeActivity
 
 class FilterComposeActivity : ComponentActivity() {
 
-    private val categories = arrayListOf<String>()
+    private val viewModel by viewModels<FilterViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,7 +74,7 @@ class FilterComposeActivity : ComponentActivity() {
                     this@FilterComposeActivity,
                     NewsComposeActivity::class.java
                 )
-                intent.putExtra(filterKey, categories)
+                intent.putExtra(filterKey, viewModel.returnCategories())
                 setResult(RESULT_OK, intent)
                 this@FilterComposeActivity.finish()
             }) {
@@ -90,22 +89,6 @@ class FilterComposeActivity : ComponentActivity() {
 
     @Composable
     fun ListOfCheckBox() {
-        val checkedStateChildren = remember {
-            mutableStateOf(false)
-        }
-        val checkedStateAdults = remember {
-            mutableStateOf(false)
-        }
-        val checkedStateElderly = remember {
-            mutableStateOf(false)
-        }
-        val checkedStateAnimals = remember {
-            mutableStateOf(false)
-        }
-        val checkedStateEvents = remember {
-            mutableStateOf(false)
-        }
-
         val fontSizeCheckBox = 16.sp
 
         Column(
@@ -118,10 +101,9 @@ class FilterComposeActivity : ComponentActivity() {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Checkbox(
-                    checked = checkedStateChildren.value,
+                    checked = viewModel.checkedStateChildren.value,
                     onCheckedChange = {
-                        categories.add("children")
-                        checkedStateChildren.value = it
+                        viewModel.updateStateChildren(it)
                     },
                     colors = CheckboxDefaults.colors(
                         checkedColor = colorResource(id = R.color.leaf)
@@ -138,10 +120,9 @@ class FilterComposeActivity : ComponentActivity() {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Checkbox(
-                    checked = checkedStateAdults.value,
+                    checked = viewModel.checkedStateAdults.value,
                     onCheckedChange = {
-                        categories.add("adults")
-                        checkedStateAdults.value = it
+                        viewModel.updateStateAdults(it)
                     },
                     colors = CheckboxDefaults.colors(
                         checkedColor = colorResource(id = R.color.leaf)
@@ -158,10 +139,9 @@ class FilterComposeActivity : ComponentActivity() {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Checkbox(
-                    checked = checkedStateElderly.value,
+                    checked = viewModel.checkedStateElderly.value,
                     onCheckedChange = {
-                        categories.add("elderly")
-                        checkedStateElderly.value = it
+                        viewModel.updateStateElderly(it)
                     },
                     colors = CheckboxDefaults.colors(
                         checkedColor = colorResource(id = R.color.leaf)
@@ -178,10 +158,9 @@ class FilterComposeActivity : ComponentActivity() {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Checkbox(
-                    checked = checkedStateAnimals.value,
+                    checked = viewModel.checkedStateAnimals.value,
                     onCheckedChange = {
-                        categories.add("animals")
-                        checkedStateAnimals.value = it
+                        viewModel.updateStateAnimals(it)
                     },
                     colors = CheckboxDefaults.colors(
                         checkedColor = colorResource(id = R.color.leaf)
@@ -198,10 +177,9 @@ class FilterComposeActivity : ComponentActivity() {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Checkbox(
-                    checked = checkedStateEvents.value,
+                    checked = viewModel.checkedStateEvents.value,
                     onCheckedChange = {
-                        categories.add("events")
-                        checkedStateEvents.value = it
+                        viewModel.updateStateEvents(it)
                     },
                     colors = CheckboxDefaults.colors(
                         checkedColor = colorResource(id = R.color.leaf)

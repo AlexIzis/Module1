@@ -28,8 +28,6 @@ Bapp/src/main/java/com/example/module1/news/NewsViewModelFactory.kt,9\d\9d51c27
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-p
-@app/src/main/java/com/example/module1/profile/ProfileFragment.kt,1\f\1f796cd5d959574fc4347403aff77c730d7e71a3
 r
 Bapp/src/main/java/com/example/module1/search/MainSearchFragment.kt,a\d\adcab0b1992f49db49c40069501c5290ca888a50
 A
@@ -84,10 +82,6 @@ t
 Dapp/src/main/java/com/example/module1/profile/EditProfileFragment.kt,9\e\9e324c5c7b30caf79df1bea8128651d32826e5b0
 i
 9app/src/main/java/com/example/module1/room/AppDatabase.kt,8\c\8c398b5f581633c78e201f737685ea644225abea
-u
-Eapp/src/main/java/com/example/module1/filter/FilterComposeActivity.kt,1\0\10e49ed4f3e228b9ece15edbbdfb4b870b2302d7
-r
-Bapp/src/main/java/com/example/module1/auth/ComposeLoginActivity.kt,7\5\7524036cb2755da2c8587e3f9e0c426827bf719b
 k
 ;app/src/main/java/com/example/module1/FragmentNavigation.kt,b\2\b207fa74369cf513683fcbbd29be8929936bc607
 c
