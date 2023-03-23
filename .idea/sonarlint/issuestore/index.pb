@@ -86,8 +86,6 @@ i
 9app/src/main/java/com/example/module1/room/AppDatabase.kt,8\c\8c398b5f581633c78e201f737685ea644225abea
 u
 Eapp/src/main/java/com/example/module1/filter/FilterComposeActivity.kt,1\0\10e49ed4f3e228b9ece15edbbdfb4b870b2302d7
-k
-;app/src/main/java/com/example/module1/news/NewsViewModel.kt,b\8\b818dd3ddc0dd91218555dfda791a942fdd67ec9
 r
 Bapp/src/main/java/com/example/module1/auth/ComposeLoginActivity.kt,7\5\7524036cb2755da2c8587e3f9e0c426827bf719b
 k
@@ -100,8 +98,6 @@ q
 Aapp/src/main/java/com/example/module1/news/NewsComposeActivity.kt,f\1\f18458ef38a0c83596d4645cf29f6086df1ca742
 P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
-l
-<app/src/main/java/com/example/module1/auth/LoginViewModel.kt,c\e\ce7e2112de52c9bb8f6fcb0c27bef95d22685955
 i
 9app/src/main/java/com/example/module1/news/NewsUIModel.kt,4\0\40e8b31b1195c903dd87dcaacb35c1b4c764e06c
 e
@@ -112,3 +108,13 @@ s
 Capp/src/main/java/com/example/module1/event/EventComposeActivity.kt,d\3\d3904a4da004cc6525666e4111c9bd86efce2b16
 q
 Aapp/src/main/java/com/example/module1/event/NotificationWorker.kt,6\d\6d81af04cf9f856bf74a7892a622caf38189bdf2
+`
+0app/src/main/java/com/example/module1/Tasks.java,9\2\92900a96468687419240200190b3393e8a635c32
+w
+Gapp/src/androidTest/java/com/example/module1/ExampleInstrumentedTest.kt,a\1\a1d927371058d9359928fa3effec01771a9d83e4
+X
+(gradle/wrapper/gradle-wrapper.properties,f\b\fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
+h
+8app/src/test/java/com/example/module1/ExampleUnitTest.kt,b\9\b979231dfa768da8d02d94a29c1b21cc19504bd1
+u
+Eapp/src/main/java/com/example/module1/categories/CategoryStoreImpl.kt,5\2\52b112aa4e78c17ae440ca198bf6885debeb7d04
