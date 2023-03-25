@@ -13,6 +13,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.* // ktlint-disable no-wildcard-imports
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Button
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
@@ -22,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -123,7 +125,9 @@ class NewsComposeActivity : ComponentActivity() {
                         )
                     )
                 },
-                modifier = Modifier.padding(end = 14.dp, top = 8.dp, bottom = 8.dp)
+                modifier = Modifier
+                    .padding(end = 14.dp, top = 8.dp, bottom = 8.dp)
+                    .testTag("TestTagNewsIconButton")
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_filter),
@@ -136,6 +140,15 @@ class NewsComposeActivity : ComponentActivity() {
 
     @Composable
     fun ListOfNews() {
+        Button(
+            onClick = { /*TODO*/ },
+            modifier = Modifier.testTag("TestTagNewsButton")
+        ) {
+            Text(
+                text = "button",
+                color = Color.White
+            )
+        }
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
@@ -161,7 +174,8 @@ class NewsComposeActivity : ComponentActivity() {
                     intent.putExtra(intentKey, newsUIModel)
                     startActivity(intent)
                 }
-                .background(color = Color.White),
+                .background(color = Color.White)
+                .testTag("TestTagNewsItem"),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(

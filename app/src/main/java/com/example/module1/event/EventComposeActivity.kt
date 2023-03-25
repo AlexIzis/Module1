@@ -36,14 +36,27 @@ import java.util.*
 
 class EventComposeActivity : ComponentActivity() {
 
-    private lateinit var news: NewsUIModel
+    private /*lateinit*/ var news: NewsUIModel = NewsUIModel(
+        0,
+        "Спонсоры отремонтируют школу-интернат",
+        "avatar_1",
+        "Дубовская школа-интернат для детей с ограниченными возможностями здоровья стала первой в области …",
+        1699999999002,
+        "Благотворительный Фонд «Счастливый Мир»",
+        "Санкт-Петербург, Кирочная улица, д. 50А, каб. 208",
+        listOf("+7 (937) 037 37-73", "+7 (937) 016 16-16"),
+        "Напишите нам",
+        listOf("@drawable/avatar_2", "@drawable/avatar_3"),
+        "Перейти на сайт организаии",
+        listOf("children")
+    )
     private val myReceiver = ConnectReceiver()
     private val workRequest = OneTimeWorkRequestBuilder<NotificationWorker>()
     private val sum = mutableStateOf("")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        news = intent.parcelable(intentKey)!!
+        /*news = intent.parcelable(intentKey)!!*/
         val intentFilter = IntentFilter()
         intentFilter.addAction(Intent.ACTION_POWER_CONNECTED)
         this.registerReceiver(myReceiver, intentFilter)

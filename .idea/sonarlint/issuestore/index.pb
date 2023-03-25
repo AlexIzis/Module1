@@ -88,14 +88,10 @@ c
 3app/src/main/java/com/example/module1/JsonParser.kt,b\1\b1d54747964bc0388264e4b757570132a2182323
 t
 Dapp/src/main/java/com/example/module1/activity/CategoriesActivity.kt,d\1\d16fa4555fdd4a2cf822dc1dbd286307775b67f1
-P
- app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 i
 9app/src/main/java/com/example/module1/news/NewsUIModel.kt,4\0\40e8b31b1195c903dd87dcaacb35c1b4c764e06c
 e
 5app/src/main/java/com/example/module1/room/NewsDao.kt,e\5\e5c89f658e1ac4cd10b489258c34e1bc84aec0ae
-k
-;app/src/main/java/com/example/module1/news/NewsStoreImpl.kt,0\c\0cde9465d23863b02e27472710c354e8c19389c6
 q
 Aapp/src/main/java/com/example/module1/event/NotificationWorker.kt,6\d\6d81af04cf9f856bf74a7892a622caf38189bdf2
 X
@@ -112,9 +108,17 @@ p
 @app/src/test/java/com/example/module1/CategoriesViewModelTest.kt,f\5\f56b7002cd383d49bb5cda2b2f733150d75fd037
 j
 :app/src/test/java/com/example/module1/NewsViewModelTest.kt,6\2\6299111182ec252ecc013c4cd7ebcdc43a098589
-r
-Bapp/src/main/java/com/example/module1/auth/ComposeLoginActivity.kt,7\5\7524036cb2755da2c8587e3f9e0c426827bf719b
 l
 <app/src/main/java/com/example/module1/auth/LoginViewModel.kt,c\e\ce7e2112de52c9bb8f6fcb0c27bef95d22685955
 u
 Eapp/src/main/java/com/example/module1/filter/FilterComposeActivity.kt,1\0\10e49ed4f3e228b9ece15edbbdfb4b870b2302d7
+o
+?app/src/main/java/com/example/module1/filter/FilterViewModel.kt,b\1\b13380d3db42187e43307ee92fe1ced72cf18abe
+l
+<app/src/test/java/com/example/module1/FilterViewModelTest.kt,4\d\4dd719120dbdc781a2d9349a922e36555905642b
+k
+;app/src/test/java/com/example/module1/LoginViewModelTest.kt,a\5\a556df6b378991265c0970f5e643af5c3240142e
+w
+Gapp/src/androidTest/java/com/example/module1/ExampleInstrumentedTest.kt,a\1\a1d927371058d9359928fa3effec01771a9d83e4
+p
+@app/src/main/java/com/example/module1/profile/ProfileFragment.kt,1\f\1f796cd5d959574fc4347403aff77c730d7e71a3
