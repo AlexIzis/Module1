@@ -16,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -320,7 +321,7 @@ class EventComposeActivity : ComponentActivity() {
                     .fillMaxWidth()
                     .clickable {
                         openDialog.value = true
-                    },
+                    }.testTag("TestTagEventText"),
                 textAlign = TextAlign.Center,
                 fontSize = 18.sp
             )
@@ -335,7 +336,7 @@ class EventComposeActivity : ComponentActivity() {
                             text = "Спасибо за решение помочь!"
                         )
                     },
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth().testTag("TestTagEventDialog"),
                     text = {
                         Column(
                             modifier = Modifier.fillMaxWidth()
